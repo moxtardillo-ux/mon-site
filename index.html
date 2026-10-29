@@ -3,48 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moxtar Web - Accueil</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Moxtar Web - Espace d'Échanges & d'Études</title>
+    <script>
+        // Fonction sécurisée pour ouvrir WhatsApp sans exposer le numéro brut aux robots
+        function openWhatsApp() {
+            var part1 = "221";
+            var part2 = "78";
+            var part3 = "8472730";
+            window.open("https://wa.me/" + part1 + part2 + part3, "_blank");
+        }
+
+        // Fonction pour afficher le numéro et l'email uniquement au clic (anti-spam)
+        function revealContact() {
+            document.getElementById('phone-box').innerHTML = '<strong>+221 78 847 27 30</strong>';
+            document.getElementById('email-box').innerHTML = '<a href="mailto:moxtardillo@gmail.com" style="color: #3498db; text-decoration: none;">moxtardillo@gmail.com</a>';
+        }
+    </script>
 </head>
-<body>
-    <header style="text-align: center; padding: 20px; background-color: #111; color: white;">
-        <h1>Moxtar Web</h1>
-        <p>Plateforme d'études & de technologie</p>
-        <nav style="margin-top: 15px;">
-            <a href="index.html" style="color: #007bff; margin: 0 10px; text-decoration: none; font-weight: bold;">Accueil</a> | 
-            <a href="cours.html" style="color: #007bff; margin: 0 10px; text-decoration: none;">Cours & TD</a> | 
-            <a href="nasa.html" style="color: #007bff; margin: 0 10px; text-decoration: none;">Info & NASA</a>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; color: #333;">
+
+    <!-- En-tête -->
+    <header style="background-color: #1a252f; color: white; padding: 25px 20px; text-align: center;">
+        <h1 style="margin: 0; font-size: 2.2em;">Moxtar Web</h1>
+        <p style="margin-top: 5px; color: #3498db; font-size: 1.1em;">Plateforme d'Entraide & Échanges entre Élèves</p>
+        
+        <nav style="margin-top: 20px;">
+            <a href="index.html" style="color: white; font-weight: bold; margin: 0 15px; text-decoration: none; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Accueil</a>
+            <a href="cours.html" style="color: #ecf0f1; margin: 0 15px; text-decoration: none;">Cours & PDF</a>
         </nav>
     </header>
 
-    <main style="max-width: 800px; margin: 30px auto; padding: 0 20px;">
-        <section style="text-align: center; margin-bottom: 40px;">
-            <h2>Bienvenue sur mon espace Web</h2>
-            <p>Choisis une rubrique ci-dessous pour explorer mes contenus :</p>
+    <!-- Contenu Principal -->
+    <main style="max-width: 900px; margin: 30px auto; padding: 0 20px;">
+
+        <!-- Section Présentation -->
+        <section style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); margin-bottom: 25px; text-align: center;">
+            <h2 style="color: #2c3e50;">Bienvenue sur Moxtar Web 📚</h2>
+            <p style="line-height: 1.6; font-size: 1.05em;">
+                Cet espace est conçu pour réunir les élèves, partager des ressources scolaires, poser des questions et travailler ensemble efficacement. Retrouve tes supports de cours, tes devoirs et communique directement avec la communauté !
+            </p>
         </section>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-            <div style="border: 1px solid #ddd; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                <div style="font-size: 3rem;">📚</div>
-                <h3>Espace Cours</h3>
-                <p>Retrouve les TD et exercices de physique-chimie (TS2) et mathématiques.</p>
-                <a href="cours.html" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px; text-decoration: none; margin-top: 10px;">Accéder aux cours</a>
+        <!-- Section Échanges & Groupe -->
+        <section style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); margin-bottom: 25px; text-align: center;">
+            <h3 style="color: #2c3e50;">💬 Espace de Discussion & Entraide</h3>
+            <p style="color: #555;">Une question sur un exercice ? Besoin de fiches de révision ? Contacte-moi directement en un clic :</p>
+            
+            <div style="margin-top: 20px;">
+                <button onclick="openWhatsApp()" style="background-color: #25D366; color: white; padding: 14px 28px; border: none; border-radius: 30px; font-weight: bold; font-size: 1.1em; cursor: pointer; box-shadow: 0 4px 6px rgba(37,211,102,0.3);">
+                    🟢 Discuter sur WhatsApp
+                </button>
             </div>
+        </section>
 
-            <div style="border: 1px solid #ddd; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                <div style="font-size: 3rem;">🚀</div>
-                <h3>Space & Tech Info</h3>
-                <p>Découvre des informations sur l'astronomie, la NASA et l'informatique.</p>
-                <a href="nasa.html" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: white; border-radius: 5px; text-decoration: none; margin-top: 10px;">Explorer la Tech</a>
-            </div>
-        </div>
+        <!-- Section Accès Rapide -->
+        <section style="text-align: center; margin-top: 30px;">
+            <a href="cours.html" style="display: inline-block; background-color: #3498db; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1em;">
+                📖 Accéder à la Bibliothèque de Cours & PDF
+            </a>
+        </section>
+
     </main>
 
-    <footer style="text-align: center; padding: 20px; margin-top: 50px; border-top: 1px solid #ccc; font-size: 0.9em;">
-        <p>&copy; 2026 Moxtar Web - Tous droits réservés.</p>
+    <!-- Pied de page & Contact Sécurisé -->
+    <footer style="background-color: #1a252f; color: white; text-align: center; padding: 25px; margin-top: 50px;">
+        <h4 style="margin-bottom: 10px; color: #3498db;">Contact & Fondateur</h4>
+        <p style="margin: 5px 0;">Fondateur : <strong>Moxtar Dillo</strong></p>
+        
+        <!-- Zone protégée anti-spam -->
+        <div style="margin: 15px 0;" id="security-contact-area">
+            <button onclick="revealContact()" style="background: #34495e; color: #fff; border: 1px solid #3498db; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
+                🔒 Afficher les coordonnées de contact
+            </button>
+            <p style="margin: 8px 0;">Téléphone / WhatsApp : <span id="phone-box">[Protégé]</span></p>
+            <p style="margin: 8px 0;">Email : <span id="email-box">[Protégé]</span></p>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #34495e; width: 60%; margin: 20px auto;">
+        <p style="font-size: 0.85em; color: #bdc3c7;">&copy; 2026 Moxtar Web - Tous droits réservés.</p>
     </footer>
+
 </body>
 </html>
+
 
 
 
