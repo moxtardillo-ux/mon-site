@@ -3,34 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cours & TD - Moxtar Web</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Cours & Documents - Moxtar Web</title>
 </head>
-<body>
-    <header style="text-align: center; padding: 20px; background-color: #111; color: white;">
-        <h1>Espace Cours & Exercices</h1>
-        <nav style="margin-top: 15px;">
-            <a href="index.html" style="color: #007bff; margin: 0 10px; text-decoration: none;">Accueil</a> | 
-            <a href="cours.html" style="color: #007bff; margin: 0 10px; text-decoration: none; font-weight: bold;">Cours & TD</a> | 
-            <a href="nasa.html" style="color: #007bff; margin: 0 10px; text-decoration: none;">Info & NASA</a>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; color: #333;">
+
+    <!-- En-tête -->
+    <header style="background-color: #1a252f; color: white; padding: 25px 20px; text-align: center;">
+        <h1 style="margin: 0; font-size: 2.2em;">Espace Cours & Exercices</h1>
+        <p style="margin-top: 5px; color: #3498db; font-size: 1.1em;">Ressources pédagogiques pour élèves</p>
+        
+        <nav style="margin-top: 20px;">
+            <a href="index.html" style="color: #ecf0f1; margin: 0 15px; text-decoration: none;">Accueil</a>
+            <a href="cours.html" style="color: white; font-weight: bold; margin: 0 15px; text-decoration: none; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Cours & PDF</a>
         </nav>
     </header>
 
-    <main style="max-width: 900px; margin: 30px auto; padding: 0 20px; text-align: center;">
-        <h2>Physique - Chimie : Classe de TS2</h2>
-        <p><strong>TD C1 : Les Alcools</strong></p>
+    <!-- Contenu Principal -->
+    <main style="max-width: 900px; margin: 30px auto; padding: 0 20px;">
 
-        <div style="margin: 20px 0;">
-            <a href="PDF_GO_DOC-20261024-WA0009.pdf" target="_blank" style="display: inline-block; padding: 12px 25px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">📥 Télécharger / Ouvrir le PDF</a>
-        </div>
+        <!-- Section Document Physique-Chimie -->
+        <section style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); margin-bottom: 30px;">
+            <h2 style="color: #2c3e50; margin-top: 0;">🧪 Physique - Chimie (Terminales S2)</h2>
+            <h3 style="color: #e67e22;">TD C1 : Les Alcools</h3>
+            <p style="line-height: 1.6; color: #555;">
+                Consulte ou télécharge directement ton document d'exercices ci-dessous pour effectuer tes travaux dirigés :
+            </p>
 
-        <div style="margin-top: 20px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
-            <iframe src="PDF_GO_DOC-20261024-WA0009.pdf" width="100%" height="600px" style="border: none;"></iframe>
-        </div>
+            <!-- Bouton Téléchargement -->
+            <div style="margin: 20px 0; text-align: center;">
+                <a href="PDF_GO_DOC-20261024-WA0009.pdf" download style="display: inline-block; background-color: #27ae60; color: white; padding: 12px 25px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+                    📥 Télécharger le PDF (Les Alcools)
+                </a>
+            </div>
+
+            <!-- Affichage du PDF incorporé -->
+            <div style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; margin-top: 15px;">
+                <iframe src="PDF_GO_DOC-20261024-WA0009.pdf" width="100%" height="600px" style="border: none;">
+                    Ton navigateur ne permet pas d'afficher directement le PDF. 
+                    <a href="PDF_GO_DOC-20261024-WA0009.pdf">Clique ici pour le télécharger</a>.
+                </iframe>
+            </div>
+        </section>
+
     </main>
 
-    <footer style="text-align: center; padding: 20px; margin-top: 50px; border-top: 1px solid #ccc; font-size: 0.9em;">
-        <p><a href="index.html">← Retour à l'accueil</a></p>
+    <!-- Pied de page -->
+    <footer style="background-color: #1a252f; color: white; text-align: center; padding: 20px; margin-top: 50px;">
+        <p style="margin: 0;"><a href="index.html" style="color: #3498db; text-decoration: none;">← Retour à l'accueil Moxtar Web</a></p>
     </footer>
+
 </body>
 </html>
+
