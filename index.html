@@ -3,62 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Espace Personnel</title>
+    <title>Moxtar Web</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="site-header">
+        <h1 class="logo">Moxtar Web</h1>
+        <nav>
+            <a href="#accueil">Accueil</a>
+            <a href="#cours">Cours & TD</a>
+            <a href="#contacts">Contacts</a>
+        </nav>
+    </header>
 
-    <!-- Barre de navigation -->
-    <nav class="navbar">
-        <div class="logo">Mon Site</div>
-        <ul class="nav-links">
-            <li><a href="#" class="active">Accueil</a></li>
-            <li><a href="#projets">Projets</a></li>
-            <li><a href="#contacts">Contacts</a></li>
-        </ul>
-    </nav>
-
-    <!-- Contenu Principal -->
-    <main class="container">
-        
-        <header class="hero">
-            <h1>Bienvenue chez moi</h1>
+    <main id="accueil" class="main-content">
+        <section class="hero" style="text-align: center; padding: 30px 20px;">
+            <h2>Bienvenue chez moi</h2>
             <p>Mon espace personnel codé directement sur téléphone.</p>
-        </header>
+        </section>
 
-        <!-- Grille de cartes -->
-        <section id="projets" class="grid-section">
-            <div class="card">
-                <h2>Mon premier projet</h2>
-                <p>Ici je rangerai mes applications ou mes pages test.</p>
-                <a href="#" class="btn">Voir</a>
-            </div>
+        <!-- Section Projets avec icônes -->
+        <section class="projects-section" style="padding: 20px;">
+            <h3 style="text-align: center; margin-bottom: 20px;">Mes Espaces & Projets</h3>
+            <div style="display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto;">
+                
+                <!-- Carte Projet 1 -->
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; display: flex; align-items: center; gap: 15px;">
+                    <span style="font-size: 2.5rem;">📚</span>
+                    <div>
+                        <h4 style="margin: 0 0 5px 0;">Maths & Physique (TS2)</h4>
+                        <p style="margin: 0 0 10px 0; font-size: 0.9em; opacity: 0.8;">Accède au TD sur les alcools et autres ressources.</p>
+                        <a href="#cours" style="color: #007bff; text-decoration: none; font-weight: bold;">Voir le document →</a>
+                    </div>
+                </div>
 
-            <div class="card">
-                <h2>Mes notes</h2>
-                <p>Un espace pour noter mes idées de code et mes réflexions.</p>
-                <a href="#" class="btn">Ouvrir</a>
+                <!-- Carte Projet 2 -->
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; display: flex; align-items: center; gap: 15px;">
+                    <span style="font-size: 2.5rem;">💡</span>
+                    <div>
+                        <h4 style="margin: 0 0 5px 0;">Mes Notes</h4>
+                        <p style="margin: 0 0 10px 0; font-size: 0.9em; opacity: 0.8;">Un espace pour noter mes idées de code et réflexions.</p>
+                        <a href="#" style="color: #007bff; text-decoration: none; font-weight: bold;">Explorer →</a>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- Section Contacts -->
-        <section id="contacts" class="hero" style="margin-top: 40px;">
-            <h2>Mes Contacts & Réseaux</h2>
+        <!-- Section Cours / PDF -->
+        <section id="cours" style="padding: 30px 20px; text-align: center; margin-top: 20px;">
+            <h3>Ressources Pédagogiques</h3>
+            <p><strong>TD C1 : Les Alcools (TS2)</strong></p>
+            
+            <a href="PDF_GO_DOC-20261024-WA0009.pdf" target="_blank" style="display: inline-block; padding: 12px 24px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; margin: 15px 0;">📄 Ouvrir le PDF dans un nouvel onglet</a>
+
+            <!-- Affichage direct du PDF -->
+            <div style="margin-top: 20px;">
+                <iframe src="PDF_GO_DOC-20261024-WA0009.pdf" width="100%" height="500px" style="border: none; border-radius: 8px;"></iframe>
+            </div>
+        </section>
+
+        <!-- Section Contacts & Réseaux -->
+        <section id="contacts" style="padding: 30px 20px; text-align: center; margin-top: 20px;">
+            <h3>Mes Contacts & Réseaux</h3>
             <p>Retrouve-moi ou contacte-moi facilement ici :</p>
-            <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
-                <a href="mailto:moxtardillo@gmail.com" class="btn">Envoyer un Email</a>
-                <a href="https://wa.me/221788472730" target="_blank" class="btn" style="background-color: #22c55e; color: white;">WhatsApp</a>
+            <div style="margin: 20px 0;">
+                <a href="https://wa.me/" target="_blank" style="background: #25D366; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 5px; display: inline-block;">WhatsApp</a>
+                <a href="mailto:ton-email@exemple.com" style="background: #ea4335; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 5px; display: inline-block;">Email</a>
             </div>
         </section>
-
     </main>
 
-    <!-- Pied de page -->
-    <footer>
-        <p>&copy; 2026 - Fait main sur mobile.</p>
+    <footer style="text-align: center; padding: 20px; margin-top: 40px; font-size: 0.9em; opacity: 0.6;">
+        <p>&copy; 2026 Moxtar Web. Tous droits réservés.</p>
     </footer>
-
 </body>
 </html>
+
 
 
