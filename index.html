@@ -3,82 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moxtar Web</title>
+    <title>Moxtar Web - Accueil</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="site-header">
-        <h1 class="logo">Moxtar Web</h1>
-        <nav>
-            <a href="#accueil">Accueil</a>
-            <a href="#cours">Cours & TD</a>
-            <a href="#contacts">Contacts</a>
+    <header style="text-align: center; padding: 20px; background-color: #111; color: white;">
+        <h1>Moxtar Web</h1>
+        <p>Plateforme d'études & de technologie</p>
+        <nav style="margin-top: 15px;">
+            <a href="index.html" style="color: #007bff; margin: 0 10px; text-decoration: none; font-weight: bold;">Accueil</a> | 
+            <a href="cours.html" style="color: #007bff; margin: 0 10px; text-decoration: none;">Cours & TD</a> | 
+            <a href="nasa.html" style="color: #007bff; margin: 0 10px; text-decoration: none;">Info & NASA</a>
         </nav>
     </header>
 
-    <main id="accueil" class="main-content">
-        <section class="hero" style="text-align: center; padding: 30px 20px;">
-            <h2>Bienvenue chez moi</h2>
-            <p>Mon espace personnel codé directement sur téléphone.</p>
+    <main style="max-width: 800px; margin: 30px auto; padding: 0 20px;">
+        <section style="text-align: center; margin-bottom: 40px;">
+            <h2>Bienvenue sur mon espace Web</h2>
+            <p>Choisis une rubrique ci-dessous pour explorer mes contenus :</p>
         </section>
 
-        <!-- Section Projets avec icônes -->
-        <section class="projects-section" style="padding: 20px;">
-            <h3 style="text-align: center; margin-bottom: 20px;">Mes Espaces & Projets</h3>
-            <div style="display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto;">
-                
-                <!-- Carte Projet 1 -->
-                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; display: flex; align-items: center; gap: 15px;">
-                    <span style="font-size: 2.5rem;">📚</span>
-                    <div>
-                        <h4 style="margin: 0 0 5px 0;">Maths & Physique (TS2)</h4>
-                        <p style="margin: 0 0 10px 0; font-size: 0.9em; opacity: 0.8;">Accède au TD sur les alcools et autres ressources.</p>
-                        <a href="#cours" style="color: #007bff; text-decoration: none; font-weight: bold;">Voir le document →</a>
-                    </div>
-                </div>
-
-                <!-- Carte Projet 2 -->
-                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; display: flex; align-items: center; gap: 15px;">
-                    <span style="font-size: 2.5rem;">💡</span>
-                    <div>
-                        <h4 style="margin: 0 0 5px 0;">Mes Notes</h4>
-                        <p style="margin: 0 0 10px 0; font-size: 0.9em; opacity: 0.8;">Un espace pour noter mes idées de code et réflexions.</p>
-                        <a href="#" style="color: #007bff; text-decoration: none; font-weight: bold;">Explorer →</a>
-                    </div>
-                </div>
-
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div style="border: 1px solid #ddd; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <div style="font-size: 3rem;">📚</div>
+                <h3>Espace Cours</h3>
+                <p>Retrouve les TD et exercices de physique-chimie (TS2) et mathématiques.</p>
+                <a href="cours.html" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px; text-decoration: none; margin-top: 10px;">Accéder aux cours</a>
             </div>
-        </section>
 
-        <!-- Section Cours / PDF -->
-        <section id="cours" style="padding: 30px 20px; text-align: center; margin-top: 20px;">
-            <h3>Ressources Pédagogiques</h3>
-            <p><strong>TD C1 : Les Alcools (TS2)</strong></p>
-            
-            <a href="PDF_GO_DOC-20261024-WA0009.pdf" target="_blank" style="display: inline-block; padding: 12px 24px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; margin: 15px 0;">📄 Ouvrir le PDF dans un nouvel onglet</a>
-
-            <!-- Affichage direct du PDF -->
-            <div style="margin-top: 20px;">
-                <iframe src="PDF_GO_DOC-20261024-WA0009.pdf" width="100%" height="500px" style="border: none; border-radius: 8px;"></iframe>
+            <div style="border: 1px solid #ddd; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <div style="font-size: 3rem;">🚀</div>
+                <h3>Space & Tech Info</h3>
+                <p>Découvre des informations sur l'astronomie, la NASA et l'informatique.</p>
+                <a href="nasa.html" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: white; border-radius: 5px; text-decoration: none; margin-top: 10px;">Explorer la Tech</a>
             </div>
-        </section>
-
-        <!-- Section Contacts & Réseaux -->
-        <section id="contacts" style="padding: 30px 20px; text-align: center; margin-top: 20px;">
-            <h3>Mes Contacts & Réseaux</h3>
-            <p>Retrouve-moi ou contacte-moi facilement ici :</p>
-            <div style="margin: 20px 0;">
-                <a href="https://wa.me/" target="_blank" style="background: #25D366; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 5px; display: inline-block;">WhatsApp</a>
-                <a href="mailto:ton-email@exemple.com" style="background: #ea4335; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 5px; display: inline-block;">Email</a>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <footer style="text-align: center; padding: 20px; margin-top: 40px; font-size: 0.9em; opacity: 0.6;">
-        <p>&copy; 2026 Moxtar Web. Tous droits réservés.</p>
+    <footer style="text-align: center; padding: 20px; margin-top: 50px; border-top: 1px solid #ccc; font-size: 0.9em;">
+        <p>&copy; 2026 Moxtar Web - Tous droits réservés.</p>
     </footer>
 </body>
 </html>
+
 
 
 
