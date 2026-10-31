@@ -11,6 +11,7 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
+        /* --- SYSTEME DE THEMES (4 THEMES PAR DEFAUT) --- */
         :root {
             --bg-dark: #111827;
             --card-bg: rgba(30, 41, 59, 0.85);
@@ -20,7 +21,44 @@
             --accent-green: #10b981;
             --text-main: #ffffff;
             --text-sub: #cbd5e1;
+            --border-color: rgba(255, 255, 255, 0.15);
             --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body.theme-light {
+            --bg-dark: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --accent-cyan: #0284c7;
+            --accent-blue: #0369a1;
+            --accent-purple: #7c3aed;
+            --accent-green: #059669;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --border-color: rgba(0, 0, 0, 0.15);
+        }
+
+        body.theme-cyberpunk {
+            --bg-dark: #05050a;
+            --card-bg: rgba(20, 10, 30, 0.9);
+            --accent-cyan: #ff007f;
+            --accent-blue: #00ffcc;
+            --accent-purple: #9d00ff;
+            --accent-green: #39ff14;
+            --text-main: #fff0f5;
+            --text-sub: #ffb7c5;
+            --border-color: rgba(255, 0, 127, 0.4);
+        }
+
+        body.theme-sepia {
+            --bg-dark: #2c241d;
+            --card-bg: rgba(63, 52, 43, 0.9);
+            --accent-cyan: #d97706;
+            --accent-blue: #b45309;
+            --accent-purple: #b91c1c;
+            --accent-green: #65a30d;
+            --text-main: #fef3c7;
+            --text-sub: #d1d5db;
+            --border-color: rgba(217, 119, 6, 0.3);
         }
 
         * {
@@ -38,43 +76,38 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.12) 0%, transparent 30%),
-                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 30%);
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         header {
-            padding: 20px 16px 12px;
+            padding: 14px 16px;
             text-align: center;
-            background: rgba(17, 24, 39, 0.9);
+            background: var(--card-bg);
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .header-banner {
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(0, 242, 254, 0.3));
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(0, 242, 254, 0.2));
             border: 1px solid var(--accent-cyan);
-            border-radius: 18px;
-            padding: 16px;
-            box-shadow: 0 8px 32px rgba(0, 242, 254, 0.2);
+            border-radius: 14px;
+            padding: 10px;
         }
 
         .header-title {
-            font-size: 1.6rem;
+            font-size: 1.3rem;
             font-weight: 800;
-            background: linear-gradient(to right, var(--accent-cyan), #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 4px;
+            color: var(--accent-cyan);
+            margin-bottom: 2px;
         }
 
         .header-subtitle {
-            font-size: 0.8rem;
+            font-size: 0.72rem;
             color: var(--text-sub);
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
@@ -94,11 +127,76 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
+            from { opacity: 0; transform: translateY(4px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* BARRE DE RECHERCHE */
+        /* ACCUEIL : DASHBOARD & GRILLE */
+        .welcome-card {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .welcome-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .welcome-text {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            line-height: 1.4;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .dashboard-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-cyan);
+        }
+
+        .dashboard-card i {
+            font-size: 1.6rem;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .dashboard-card.maths i { color: var(--accent-cyan); background: rgba(0, 242, 254, 0.1); }
+        .dashboard-card.pc i { color: var(--accent-purple); background: rgba(168, 85, 247, 0.1); }
+        .dashboard-card.svt i { color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .dashboard-card.web i { color: var(--accent-blue); background: rgba(56, 189, 248, 0.1); }
+
+        .dashboard-card span {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* BARRE DE RECHERCHE ACCUEIL */
         .search-box {
             background: var(--card-bg);
             border: 1px solid var(--accent-cyan);
@@ -107,8 +205,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15);
+            margin-bottom: 16px;
         }
 
         .search-box input {
@@ -126,64 +223,90 @@
             font-size: 1.1rem;
         }
 
-        /* SÉLECTEUR DE MATIÈRE */
-        .subject-selector {
+        /* HISTORIQUE DE RECHERCHE */
+        .history-chips {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            overflow-x: auto;
-            padding-bottom: 4px;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .history-chip {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-sub);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .history-chip:hover {
+            border-color: var(--accent-cyan);
+            color: var(--text-main);
+        }
+
+        /* --- SÉLECTEUR DE MATIÈRE CONDENSÉ SUR UNE SEULE LIGNE SANS SCROLL --- */
+        .subject-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-bottom: 16px;
+            width: 100%;
         }
 
         .subject-btn {
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border-color);
             color: var(--text-sub);
-            padding: 10px 18px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            white-space: nowrap;
+            padding: 10px 4px;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-align: center;
             cursor: pointer;
-            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .subject-btn.active {
             background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             color: #fff;
             border-color: var(--accent-cyan);
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 242, 254, 0.3);
         }
 
-        /* BLOCS DE LEÇONS (3 CARRÉS DE BASE COLORÉS) */
+        /* BLOCS DE LEÇONS & EXERCICES */
         .lesson-card {
             background: var(--card-bg);
             border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 16px;
+            padding: 18px;
+            margin-bottom: 14px;
             border-left: 6px solid var(--accent-cyan);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s;
         }
 
-        .lesson-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.25);
-        }
-
-        .lesson-card.pc {
-            border-left-color: var(--accent-purple);
-        }
-
-        .lesson-card.svt {
-            border-left-color: var(--accent-green);
-        }
+        .lesson-card:hover { transform: translateY(-2px); }
+        .lesson-card.pc { border-left-color: var(--accent-purple); }
+        .lesson-card.svt { border-left-color: var(--accent-green); }
 
         .lesson-title {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            color: #fff;
+            color: var(--text-main);
             margin-bottom: 6px;
             display: flex;
             align-items: center;
@@ -191,77 +314,69 @@
         }
 
         .lesson-desc {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-sub);
         }
 
-        /* BLOCS D'ANNONCES VERTICAUX EMPILÉS */
         .category-action-stack {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
 
         .action-card {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+            background: var(--card-bg);
             border: 2px solid var(--accent-cyan);
-            border-radius: 18px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.15);
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
             width: 100%;
         }
 
         .action-card:hover {
-            transform: translateY(-3px);
-            border-color: #fff;
-            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.4);
-            background: linear-gradient(135deg, rgba(30, 41, 59, 1), rgba(0, 242, 254, 0.2));
+            transform: translateY(-2px);
+            border-color: var(--text-main);
         }
 
         .action-icon {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--accent-cyan);
             background: rgba(0, 242, 254, 0.1);
-            padding: 15px;
-            border-radius: 14px;
+            padding: 12px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 70px;
+            min-width: 55px;
         }
 
         .action-info h3 {
-            font-size: 1.15rem;
-            color: #fff;
+            font-size: 1.05rem;
+            color: var(--text-main);
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .action-info p {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-sub);
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
-        /* SOUS-PAGES */
         .sub-page {
             display: none;
             animation: fadeIn 0.3s ease-in-out forwards;
         }
-
-        .sub-page.active {
-            display: block;
-        }
+        .sub-page.active { display: block; }
 
         .back-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
             padding: 8px 14px;
             border-radius: 12px;
             font-size: 0.85rem;
@@ -271,32 +386,26 @@
             align-items: center;
             gap: 8px;
             margin-bottom: 16px;
-            transition: background 0.2s;
-        }
-
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
         }
 
         .exercise-card {
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--border-color);
             border-radius: 14px;
             padding: 16px;
             margin-bottom: 14px;
-            backdrop-filter: blur(8px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .exercise-title {
-            font-size: 1rem;
+            font-size: 0.98rem;
             font-weight: 700;
             color: var(--accent-cyan);
             margin-bottom: 8px;
         }
 
         .exercise-content {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--text-sub);
             line-height: 1.6;
         }
@@ -305,7 +414,7 @@
             background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(56, 189, 248, 0.15));
             border: 1px dashed var(--accent-cyan);
             border-radius: 12px;
-            padding: 14px;
+            padding: 12px;
             text-align: center;
             margin-bottom: 16px;
         }
@@ -314,15 +423,194 @@
             color: var(--accent-cyan);
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
 
-        .drive-link-box a:hover {
-            text-decoration: underline;
+        .lesson-section-title {
+            color: var(--accent-cyan);
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-top: 14px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.3);
+            padding-bottom: 4px;
         }
+
+        .lesson-text {
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        /* --- GRILLE WIKIPÉDIA 2X2 COMPACTE EN RECTANGLES --- */
+        .wiki-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            height: calc(100vh - 180px);
+            max-height: 520px;
+        }
+
+        .wiki-rect-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wiki-rect-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.2);
+        }
+
+        .wiki-rect-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-cyan);
+        }
+
+        .wiki-rect-card.maths::before { background: var(--accent-cyan); }
+        .wiki-rect-card.pc::before { background: var(--accent-purple); }
+        .wiki-rect-card.svt::before { background: var(--accent-green); }
+        .wiki-rect-card.sciences::before { background: var(--accent-blue); }
+
+        .wiki-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wiki-card-icon {
+            font-size: 1.4rem;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .wiki-rect-card.maths .wiki-card-icon { color: var(--accent-cyan); }
+        .wiki-rect-card.pc .wiki-card-icon { color: var(--accent-purple); }
+        .wiki-rect-card.svt .wiki-card-icon { color: var(--accent-green); }
+        .wiki-rect-card.sciences .wiki-card-icon { color: var(--accent-blue); }
+
+        .wiki-card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .wiki-card-subtitle {
+            font-size: 0.72rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        .wiki-read-badge {
+            align-self: flex-end;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 242, 254, 0.08);
+            padding: 6px 10px;
+            border-radius: 20px;
+        }
+
+        /* --- PAGE DE LECTURE WIKIPÉDIA DÉDIÉE (FAÇON GEMINI / MODE LECTURE) --- */
+        .wiki-reader-box {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            height: calc(100vh - 240px);
+            min-height: 420px;
+            border: 1px solid var(--border-color);
+        }
+
+        .wiki-reader-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .wiki-search-bar {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 14px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .wiki-search-bar input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        .wiki-search-bar i {
+            color: var(--accent-cyan);
+            cursor: pointer;
+        }
+
+        /* PARAMÈTRES COMPTE */
+        .settings-group {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .settings-item {
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+        .settings-item:last-child { border-bottom: none; }
+        .settings-item:hover { background: rgba(255, 255, 255, 0.03); }
+
+        .settings-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .settings-left i {
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+            width: 24px;
+            text-align: center;
+        }
+
+        .settings-text h4 { font-size: 0.9rem; color: var(--text-main); font-weight: 600; }
+        .settings-text p { font-size: 0.75rem; color: var(--text-sub); }
+        .settings-right { font-size: 0.85rem; color: var(--text-sub); display: flex; align-items: center; gap: 6px; }
 
         /* NAVIGATION BASSE */
         .bottom-nav {
@@ -331,9 +619,9 @@
             left: 0;
             right: 0;
             height: 65px;
-            background: rgba(17, 24, 39, 0.95);
+            background: var(--card-bg);
             backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid var(--border-color);
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -349,208 +637,165 @@
             text-decoration: none;
             font-size: 0.7rem;
             cursor: pointer;
-            transition: color 0.2s;
         }
 
-        .nav-item i {
-            font-size: 1.2rem;
-        }
+        .nav-item i { font-size: 1.2rem; }
+        .nav-item.active { color: var(--accent-cyan); }
 
-        .nav-item.active {
-            color: var(--accent-cyan);
-        }
-
-        /* STYLE DES RÉSULTATS DE RECHERCHE */
         .search-res-item {
             border-left: 4px solid var(--accent-cyan);
             margin-bottom: 12px;
             padding: 12px 14px;
-            background: rgba(15, 23, 42, 0.7);
+            background: var(--card-bg);
             border-radius: 10px;
-        }
-        .search-res-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #fff;
-        }
-        .search-res-badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            padding: 2px 8px;
-            border-radius: 6px;
-            background: rgba(0, 242, 254, 0.2);
-            color: var(--accent-cyan);
-            margin-top: 4px;
-            margin-bottom: 6px;
-        }
-        .search-res-def {
-            font-size: 0.85rem;
-            color: var(--text-sub);
-            margin-bottom: 6px;
-        }
-        .search-res-ex {
-            font-size: 0.8rem;
-            color: var(--accent-blue);
-            font-style: italic;
-        }
-
-        /* STYLES DES PAYSAGES DE LEÇONS */
-        .lesson-section-title {
-            color: var(--accent-cyan);
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-top: 14px;
-            margin-bottom: 8px;
-            border-bottom: 1px solid rgba(0, 242, 254, 0.3);
-            padding-bottom: 4px;
-        }
-
-        .lesson-text {
-            font-size: 0.9rem;
-            color: var(--text-sub);
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .lesson-list {
-            margin-left: 20px;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            color: var(--text-sub);
-        }
-
-        .lesson-list li {
-            margin-bottom: 6px;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
     </style>
 </head>
-<body>
+<body class="theme-dark">
 
     <header>
         <div class="header-banner">
-            <h1 class="header-title">Accueil – TS2+</h1>
-            <p class="header-subtitle">Moteur de Révision Terminale S2</p>
+            <h1 id="headerTitle" class="header-title">Accueil – TS2+</h1>
+            <p id="headerSubtitle" class="header-subtitle">Moteur de Révision Terminale S2</p>
         </div>
     </header>
 
     <main class="tab-contents">
 
-        <!-- ONGLET 1: ACCUEIL + MOTEUR DE RECHERCHE INTELLIGENT -->
+        <!-- ONGLET 1: ACCUEIL -->
         <div id="tab-accueil" class="tab-panel active">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Recherche ou commande vocale..." onkeyup="executerRecherche()">
-                <i class="fa-solid fa-microphone" id="micBtn" onclick="startVoiceSearch()"></i>
-                <i class="fa-solid fa-magnifying-glass" onclick="executerRecherche()"></i>
+            <div class="welcome-card">
+                <div class="welcome-title">👋 Bienvenue, Moxtar !</div>
+                <div class="welcome-text">Prêt pour tes révisions du Bac S2 ? Utilise ton dictionnaire intelligent ci-dessous ou explore directement tes matières favorites.</div>
             </div>
 
-            <div id="searchResultsContainer">
-                <div class="exercise-card">
-                    <div class="exercise-title">💡 Dictionnaire & Moteur de Recherche</div>
-                    <div class="exercise-content">
-                        Tape un mot-clé (ex: <i>alcools, tvi, cinématique, potentiel, boole, decolonisation...</i>) ou utilise le micro 🎤 pour effectuer une recherche complète avec définitions et exemples.
-                    </div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card maths" onclick="switchTab('lecons'); openLessonPage('maths');">
+                    <i class="fa-solid fa-square-root-variable"></i>
+                    <span>Maths</span>
                 </div>
+                <div class="dashboard-card pc" onclick="switchTab('lecons'); openLessonPage('pc');">
+                    <i class="fa-solid fa-flask"></i>
+                    <span>Physique-Chimie</span>
+                </div>
+                <div class="dashboard-card svt" onclick="switchTab('lecons'); openLessonPage('svt');">
+                    <i class="fa-solid fa-dna"></i>
+                    <span>SVT</span>
+                </div>
+                <div class="dashboard-card web" onclick="switchTab('navigateur');">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>Univers Recherche</span>
+                </div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Recherche ou commande vocale..." onkeydown="if(event.key === 'Enter') lancerRechercheDédiée()">
+                <i class="fa-solid fa-microphone" id="micBtn" onclick="startVoiceSearch()"></i>
+                <i class="fa-solid fa-magnifying-glass" onclick="lancerRechercheDédiée()"></i>
             </div>
         </div>
 
-        <!-- ONGLET 2: LEÇONS (LES 3 CARRÉS COLORÉS RESTAURÉS ET CLIQUABLES) -->
+        <!-- PAGE DE RÉSULTATS DE RECHERCHE DÉDIÉE -->
+        <div id="tab-recherche-dédiée" class="tab-panel">
+            <button class="back-btn" onclick="switchTab('accueil')"><i class="fa-solid fa-arrow-left"></i> Retour à l'accueil</button>
+            <h2 style="font-size: 1.1rem; color: var(--accent-cyan); margin-bottom: 12px;">🔍 Historique & Résultats</h2>
+            
+            <div id="historyContainer" class="history-chips"></div>
+            <div id="searchResultsContainer"></div>
+        </div>
+
+        <!-- ONGLET 2: LEÇONS -->
         <div id="tab-lecons" class="tab-panel">
             <h2 style="margin-bottom:14px; font-size:1.2rem; color:var(--accent-cyan);">📚 Résumés & Fiches de cours</h2>
             
-            <!-- VUE DES 3 CARTES DE LEÇONS -->
             <div id="lessons-main-view">
                 <div class="lesson-card" onclick="openLessonPage('maths')">
                     <div class="lesson-title"><i class="fa-solid fa-square-root-variable" style="color:var(--accent-cyan);"></i> Mathématiques</div>
-                    <div class="lesson-desc">Limites, continuité, théorèmes et interprétation graphique.</div>
+                    <div class="lesson-desc">Limites, continuité, dérivabilité, primitives, complexes et probabilités.</div>
                 </div>
 
                 <div class="lesson-card pc" onclick="openLessonPage('pc')">
                     <div class="lesson-title"><i class="fa-solid fa-flask" style="color:var(--accent-purple);"></i> Physique-Chimie</div>
-                    <div class="lesson-desc">Alcools, Amines et Cinématique du point.</div>
+                    <div class="lesson-desc">Cinématique, Alcools, Amines, Acides-Bases et Champ Magnétique.</div>
                 </div>
 
                 <div class="lesson-card svt" onclick="openLessonPage('svt')">
                     <div class="lesson-title"><i class="fa-solid fa-dna" style="color:var(--accent-green);"></i> SVT</div>
-                    <div class="lesson-desc">Système nerveux cérébro-spinal & tissu nerveux.</div>
+                    <div class="lesson-desc">Système nerveux, immunologie, génétique et physiologie hormonale.</div>
                 </div>
             </div>
 
-            <!-- SOUS-PAGE LEÇONS : MATHÉMATIQUES -->
+            <!-- SOUS-PAGE LEÇONS : MATHS -->
             <div id="lesson-page-maths" class="sub-page">
                 <button class="back-btn" onclick="closeLessonPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux leçons</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Leçons de Mathématiques</h2>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Leçons de Mathématiques (Complètes)</h2>
                 
                 <div class="exercise-card">
-                    <div class="lesson-section-title">I. Limites usuelles</div>
+                    <div class="lesson-section-title">I. Limites et Continuité</div>
                     <div class="lesson-text">
-                        Les limites des fonctions de référence (polynômes, rationnelles, trigonométriques) constituent la base des calculs.
+                        <b>1. Limites usuelles :</b><br>
+                        - Pour tout \(n \in \mathbb{N}^*\), \(\lim_{x \to +\infty} x^n = +\infty\) et \(\lim_{x \to -\infty} x^n = +\infty\) (si \(n\) pair) ou \(-\infty\) (si \(n\) impair).<br>
+                        - Formes indéterminées (FI) : \(\frac{0}{0}, \frac{\infty}{\infty}, 0 \times \infty, +\infty - \infty\).<br><br>
+                        <b>2. Théorème des Gendarmes :</b><br>
+                        Si \(g(x) \leq f(x) \leq h(x)\) au voisinage de \(a\) et si \(\lim_{x \to a} g(x) = \lim_{x \to a} h(x) = L\), alors \(\lim_{x \to a} f(x) = L\).<br><br>
+                        <b>3. Théorème des Valeurs Intermédiaires (TVI) :</b><br>
+                        Si \(f\) est continue sur un intervalle \([a, b]\), alors pour tout réel \(k\) compris entre \(f(a)\) et \(f(b)\), il existe au moins un réel \(c \in [a, b]\) tel que \(f(c) = k\). Si de plus \(f\) est strictement monotone, la solution est unique.
                     </div>
+
+                    <div class="lesson-section-title">II. Dérivabilité et Étude de Fonctions</div>
                     <div class="lesson-text">
-                        <b>Exercice d'application :</b> Déterminer \(\lim_{x \to 1} \frac{2x^2 - 3x + 1}{x - 1}\).<br>
-                        <b>Correction :</b> Forme indéterminée \(\frac{0}{0}\). On factorise le numérateur : \(2x^2 - 3x + 1 = (x - 1)(2x - 1)\). D'où \(\lim_{x \to 1} (2x - 1) = 1\).
+                        <b>1. Nombre dérivé :</b> \(f'(x_0) = \lim_{h \to 0} \frac{f(x_0+h) - f(x_0)}{h}\).<br>
+                        <b>2. Équation de la tangente :</b> \(y = f'(x_0)(x - x_0) + f(x_0)\).<br>
+                        <b>3. Formules de dérivation :</b><br>
+                        - \((uv)' = u'v + uv'\)<br>
+                        - \(\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}\)<br>
+                        - \((g \circ u)' = u' \times (g' \circ u)\).
                     </div>
 
-                    <div class="lesson-section-title">II. Théorèmes sur les limites</div>
-                    <ul class="lesson-list">
-                        <li><b>Théorème des gendarmes :</b> Si \(g(x) \leq f(x) \leq h(x)\) et \(\lim_{x \to x_0} g(x) = \lim_{x \to x_0} h(x) = l\), alors \(\lim_{x \to x_0} f(x) = l\).</li>
-                        <li><b>Théorème de comparaison :</b> Si \(f(x) \geq g(x)\) et \(\lim_{x \to x_0} g(x) = +\infty\), alors \(\lim_{x \to x_0} f(x) = +\infty\).</li>
-                        <li><b>Théorème de composition :</b> Si \(\lim_{x \to x_0} f(x) = b\) et \(\lim_{u \to b} g(u) = c\), alors \(\lim_{x \to x_0} g(f(x)) = c\).</li>
-                    </ul>
-
-                    <div class="lesson-section-title">III. Interprétation graphique & Asymptotes</div>
-                    <ul class="lesson-list">
-                        <li><b>Asymptote horizontale :</b> Droite \(y = b\) si \(\lim_{x \to \pm\infty} f(x) = b\).</li>
-                        <li><b>Asymptote verticale :</b> Droite \(x = x_0\) si \(\lim_{x \to x_0} f(x) = \pm\infty\).</li>
-                        <li><b>Asymptote oblique :</b> Droite \(y = ax + b\) si \(\lim_{x \to \pm\infty} [f(x) - (ax + b)] = 0\).</li>
-                    </ul>
-
-                    <div class="lesson-section-title">IV. Continuité d'une fonction</div>
-                    <ul class="lesson-list">
-                        <li><b>Continuité en \(x_0\) :</b> \(\lim_{x \to x_0} f(x) = f(x_0)\).</li>
-                        <li><b>Propriétés P1-P4 :</b> Polynômes continus sur \(\mathbb{R}\) ; rationnelles continues sur leur domaine ; \(\sin, \cos\) continus sur \(\mathbb{R}\) ; \(\tan\) continue sur \(\mathbb{R} \setminus \{\frac{\pi}{2} + k\pi\}\).</li>
-                    </ul>
+                    <div class="lesson-section-title">III. Primitives et Logarithme Népérien</div>
+                    <div class="lesson-text">
+                        <b>1. Définition :</b> \(F\) est une primitive de \(f\) sur \(I\) si pour tout \(x \in I\), \(F'(x) = f(x)\).<br>
+                        <b>2. Fonction \(\ln(x)\) :</b> Unique primitive de \(x \mapsto \frac{1}{x}\) sur \(]0, +\infty[\) s'annulant en 1.<br>
+                        Propriétés : \(\ln(ab) = \ln(a) + \ln(b)\), \(\ln\left(\frac{a}{b}\right) = \ln(a) - \ln(b)\), \(\ln(a^n) = n\ln(a)\).
+                    </div>
                 </div>
             </div>
 
-            <!-- SOUS-PAGE LEÇONS : PHYSIQUE-CHIMIE -->
+            <!-- SOUS-PAGE LEÇONS : PC -->
             <div id="lesson-page-pc" class="sub-page">
                 <button class="back-btn" onclick="closeLessonPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux leçons</button>
-                <h2 style="color: var(--accent-purple); margin-bottom: 14px;">🧪 Leçons de Physique-Chimie</h2>
+                <h2 style="color: var(--accent-purple); margin-bottom: 14px;">🧪 Leçons de Physique-Chimie (Complètes)</h2>
                 
                 <div class="exercise-card">
                     <div class="lesson-section-title">🧪 Chimie : Les Alcools</div>
                     <div class="lesson-text">
-                        <b>1. Groupe caractéristique :</b> Groupe hydroxyle \(-\text{OH}\) lié à un carbone saturé. Formule brute générale d'un mono-alcool saturé acyclique : \(\text{C}_n\text{H}_{2n+2}\text{O}\).<br>
-                        <b>2. Classes d'alcools :</b>
-                        <ul class="lesson-list">
-                            <li>Primaire (\(1^\circ\)) : \(\text{R}-\text{CH}_2-\text{OH}\)</li>
-                            <li>Secondaire (\(2^\circ\)) : \(\text{R}-\text{CH}(\text{OH})-\text{R'}\)</li>
-                            <li>Tertiaire (\(3^\circ\)) : \(\text{R}-\text{C}(\text{OH})(\text{R'})-\text{R''}\)</li>
-                        </ul>
-                        <b>3. Propriétés chimiques :</b>
-                        <ul class="lesson-list">
-                            <li>Oxydation ménagée : Alcool \(1^\circ \rightarrow\) Aldéhyde \(\rightarrow\) Acide carboxylique. Alcool \(2^\circ \rightarrow\) Cétone. Alcool \(3^\circ\) inerte.</li>
-                            <li>Action du sodium : \(2\text{R-OH} + 2\text{Na} \rightarrow 2(\text{R-O}^- + \text{Na}^+) + \text{H}_2\).</li>
-                            <li>Déshydratations : Intermoléculaire (éther-oxyde) et intramoléculaire (alcène).</li>
-                        </ul>
+                        <b>1. Structure :</b> Groupe hydroxyle \(-\text{OH}\) sur un carbone sp3.<br>
+                        Formule brute : \(\text{C}_n\text{H}_{2n+2}\text{O}\).<br><br>
+                        <b>2. Les trois classes d'alcools :</b><br>
+                        - Alcool primaire (\(1^\circ\)) : \(\text{R}-\text{CH}_2-\text{OH}\)<br>
+                        - Alcool secondaire (\(2^\circ\)) : \(\text{R}-\text{CH}(\text{OH})-\text{R}'\)<br>
+                        - Alcool tertiaire (\(3^\circ\)) : \(\text{R}_3\text{C}-\text{OH}\)<br><br>
+                        <b>3. Oxydation ménagée (par \(\text{MnO}_4^-\) ou \(\text{Cr}_2\text{O}_7^{2-}\)) :</b><br>
+                        - Alcool \(1^\circ \rightarrow\) Aldéhyde \(\rightarrow\) Acide Carboxylique.<br>
+                        - Alcool \(2^\circ \rightarrow\) Cétone (pas d'oxydation ultérieure).<br>
+                        - Alcool \(3^\circ \rightarrow\) Pas d'oxydation ménagée.
                     </div>
 
-                    <div class="lesson-section-title">🧪 Chimie : Les Amines</div>
+                    <div class="lesson-section-title">⚡ Physique : Cinématique du Point Matériel</div>
                     <div class="lesson-text">
-                        <b>1. Généralités :</b> Dérivés de l'ammoniac \(\text{NH}_3\). Formule générale : \(\text{C}_n\text{H}_{2n+3}\text{N}\).<br>
-                        <b>2. Propriétés :</b>
-                        <ul class="lesson-list">
-                            <li>Ionisation basique dans l'eau : \(\text{R-NH}_2 + \text{H}_2\text{O} \rightleftharpoons \text{R-NH}_3^+ + \text{OH}^-\).</li>
-                            <li>Action sur les indicateurs : \(\text{pH} > 7\) (BBT bleu, phénolphtaléine rose).</li>
-                            <li>Complexes métalliques et réaction totale avec les acides forts pour former un sel d'alkylammonium.</li>
-                        </ul>
+                        <b>1. Vecteur Position :</b> \(\vec{r}(t) = x(t)\vec{i} + y(t)\vec{j} + z(t)\vec{k}\).<br>
+                        <b>2. Vecteur Vitesse :</b> \(\vec{v}(t) = \frac{d\vec{r}}{dt} = \dot{x}\vec{i} + \dot{y}\vec{j} + \dot{z}\vec{k}\).<br>
+                        <b>3. Vecteur Accélération :</b> \(\vec{a}(t) = \frac{d\vec{v}}{dt} = \ddot{x}\vec{i} + \ddot{y}\vec{j} + \ddot{z}\vec{k}\).<br>
+                        Dans le repère de Frenet : \(\vec{a} = a_T \vec{u}_T + a_N \vec{u}_N = \frac{dv}{dt}\vec{u}_T + \frac{v^2}{\rho}\vec{u}_N\).
                     </div>
 
-                    <div class="lesson-section-title">⚡ Physique : Cinématique du point</div>
+                    <div class="lesson-section-title">🧪 Chimie : Amines et Azotés</div>
                     <div class="lesson-text">
-                        <b>1. Notion de mouvement :</b> Étudie le mouvement sans les causes. Repère d'espace, référentiel et trajectoire.<br>
-                        <b>2. Vecteur position :</b> En cartésiennes : \(\vec{OM}(t) = x(t)\vec{i} + y(t)\vec{j} + z(t)\vec{k}\).<br>
-                        <b>3. Vecteur vitesse moyenne :</b> \(\vec{v}_m = \frac{\Delta\vec{OM}}{\Delta t}\) en \(\text{m/s}\).
+                        Dérivés de l'ammoniac \(\text{NH}_3\). Basicités dues au doublet non-liant sur l'azote.<br>
+                        Combinaison avec les acides carboxyliques pour former des liaisons peptidiques.
                     </div>
                 </div>
             </div>
@@ -558,253 +803,358 @@
             <!-- SOUS-PAGE LEÇONS : SVT -->
             <div id="lesson-page-svt" class="sub-page">
                 <button class="back-btn" onclick="closeLessonPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux leçons</button>
-                <h2 style="color: var(--accent-green); margin-bottom: 14px;">🧬 Leçons de SVT</h2>
+                <h2 style="color: var(--accent-green); margin-bottom: 14px;">🧬 Leçons de SVT (Complètes)</h2>
                 
                 <div class="exercise-card">
-                    <div class="lesson-section-title">Thème 1 : Système nerveux cérébro-spinal</div>
+                    <div class="lesson-section-title">Système Nerveux Cérébro-Spinal</div>
                     <div class="lesson-text">
-                        <b>Leçon 1 : Organisation de l'encéphale</b>
-                        <ul class="lesson-list">
-                            <li><b>Protection :</b> Boîte crânienne (osseuse), Méninges (dure-mère, arachnoïde, pie-mère) et Liquide Céphalo-Rachidien (LCR).</li>
-                            <li><b>Morphologie externe :</b> Face supérieure (hémisphères, circonvolutions, cervelet) et face inférieure (bulbes olfactifs, chiasma optique, bulbe rachidien).</li>
-                            <li><b>Morphologie interne :</b> Substance grise périphérique (cortex), substance blanche centrale et ventricules cérébraux.</li>
-                        </ul>
-                    </div>
-
-                    <div class="lesson-section-title">Thème 2 : Tissu nerveux et ses propriétés</div>
-                    <div class="lesson-text">
-                        <b>Leçon 3 : Structure du tissu nerveux</b>
-                        <ul class="lesson-list">
-                            <li><b>Substance grise vs blanche :</b> Corps cellulaires, dendrites et névroglie dans la grise ; axones myélinisés dans la blanche.</li>
-                            <li><b>Neurone radiculaire :</b> Corps cellulaire (péricaryon, centre trophique), dendrites et axone.</li>
-                            <li><b>Dégénérescence wallérienne :</b> La section de la fibre montre que la partie séparée du corps cellulaire dégénère.</li>
-                        </ul>
-                        <b>Leçon 4 : Propriétés du tissu nerveux</b>
-                        <ul class="lesson-list">
-                            <li><b>Excitabilité :</b> Seuil d'excitabilité ou rhéobase (\(I_0\)). La <b>Chronaxie</b> est la durée minimale pour une intensité égale à \(2 \times I_0\).</li>
-                            <li><b>Conductibilité :</b> Exige l'intégrité anatomique et physiologique (fibre vivante) de l'axone.</li>
-                        </ul>
+                        <b>1. Organisation générale :</b><br>
+                        Le système nerveux central (SNC) comprend l'encéphale (cerveau, cervelet, tronc cérébral) et la moelle épinière.<br><br>
+                        <b>2. Histologie du Tissu Nerveux :</b><br>
+                        - <b>Substance Grise :</b> Contient les corps cellulaires des neurones, les dendrites et les synapses (centre de traitement).<br>
+                        - <b>Substance Blanche :</b> Constituée de fibres nerveuses myélinisées (conduction de l'influx).<br><br>
+                        <b>3. Les Réflexes Médullaires :</b><br>
+                        Circuit de l'arc réflexe : Récepteur \(\rightarrow\) Neurone sensitif (voie afférente, racine dorsale) \(\rightarrow\) Moelle épinière \(\rightarrow\) Motoneurone (voie efférente, racine ventrale) \(\rightarrow\) Effecteur (muscle).
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <!-- ONGLET 3: EXERCICES (BLOCS VERTICAUX EMPILÉS) -->
+        <!-- ONGLET 3: EXERCICES (BOUTONS EN 1 SEULE LIGNE SANS SCROLL) -->
         <div id="tab-exercices" class="tab-panel">
-            
             <div class="subject-selector">
-                <button class="subject-btn active" onclick="switchSubject('maths')">📐 Mathématiques</button>
-                <button class="subject-btn" onclick="switchSubject('chimie')">🧪 Physique-Chimie</button>
-                <button class="subject-btn" onclick="switchSubject('svt')">🧬 SVT</button>
+                <button class="subject-btn active" onclick="switchSubject('maths')">
+                    <i class="fa-solid fa-square-root-variable"></i> Maths
+                </button>
+                <button class="subject-btn" onclick="switchSubject('chimie')">
+                    <i class="fa-solid fa-flask"></i> Phys-Chimie
+                </button>
+                <button class="subject-btn" onclick="switchSubject('svt')">
+                    <i class="fa-solid fa-dna"></i> SVT
+                </button>
             </div>
 
-            <!-- ================= SECTION MATHÉMATIQUES ================= -->
+            <!-- SECTION MATHS -->
             <div id="subject-maths" class="subject-main-view">
-                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le type de contenu en mathématiques :</p>
                 <div class="category-action-stack">
                     <div class="action-card" onclick="openSubPage('maths-simple')">
                         <div class="action-icon"><i class="fa-solid fa-bolt"></i></div>
                         <div class="action-info">
-                            <h3>Limites & Continuité</h3>
-                            <p>Exercices 1 à 8 : calculs de limites, factorisations, continuité en un point et TVI.</p>
+                            <h3>Limites & Continuité (15 Exercices)</h3>
+                            <p>Série complète : calculs de limites, formes indéterminées et TVI.</p>
                         </div>
                     </div>
                     <div class="action-card" onclick="openSubPage('maths-td')">
                         <div class="action-icon"><i class="fa-solid fa-file-lines"></i></div>
                         <div class="action-info">
-                            <h3>Dérivabilité & Primitives</h3>
-                            <p>Exercices 9 à 15 : fonctions dérivées, formules usuelles et calculs de primitives.</p>
+                            <h3>Dérivabilité & Primitives (15 Exercices)</h3>
+                            <p>Série complète : tangentes, dérivés successives et calculs de primitives.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SOUS-PAGE MATHS : LIMITES & CONTINUITÉ -->
+            <!-- SOUS-PAGES MATHS (15 EXERCICES CHAQUE) -->
             <div id="subpage-maths-simple" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Limites & Continuité (1 à 8)</h2>
-                <div class="drive-link-box">
-                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir la série complète sur Google Drive (PDF)</a>
-                </div>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Limites & Continuité (15 Exercices)</h2>
+                <div class="drive-link-box"><a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir le document officiel sur Google Drive</a></div>
+                
                 <div class="exercise-card"><div class="exercise-title">Exercice 1</div><div class="exercise-content">Calculer la limite suivante : \(\lim_{x \to 2} (3x^2 - 5x + 1)\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 2</div><div class="exercise-content">Calculer la limite suivante : \(\lim_{x \to 0} \frac{x^2 + 3x}{x}\) (pour \(x \neq 0\)).</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 3</div><div class="exercise-content">Déterminer la limite en \(+\infty\) de la fonction : \(f(x) = 2x^3 - 5x + 4\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 4</div><div class="exercise-content">Calculer la limite par factorisation en \(+\infty\) : \(\lim_{x \to +\infty} \frac{3x^2 + x - 1}{x^2 - 2}\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 5</div><div class="exercise-content">Soit la fonction \(f(x) = 4x^2 - 3x + 2\) définie sur \(\mathbb{R}\). La fonction \(f\) est-elle continue en \(x_0 = 1\) ? Justifier.</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 6</div><div class="exercise-content">Étudier la continuité de la fonction \(g(x) = \frac{5}{x - 3}\) en \(x_0 = 3\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 7</div><div class="exercise-content">Soit \(h(x) = \sqrt{x + 4}\) définie sur \([-4, +\infty[\). La fonction \(h\) est-elle continue à droite en \(-4\) ?</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 8</div><div class="exercise-content">Énoncer brièvement ce que garantit le Théorème des Valeurs Intermédiaires (TVI) pour une fonction continue sur un intervalle \([a, b]\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 2</div><div class="exercise-content">Calculer la limite suivante : \(\lim_{x \to 0} \frac{x^2 + 3x}{x}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 3</div><div class="exercise-content">Déterminer la limite en \(+\infty\) de : \(f(x) = 2x^3 - 5x + 4\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 4</div><div class="exercise-content">Calculer par factorisation : \(\lim_{x \to +\infty} \frac{3x^2 + x - 1}{x^2 - 2}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 5</div><div class="exercise-content">Déterminer la limite par conjugué : \(\lim_{x \to +\infty} (\sqrt{x+1} - \sqrt{x})\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 6</div><div class="exercise-content">Étudier la limite en \(0\) de : \(f(x) = \frac{\sin(3x)}{x}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 7</div><div class="exercise-content">Calculer la limite à gauche et à droite en \(x_0 = 2\) de : \(g(x) = \frac{1}{x-2}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 8</div><div class="exercise-content">Continuité de \(f(x) = 4x^2 - 3x + 2\) en \(x_0 = 1\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 9</div><div class="exercise-content">Étudier la continuité de \(g(x) = \frac{5}{x - 3}\) en \(x_0 = 3\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 10</div><div class="exercise-content">Continuité à droite de \(h(x) = \sqrt{x + 4}\) en \(-4\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 11</div><div class="exercise-content">Déterminer la valeur de la constante \(a\) pour que \(f(x) = \begin{cases} ax + 2 & \text{si } x \le 1 \\ x^2 + 3 & \text{si } x > 1 \end{cases}\) soit continue en 1.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 12</div><div class="exercise-content">Énoncer rigoureusement le Théorème des Valeurs Intermédiaires (TVI).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 13</div><div class="exercise-content">Montrer que l'équation \(x^3 + x - 1 = 0\) admet au moins une solution réelle dans \([0, 1]\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 14</div><div class="exercise-content">Montrer que la fonction \(f(x) = x^5 + 2x - 3\) admet une unique racine sur \(\mathbb{R}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 15</div><div class="exercise-content">Appliquer le corollaire du TVI pour encadrer la solution de \(x^3 = 5\) à \(10^{-1}\) près.</div></div>
             </div>
 
-            <!-- SOUS-PAGE MATHS : DÉRIVABILITÉ & PRIMITIVES -->
             <div id="subpage-maths-td" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Dérivabilité & Primitives (9 à 15)</h2>
-                <div class="drive-link-box">
-                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Télécharger les exercices de maths (PDF)</a>
-                </div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 9</div><div class="exercise-content">Déterminer la fonction dérivée \(f'(x)\) de la fonction \(f(x) = 5x^3 - 2x^2 + 7x - 9\) sur \(\mathbb{R}\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 10</div><div class="exercise-content">Calculer la dérivée de la fonction \(g(x) = (2x + 3)^4\) sur \(\mathbb{R}\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 11</div><div class="exercise-content">Déterminer la dérivée de la fonction trigonométrique \(h(x) = \sin(x) + 3\cos(x)\) sur \(\mathbb{R}\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 12</div><div class="exercise-content">Calculer le nombre dérivé de la fonction \(f(x) = x^2\) au point \(x_0 = 4\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 13</div><div class="exercise-content">Déterminer une primitive \(F\) de la fonction \(f(x) = 6x^2 - 4x + 3\) sur \(\mathbb{R}\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 14</div><div class="exercise-content">Trouver une primitive de la fonction \(g(x) = \cos(x)\) sur \(\mathbb{R}\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">Exercice 15</div><div class="exercise-content">Déterminer une primitive de la fonction \(h(x) = \frac{1}{x^2}\) sur l'intervalle \(]0, +\infty[\).</div></div>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Dérivabilité & Primitives (15 Exercices)</h2>
+                
+                <div class="exercise-card"><div class="exercise-title">Exercice 1</div><div class="exercise-content">Calculer le nombre dérivé de \(f(x) = 3x^2 - 2\) en \(x_0 = 2\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 2</div><div class="exercise-content">Déterminer l'équation de la tangente à la courbe de \(f(x) = x^2 + 1\) au point d'abscisse 3.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 3</div><div class="exercise-content">Dériver la fonction polynôme : \(f(x) = 5x^4 - 3x^3 + 2x - 7\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 4</div><div class="exercise-content">Dériver le produit de fonctions : \(g(x) = (2x + 1)(x^2 - 4)\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 5</div><div class="exercise-content">Dériver le quotient : \(h(x) = \frac{3x - 2}{x + 1}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 6</div><div class="exercise-content">Dériver la fonction composée : \(k(x) = (3x^2 - 5)^4\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 7</div><div class="exercise-content">Dériver la fonction trigonométrique : \(f(x) = \sin(2x + \pi/4)\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 8</div><div class="exercise-content">Dériver la fonction racine : \(g(x) = \sqrt{x^2 + 3}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 9</div><div class="exercise-content">Étudier le sens de variation de \(f(x) = 2x^3 - 3x^2 - 12x + 5\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 10</div><div class="exercise-content">Déterminer les extremums locaux de la fonction \(g(x) = x + \frac{4}{x}\) sur \(]0, +\infty[\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 11</div><div class="exercise-content">Déterminer les primitives de la fonction \(f(x) = 4x^3 - 6x^2 + 5\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 12</div><div class="exercise-content">Trouver la primitive de \(g(x) = \frac{1}{x^2}\) qui s'annule en \(x = 1\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 13</div><div class="exercise-content">Calculer la primitive de la fonction de la forme \(u' u^n\) : \(h(x) = 2x(x^2 + 1)^3\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 14</div><div class="exercise-content">Déterminer la primitive de \(f(x) = \frac{3}{2\sqrt{3x+1}}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 15</div><div class="exercise-content">Déterminer la primitive de \(g(x) = \cos(3x) - 2\sin(x)\).</div></div>
             </div>
 
-            <!-- ================= SECTION PHYSIQUE-CHIMIE ================= -->
+            <!-- SECTION PHYSIQUE-CHIMIE (15 EXERCICES PAR CHAPITRE) -->
             <div id="subject-chimie" class="subject-main-view" style="display:none;">
-                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le domaine en Physique-Chimie :</p>
                 <div class="category-action-stack">
                     <div class="action-card" onclick="openSubPage('pc-cinematique')">
                         <div class="action-icon"><i class="fa-solid fa-gauge-high"></i></div>
-                        <div class="action-info">
-                            <h3>Cinématique (15 Exercices)</h3>
-                            <p>Vecteurs position, vitesse, accélération, mouvements rectilignes et chute libre.</p>
-                        </div>
+                        <div class="action-info"><h3>Cinématique du Point (15 Exercices)</h3><p>Vecteurs position, vitesse, accélération et chute libre.</p></div>
                     </div>
                     <div class="action-card" onclick="openSubPage('pc-alcools')">
                         <div class="action-icon"><i class="fa-solid fa-flask"></i></div>
-                        <div class="action-info">
-                            <h3>Chimie — Les Alcools (15 Exercices)</h3>
-                            <p>Nomenclature, classes d'alcools, oxydation ménagée, estérification et dosages.</p>
-                        </div>
+                        <div class="action-info"><h3>Chimie — Les Alcools (15 Exercices)</h3><p>Nomenclature, classes, oxydation et estérification.</p></div>
                     </div>
                     <div class="action-card" onclick="openSubPage('pc-amines')">
                         <div class="action-icon"><i class="fa-solid fa-vial"></i></div>
-                        <div class="action-info">
-                            <h3>Chimie — Amines & Composés Azotés (15 Exercices)</h3>
-                            <p>Définitions, basicité, acides aminés, zwitterions et liaisons peptidiques.</p>
-                        </div>
+                        <div class="action-info"><h3>Chimie — Amines & Azotés (15 Exercices)</h3><p>Basicité, aminoacides et liaisons peptidiques.</p></div>
                     </div>
                 </div>
             </div>
 
-            <!-- SOUS-PAGE PC : CINÉMATIQUE -->
+            <!-- SOUS-PAGES PC -->
             <div id="subpage-pc-cinematique" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">⚡ Physique : Cinématique (15 Exercices)</h2>
-                <div class="drive-link-box"><a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir la série Cinématique sur Google Drive (PDF)</a></div>
-                <div class="exercise-card"><div class="exercise-title">1. Vecteur position</div><div class="exercise-content">Dans un repère \((O, \vec{i}, \vec{j}, \vec{k})\), \(\vec{OM}(t) = 3t^2 \vec{i} + (4t - 1) \vec{j} + 2\vec{k}\). Coordonnées à \(t = 2\text{ s}\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">2. Vecteur vitesse</div><div class="exercise-content">Déterminer l'expression de \(\vec{v}(t)\) et calculer sa valeur à \(t = 1\text{ s}\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">3. Vecteur accélération</div><div class="exercise-content">Déduire \(\vec{a}(t)\) et préciser la nature du mouvement selon \((Ox)\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">4. MRU</div><div class="exercise-content">Mobile à \(v = 5\text{ m/s}\), \(x_0 = 2\text{ m}\) à \(t_0 = 0\). Établir \(x(t)\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">5. MRUV</div><div class="exercise-content">Sans vitesse initiale, \(a = 2\text{ m/s}^2\). Distance au bout de \(t = 4\text{ s}\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">6. Chute libre verticale</div><div class="exercise-content">Lâché d'une hauteur \(h = 20\text{ m}\) (\(g = 10\text{ m/s}^2\)). Durée de la chute.</div></div>
-                <div class="exercise-card"><div class="exercise-title">7. Vitesse d'impact</div><div class="exercise-content">Vitesse de l'objet au sol (reprendre l'exercice 6).</div></div>
-                <div class="exercise-card"><div class="exercise-title">8. Mouvement circulaire uniforme</div><div class="exercise-content">Rayon \(R = 0,5\text{ m}\), \(\omega = 10\text{ rad/s}\). Calculer \(v\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">9. Exploitation de graphe</div><div class="exercise-content">Graphe horizontal à \(v = 15\text{ m/s}\). Distance parcourue entre \(0\) et \(5\text{ s}\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">10. Lancer vertical</div><div class="exercise-content">Lancé vers le haut à \(v_0 = 20\text{ m/s}\). Hauteur maximale atteinte.</div></div>
-                <div class="exercise-card"><div class="exercise-title">11. Projectile</div><div class="exercise-content">Équations horaires d'un projectile lancé horizontalement à l'altitude \(H\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">12. Trajectoire</div><div class="exercise-content">Éliminer \(t\) pour trouver l'équation de la trajectoire \(y = f(x)\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">13. Conditions initiales</div><div class="exercise-content">\(\vec{a} = -2\vec{i}\), \(v_0 = 10\text{ m/s}\), \(x_0 = 0\). Trouver vitesse et position.</div></div>
-                <div class="exercise-card"><div class="exercise-title">14. Changement de référentiel</div><div class="exercise-content">Train à \(90\text{ km/h}\), passager à \(4\text{ km/h}\) dans le sens du train. Vitesse par rapport au sol.</div></div>
-                <div class="exercise-card"><div class="exercise-title">15. Étude graphique de l'accélération</div><div class="exercise-content">Expliquer comment retrouver la variation de la vitesse via l'aire sous \(a(t)\).</div></div>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">⚡ Cinématique (15 Exercices Détaillés)</h2>
+                
+                <div class="exercise-card"><div class="exercise-title">Exercice 1</div><div class="exercise-content">Un point mobile a pour équation horaire \(x(t) = 3t + 2\). Déterminer sa vitesse et son type de mouvement.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 2</div><div class="exercise-content">Équation horaire \(x(t) = 2t^2 - 4t + 1\). Calculer la vitesse initiale et l'accélération.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 3</div><div class="exercise-content">Déterminer l'instant où le mobile de l'exercice 2 s'arrête.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 4</div><div class="exercise-content">Un mobile a une accélération constante \(a = 4\text{ m/s}^2\). Sachant qu'à \(t=0\), \(v_0 = 2\text{ m/s}\), donner l'expression de \(v(t)\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 5</div><div class="exercise-content">Établir l'équation de la trajectoire d'un projectile avec \(x(t) = v_0 \cos(\alpha)t\) et \(y(t) = -\frac{1}{2}gt^2 + v_0 \sin(\alpha)t\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 6</div><div class="exercise-content">Calculer la portée maximale du projectile de l'exercice 5.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 7</div><div class="exercise-content">Calculer la flèche (hauteur maximale) atteinte par le projectile.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 8</div><div class="exercise-content">Un corps est lâché sans vitesse initiale depuis une hauteur \(h = 20\text{ m}\). Calculer son temps de chute (\(g = 9,8\text{ m/s}^2\)).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 9</div><div class="exercise-content">Calculer la vitesse de l'impact au sol pour le corps de l'exercice 8.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 10</div><div class="exercise-content">Mouvement circulaire uniforme : un point parcourt un cercle de rayon \(R = 0,5\text{ m}\) à la vitesse de \(10\text{ m/s}\). Calculer l'accélération centripète.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 11</div><div class="exercise-content">Déterminer la vitesse angulaire \(\omega\) du point de l'exercice 10.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 12</div><div class="exercise-content">Un vecteur position est donné par \(\vec{OM} = (2t)\vec{i} + (t^2)\vec{j}\). Calculer la norme du vecteur vitesse à \(t = 3\text{ s}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 13</div><div class="exercise-content">Pour le mouvement de l'exercice 12, calculer la norme du vecteur accélération à tout instant.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 14</div><div class="exercise-content">Déterminer l'équation cartésienne de la trajectoire pour \(\vec{OM} = (2t)\vec{i} + (t^2)\vec{j}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 15</div><div class="exercise-content">Démontrer que pour un mouvement rectiligne uniformément varié, \(v^2 - v_0^2 = 2a(x - x_0)\).</div></div>
             </div>
 
-            <!-- SOUS-PAGE PC : ALCOOLS -->
             <div id="subpage-pc-alcools" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Les Alcools (15 Exercices)</h2>
-                <div class="drive-link-box"><a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir la série Alcools sur Google Drive (PDF)</a></div>
-                <div class="exercise-card"><div class="exercise-title">1. Formule générale</div><div class="exercise-content">Formule brute générale d'un alcool saturé acyclique à \(n\) carbones.</div></div>
-                <div class="exercise-card"><div class="exercise-title">2. Isomérie et nomenclature</div><div class="exercise-content">FSD et noms des isomères de formule \(C_4H_{10}O\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">3. Classes d'alcools</div><div class="exercise-content">Classer les isomères précédents en primaires, secondaires ou tertiaires.</div></div>
-                <div class="exercise-card"><div class="exercise-title">4. Action du sodium</div><div class="exercise-content">Équation propan-1-ol + \(\text{Na}\) et nom du produit formé.</div></div>
-                <div class="exercise-card"><div class="exercise-title">5. Déshydratation</div><div class="exercise-content">Équation de déshydratation du 2-méthylpropan-2-ol avec \(\text{Al}_2\text{O}_3\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">6. Oxydation ménagée</div><div class="exercise-content">Produits d'oxydation d'un alcool primaire (oxydant en défaut vs excès).</div></div>
-                <div class="exercise-card"><div class="exercise-title">7. Tests d'identification</div><div class="exercise-content">Test chimique pour caractériser un aldéhyde issu d'un alcool.</div></div>
-                <div class="exercise-card"><div class="exercise-title">8. Alcools non oxydables</div><div class="exercise-content">Pourquoi les alcools tertiaires ne s'oxydent-ils pas de façon ménagée ?</div></div>
-                <div class="exercise-card"><div class="exercise-title">9. Hydratation d'un alcène</div><div class="exercise-content">Hydratation du propène (Markovnikov), noms et FSD des alcools.</div></div>
-                <div class="exercise-card"><div class="exercise-title">10. Analyse élémentaire</div><div class="exercise-content">Alcool A : \(\%C = 64,85\%\), \(\%H = 13,5\%\). Déterminer la formule brute.</div></div>
-                <div class="exercise-card"><div class="exercise-title">11. Stéréochimie</div><div class="exercise-content">Définition du carbone asymétrique (\(C^*\)) et application à l'alcool amylique.</div></div>
-                <div class="exercise-card"><div class="exercise-title">12. Estérification</div><div class="exercise-content">Équation générale et caractéristiques de l'estérification.</div></div>
-                <div class="exercise-card"><div class="exercise-title">13. Rôle des catalyseurs</div><div class="exercise-content">Rôle de l'acide sulfurique et du chauffage à reflux.</div></div>
-                <div class="exercise-card"><div class="exercise-title">14. Rendement</div><div class="exercise-content">1 mol d'acide + 1 mol d'alcool, obtention de 0,67 mol d'ester. Calculer le rendement.</div></div>
-                <div class="exercise-card"><div class="exercise-title">15. Problème de dosage</div><div class="exercise-content">Dosage par retour de dichromate par des ions \(\text{Fe}^{2+}\) (degré d'alcool d'un vin).</div></div>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Alcools (15 Exercices Détaillés)</h2>
+                
+                <div class="exercise-card"><div class="exercise-title">Exercice 1</div><div class="exercise-content">Nommer selon la nomenclature IUPAC le composé suivant : \(\text{CH}_3-\text{CH}_2-\text{CH}_2-\text{OH}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 2</div><div class="exercise-content">Donner la formule semi-développée du 2-méthylpropan-2-ol et préciser sa classe.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 3</div><div class="exercise-content">Identifier la classe de l'alcool suivant : \(\text{CH}_3-\text{CH}(\text{OH})-\text{CH}_3\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 4</div><div class="exercise-content">Écrire l'équation de la réaction d'oxydation ménagée du propan-1-ol par un excès de permanganate de potassium en milieu acide.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 5</div><div class="exercise-content">Quel est le produit formé lors de l'oxydation ménagée modérée du propan-2-ol ?</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 6</div><div class="exercise-content">Pourquoi le 2-méthylpropan-2-ol résiste-t-il à l'oxydation ménagée ? Expliquer.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 7</div><div class="exercise-content">Écrire l'équation de déshydratation intramoléculaire de l'éthanol à \(180^\circ\text{C}\) en présence de \(\text{H}_2\text{SO}_4\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 8</div><div class="exercise-content">Donner le nom et la formule de l'alkène obtenu par déshydratation du butan-2-ol (règle de Zaytsev).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 9</div><div class="exercise-content">Écrire l'équation de la réaction d'estérification entre l'acide éthanoïque et l'éthanol.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 10</div><div class="exercise-content">Quelles sont les trois caractéristiques principales de la réaction d'estérification ?</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 11</div><div class="exercise-content">Calculer le rendement de la réaction d'estérification à partir d'un mélange équimolaire d'acide et d'alcool primaire.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 12</div><div class="exercise-content">Comment peut-on augmenter le rendement de la réaction d'estérification ? Citer deux méthodes.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 13</div><div class="exercise-content">Déterminer la masse molaire d'un monoalcool saturé possédant \(60\%\) de carbone en masse.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 14</div><div class="exercise-content">Trouver la formule brute de cet alcool et écrire tous ses isomères de structure.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 15</div><div class="exercise-content">Écrire la réaction entre l'éthanol et le sodium métallique \(\text{Na}\). Donner le nom du gaz dégagé.</div></div>
             </div>
 
-            <!-- SOUS-PAGE PC : AMINES -->
             <div id="subpage-pc-amines" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Amines & Composés Azotés (15 Exercices)</h2>
-                <div class="drive-link-box"><a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir la série Amines sur Google Drive (PDF)</a></div>
-                <div class="exercise-card"><div class="exercise-title">1. Définition</div><div class="exercise-content">Qu'est-ce qu'une amine et quelle est sa fonction caractéristique ?</div></div>
-                <div class="exercise-card"><div class="exercise-title">2. Formule générale</div><div class="exercise-content">Formule brute générale d'une amine saturée acyclique mono-aminée à \(n\) carbones.</div></div>
-                <div class="exercise-card"><div class="exercise-title">3. Classification</div><div class="exercise-content">Définir et donner des exemples d'amines primaire, secondaire et tertiaire.</div></div>
-                <div class="exercise-card"><div class="exercise-title">4. Nomenclature UICPA</div><div class="exercise-content">Nommer : \(\text{CH}_3-\text{CH}_2-\text{NH}_2\) et \((\text{CH}_3)_2\text{CH}-\text{NH}-\text{CH}_3\).</div></div>
-                <div class="exercise-card"><div class="exercise-title">5. Isomérie</div><div class="exercise-content">FSD de tous les isomères de formule \(C_3H_9N\) et précision de leur classe.</div></div>
-                <div class="exercise-card"><div class="exercise-title">6. Caractère basique</div><div class="exercise-content">Pourquoi les amines sont-elles basiques ? Équation avec l'eau.</div></div>
-                <div class="exercise-card"><div class="exercise-title">7. Réaction avec un acide</div><div class="exercise-content">Méthylamine + \(\text{HCl}\). Nom du sel formé.</div></div>
-                <div class="exercise-card"><div class="exercise-title">8. Ion alkylammonium</div><div class="exercise-content">Définition et structure générale d'un ion alkylammonium.</div></div>
-                <div class="exercise-card"><div class="exercise-title">9. Synthèse des amines</div><div class="exercise-content">Principe de synthèse par action de l'ammoniac sur un dérivé halogéné.</div></div>
-                <div class="exercise-card"><div class="exercise-title">10. Nucléophilie</div><div class="exercise-content">Élément responsable de la nucléophilie des amines et origine électronique.</div></div>
-                <div class="exercise-card"><div class="exercise-title">11. Introduction aux \(\alpha\)-aminoacides</div><div class="exercise-content">Particularité structurale d'un \(\alpha\)-aminoacide.</div></div>
-                <div class="exercise-card"><div class="exercise-title">12. Carbone asymétrique</div><div class="exercise-content">Quel est l'unique \alpha-aminoacide sans carbone asymétrique ? Justifier.</div></div>
-                <div class="exercise-card"><div class="exercise-title">13. Zwitterion</div><div class="exercise-content">Qu'est-ce qu'un zwitterion pour un aminoacide à son pH isoionique ?</div></div>
-                <div class="exercise-card"><div class="exercise-title">14. Liaison peptidique</div><div class="exercise-content">Équation de condensation de deux aminoacides (formation d'un dipeptide).</div></div>
-                <div class="exercise-card"><div class="exercise-title">15. Hydrolyse peptidique</div><div class="exercise-content">Qu'observe-t-on lors de l'hydrolyse d'un polypeptide en milieu acide ou basique ?</div></div>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Amines & Azotés (15 Exercices Détaillés)</h2>
+                
+                <div class="exercise-card"><div class="exercise-title">Exercice 1</div><div class="exercise-content">Donner la formule générale des amines aliphatiques saturées.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 2</div><div class="exercise-content">Nommer l'amine : \(\text{CH}_3-\text{NH}-\text{CH}_2-\text{CH}_3\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 3</div><div class="exercise-content">Classer les amines suivantes selon leur classe (\(1^\circ, 2^\circ, 3^\circ\)) : méthylamine, diméthylamine, triméthylamine.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 4</div><div class="exercise-content">Expliquer le caractère basique des amines à partir de leur structure électronique.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 5</div><div class="exercise-content">Écrire la réaction de la éthylamine avec l'eau. Quel est le pH de la solution obtenue ?</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 6</div><div class="exercise-content">Écrire l'équation de la réaction entre la méthylamine et l'acide chlorhydrique.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 7</div><div class="exercise-content">Nommer le sel d'ammonium formé dans l'exercice 6.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 8</div><div class="exercise-content">Qu'est-ce qu'un acide \(\alpha\)-aminé ? Donner sa formule générale.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 9</div><div class="exercise-content">Représenter la molécule de glycine (acide aminoéthanoïque).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 10</div><div class="exercise-content">Expliquer la notion d'amphion (ou zwitterion) pour un acide \(\alpha\)-aminé.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 11</div><div class="exercise-content">Écrire la réaction d'une amine primaire avec un halogénoane (Alkyllation d'Hofmann).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 12</div><div class="exercise-content">Qu'est-ce qu me liaison peptidique ? Représenter son groupe fonctionnel.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 13</div><div class="exercise-content">Former le dipeptide Ala-Gly à partir de l'alanine et de la glycine.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 14</div><div class="exercise-content">Combien de dipeptides différents peut-on former avec un mélange de deux acides aminés distincts ?</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 15</div><div class="exercise-content">Déterminer la masse molaire d'une amine primaire comportant \(23,7\%\) d'azote en masse.</div></div>
             </div>
 
-            <!-- ================= SECTION SVT ================= -->
+            <!-- SECTION SVT (15 EXERCICES DÉTAILLÉS) -->
             <div id="subject-svt" class="subject-main-view" style="display:none;">
-                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Système nerveux cérébro-spinal :</p>
                 <div class="category-action-stack">
                     <div class="action-card" onclick="openSubPage('svt-cours')">
                         <div class="action-icon"><i class="fa-solid fa-brain"></i></div>
-                        <div class="action-info">
-                            <h3>Partie A : Restitution de Connaissances (8 Exercices)</h3>
-                            <p>Définitions, moelle épinière, substance grise/blanche, racines, arc réflexe et neurones.</p>
-                        </div>
+                        <div class="action-info"><h3>Partie A : Restitution des Connaissances (8 Exercices)</h3><p>Moelle épinière, substance grise, réflexes et potentiel d'action.</p></div>
                     </div>
                     <div class="action-card" onclick="openSubPage('svt-analyse')">
                         <div class="action-icon"><i class="fa-solid fa-microscope"></i></div>
-                        <div class="action-info">
-                            <h3>Partie B : Analyse & Expériences Historiques (7 Exercices)</h3>
-                            <p>Bell et Magendie, dégénérescence wallérienne, réflexe myotatique et transmissions.</p>
-                        </div>
+                        <div class="action-info"><h3>Partie B : Raisonnement Scientifique (7 Exercices)</h3><p>Expériences de Bell et Magendie, section nerveuse et dégénérescence.</p></div>
                     </div>
                 </div>
             </div>
 
-            <!-- SOUS-PAGE SVT : PARTIE A -->
             <div id="subpage-svt-cours" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Restitution de Connaissances</h2>
-                <div class="drive-link-box"><a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir les documents SVT (Google Drive)</a></div>
-                <div class="exercise-card"><div class="exercise-title">1. Définition et composants</div><div class="exercise-content">Qu'appelle-t-on système nerveux cérébro-spinal ? Citez ses deux grandes parties anatomiques principales.</div></div>
-                <div class="exercise-card"><div class="exercise-title">2. Anatomie de la moelle épinière</div><div class="exercise-content">Schéma annoté d'une coupe transversale : substance grise, substance blanche, canal de l'épendyme, racines dorsale et ventrale.</div></div>
-                <div class="exercise-card"><div class="exercise-title">3. Substance grise vs Substance blanche</div><div class="exercise-content">Différence fondamentale de localisation et de composition cellulaire (encéphale vs moelle épinière).</div></div>
-                <div class="exercise-card"><div class="exercise-title">4. Les racines rachidiennes</div><div class="exercise-content">Rôle fonctionnel de la racine postérieure et ventrale. Rôle du ganglion spinal.</div></div>
-                <div class="exercise-card"><div class="exercise-title">5. L'arc réflexe</div><div class="exercise-content">Définition et ordre chronologique des 5 éléments anatomiques de l'arc réflexe.</div></div>
-                <div class="exercise-card"><div class="exercise-title">6. Types de nerfs</div><div class="exercise-content">Distinguer nerf sensitif, moteur et mixte (propriétés et sens des messages).</div></div>
-                <div class="exercise-card"><div class="exercise-title">7. Les enveloppes protectrices</div><div class="exercise-content">Citer les méninges de la surface externe (os) vers la surface interne (tissu nerveux).</div></div>
-                <div class="exercise-card"><div class="exercise-title">8. Le neurone</div><div class="exercise-content">Unité structurale du tissu nerveux. Décrire corps cellulaire, dendrites et axone.</div></div>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Connaissances (Exercices 1 à 8)</h2>
+                
+                <div class="exercise-card"><div class="exercise-title">Exercice 1</div><div class="exercise-content">Faire un schéma annoté de la coupe transversale de la moelle épinière.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 2</div><div class="exercise-content">Définir le neurone et citer ses trois parties fondamentales.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 3</div><div class="exercise-content">Quelle est la différence histologique et fonctionnelle entre la substance grise et la substance blanche ?</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 4</div><div class="exercise-content">Expliquer le mécanisme de naissance du potentiel de repos d'une fibre nerveuse.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 5</div><div class="exercise-content">Décrire les phases d'un potentiel d'action (dépolarisation, repolarisation, hyperpolarisation).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 6</div><div class="exercise-content">Qu'est-ce que la conduction saltatoire ? Quel est le rôle de la gaine de myéline ?</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 7</div><div class="exercise-content">Expliquer le fonctionnement d'une synapse chimique neuro-neuronique.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 8</div><div class="exercise-content">Distinguer une synapse excitatrice (PPSE) d'une synapse inhibitrice (PPSI).</div></div>
             </div>
 
-            <!-- SOUS-PAGE SVT : PARTIE B -->
             <div id="subpage-svt-analyse" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Analyse & Raisonnement</h2>
-                <div class="drive-link-box"><a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Télécharger les TD SVT (Google Drive)</a></div>
-                <div class="exercise-card"><div class="exercise-title">9. Expériences de Bell et Magendie</div><div class="exercise-content">Conséquences de la section de la racine ventrale vs dorsale. Déduire la loi de Bell-Magendie.</div></div>
-                <div class="exercise-card"><div class="exercise-title">10. Dégénérescence wallérienne</div><div class="exercise-content">Définition. Conséquences d'une section en aval vs en amont du ganglion spinal.</div></div>
-                <div class="exercise-card"><div class="exercise-title">11. Réflexe myotatique & fuseau neuromusculaire</div><div class="exercise-content">Rôle du fuseau neuromusculaire et pourquoi le réflexe est monosynaptique.</div></div>
-                <div class="exercise-card"><div class="exercise-title">12. Propagation de l'influx nerveux</div><div class="exercise-content">Fibres myélinisées vs a-myélinisées. Conduction saltatoire et impact sur la vitesse.</div></div>
-                <div class="exercise-card"><div class="exercise-title">13. Étude d'une lésion médullaire</div><div class="exercise-content">Effets d'une section totale thoracique sur la motricité et anomalies des réflexes.</div></div>
-                <div class="exercise-card"><div class="exercise-title">14. Transmission synaptique</div><div class="exercise-content">Étapes de la transmission au niveau d'une synapse chimique.</div></div>
-                <div class="exercise-card"><div class="exercise-title">15. Codage du message nerveux</div><div class="exercise-content">Codage en fréquence (fibre unique) vs recrutement (nerf entier).</div></div>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Analyse & Expériences (Exercices 9 à 15)</h2>
+                
+                <div class="exercise-card"><div class="exercise-title">Exercice 9</div><div class="exercise-content">Analyser les résultats des sections des racines antérieure et postérieure de la moelle épinière par Magendie.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 10</div><div class="exercise-content">Déduire de l'expérience de Magendie le rôle de la racine dorsale.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 11</div><div class="exercise-content">Déduire de l'expérience de Magendie le rôle de la racine ventrale.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 12</div><div class="exercise-content">Expliquer les conséquences d'une section d'un nerf rachidien mixte.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 13</div><div class="exercise-content">Décrire les étapes de la dégénérescence wallérienne suite au sectionnement d'une fibre nerveuse.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 14</div><div class="exercise-content">Interpréter un oscillogramme montrant la sommation temporelle de deux stimulations rapprochées.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 15</div><div class="exercise-content">Analyser l'effet du curare sur la jonction neuromusculaire à partir d'un jeu de données expérimentales.</div></div>
             </div>
 
         </div>
 
-        <!-- ONGLET 4: COMPTE -->
+        <!-- ONGLET 4: UNIVERS DE RECHERCHE (GRILLE 2X2 RECTANGLES + MODE LECTURE GEMINI) -->
+        <div id="tab-navigateur" class="tab-panel">
+            <div id="wiki-grid-view">
+                <div class="wiki-grid">
+                    <div class="wiki-rect-card maths" onclick="openWikiReader('Histoire des Mathématiques', 'https://fr.m.wikipedia.org/wiki/Histoire_des_math%C3%A9matiques')">
+                        <div class="wiki-card-header">
+                            <i class="fa-solid fa-square-root-variable wiki-card-icon"></i>
+                            <div>
+                                <div class="wiki-card-title">Histoire des Mathématiques</div>
+                                <div class="wiki-card-subtitle">Évolution des concepts & grands théorèmes</div>
+                            </div>
+                        </div>
+                        <div class="wiki-read-badge"><i class="fa-solid fa-book-open"></i> Lire</div>
+                    </div>
+
+                    <div class="wiki-rect-card pc" onclick="openWikiReader('Physique & Chimie', 'https://fr.m.wikipedia.org/wiki/Chimie_organique')">
+                        <div class="wiki-card-header">
+                            <i class="fa-solid fa-flask wiki-card-icon"></i>
+                            <div>
+                                <div class="wiki-card-title">Découvertes en Physique-Chimie</div>
+                                <div class="wiki-card-subtitle">Chimie organique & lois du mouvement</div>
+                            </div>
+                        </div>
+                        <div class="wiki-read-badge"><i class="fa-solid fa-book-open"></i> Lire</div>
+                    </div>
+
+                    <div class="wiki-rect-card svt" onclick="openWikiReader('Origines & Mystères SVT', 'https://fr.m.wikipedia.org/wiki/Syst%C3%A8me_nerveux')">
+                        <div class="wiki-card-header">
+                            <i class="fa-solid fa-dna wiki-card-icon"></i>
+                            <div>
+                                <div class="wiki-card-title">Origines & Mystères SVT</div>
+                                <div class="wiki-card-subtitle">Système nerveux & biologie générale</div>
+                            </div>
+                        </div>
+                        <div class="wiki-read-badge"><i class="fa-solid fa-book-open"></i> Lire</div>
+                    </div>
+
+                    <div class="wiki-rect-card sciences" onclick="openWikiReader('Grandes Avancées Scientifiques', 'https://fr.m.wikipedia.org/wiki/Acide_amin%C3%A9')">
+                        <div class="wiki-card-header">
+                            <i class="fa-solid fa-atom wiki-card-icon"></i>
+                            <div>
+                                <div class="wiki-card-title">Grandes Avancées Scientifiques</div>
+                                <div class="wiki-card-subtitle">Biromolécules & recherches modernes</div>
+                            </div>
+                        </div>
+                        <div class="wiki-read-badge"><i class="fa-solid fa-book-open"></i> Lire</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODE LECTURE DÉDIÉ WIKIPÉDIA (PAGE SEPARÉE AVEC RECHERCHE EN DIRECT) -->
+            <div id="wiki-reader-view" class="sub-page">
+                <button class="back-btn" onclick="closeWikiReader()"><i class="fa-solid fa-arrow-left"></i> Retour à la grille</button>
+                
+                <div class="wiki-search-bar">
+                    <input type="text" id="wikiQueryInput" placeholder="Rechercher une question ou un terme sur Wikipédia..." onkeydown="if(event.key === 'Enter') searchDirectWikipedia()">
+                    <i class="fa-solid fa-magnifying-glass" onclick="searchDirectWikipedia()"></i>
+                </div>
+
+                <div style="font-size: 0.9rem; color: var(--accent-cyan); font-weight:700; margin-bottom: 8px;" id="wikiReaderTitle">Article Wikipédia</div>
+
+                <div class="wiki-reader-box">
+                    <iframe id="wikiIframe" src="about:blank"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 5: MON ESPACE PRIVÉ (PARAMÈTRES & THÈMES) -->
         <div id="tab-compte" class="tab-panel">
-            <h2 style="margin-bottom:12px; font-size:1.1rem; color:var(--accent-cyan);">👤 Mon Profil TS2+</h2>
-            <div class="exercise-card">
-                <div class="exercise-title">Synchronisation GitHub / Netlify</div>
-                <div class="exercise-content">Application web connectée et dotée du moteur de recherche dictionnaire complet.</div>
+            <div class="settings-group">
+                <div class="settings-item">
+                    <div class="settings-left">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <div class="settings-text">
+                            <h4>Moxtar Dillo</h4>
+                            <p>Terminale S2 • Sciences Expérimentales</p>
+                        </div>
+                    </div>
+                    <div class="settings-right"><span style="color:var(--accent-green);">● Actif</span></div>
+                </div>
+            </div>
+
+            <div style="font-size:0.75rem; color:var(--text-sub); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; font-weight:700;">Personnalisation</div>
+            <div class="settings-group">
+                <div class="settings-item" onclick="ouvrirSelecteurTheme()">
+                    <div class="settings-left">
+                        <i class="fa-solid fa-palette"></i>
+                        <div class="settings-text">
+                            <h4>Thème de l'application</h4>
+                            <p>Choisir parmi les 4 thèmes par défaut</p>
+                        </div>
+                    </div>
+                    <div class="settings-right"><span id="currentThemeLabel">Sombre OLED</span> <i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </div>
+
+            <div style="font-size:0.75rem; color:var(--text-sub); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; font-weight:700;">Système & Données</div>
+            <div class="settings-group">
+                <div class="settings-item" onclick="alert('Mode Hors-ligne : 100% opérationnel via le stockage local.')">
+                    <div class="settings-left">
+                        <i class="fa-solid fa-wifi"></i>
+                        <div class="settings-text">
+                            <h4>Mode Hors-ligne</h4>
+                            <p>Accès sans connexion internet</p>
+                        </div>
+                    </div>
+                    <div class="settings-right"><i class="fa-solid fa-check" style="color:var(--accent-green);"></i></div>
+                </div>
+                <div class="settings-item" onclick="effacerHistoriqueRecherche()">
+                    <div class="settings-left">
+                        <i class="fa-solid fa-trash-can"></i>
+                        <div class="settings-text">
+                            <h4>Effacer l'historique de recherche</h4>
+                            <p>Nettoyer la mémoire locale</p>
+                        </div>
+                    </div>
+                    <div class="settings-right"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </div>
+
+            <div style="font-size:0.75rem; color:var(--text-sub); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; font-weight:700;">Ressources</div>
+            <div class="settings-group">
+                <div class="settings-item" onclick="window.open('https://drive.google.com', '_blank')">
+                    <div class="settings-left">
+                        <i class="fa-brands fa-google-drive"></i>
+                        <div class="settings-text">
+                            <h4>Google Drive des cours</h4>
+                            <p>Documents officiels TS2</p>
+                        </div>
+                    </div>
+                    <div class="settings-right"><i class="fa-solid fa-external-link" style="font-size:0.75rem;"></i></div>
+                </div>
             </div>
         </div>
 
@@ -820,8 +1170,12 @@
             <span>Leçons</span>
         </div>
         <div class="nav-item" onclick="switchTab('exercices')">
-            <i class="fa-solid fa-pen-pencil"></i>
+            <i class="fa-solid fa-pen-to-square"></i>
             <span>Exercices</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('navigateur')">
+            <i class="fa-solid fa-globe"></i>
+            <span>Recherche</span>
         </div>
         <div class="nav-item" onclick="switchTab('compte')">
             <i class="fa-solid fa-user"></i>
@@ -830,252 +1184,198 @@
     </nav>
 
     <script>
-        // --- DICTIONNAIRE GLOBAL DE L'APPLICATION ---
+        // --- DICTIONNAIRE GLOBAL COMPLET ---
         const dictionnaireComplet = [
-            {
-                mot: "LES ALCOOLS",
-                matiere: "Physique-Chimie",
-                definition: "Famille organique caractérisée par le groupe hydroxyle (-OH) lié à un carbone saturé. Les alcools primaires s'oxydent en aldéhydes puis en acides carboxyliques ; les secondaires en cétones ; les tertiaires ne s'oxydent pas par voie ménagée.",
-                exemple: "Le propan-1-ol (CH3-CH2-CH2-OH) est un alcool primaire."
-            },
-            {
-                mot: "ESTÉRIFICATION ET RENDEMENT",
-                matiere: "Physique-Chimie",
-                definition: "Réaction chimique lente, limitée et athermique entre un acide carboxylique et un alcool, formant un ester et de l'eau.",
-                exemple: "Acide éthanoïque + Éthanol <=> Éthanoate d'éthyle + Eau."
-            },
-            {
-                mot: "LIMITE D'UNE FONCTION",
-                matiere: "Mathématiques",
-                definition: "Étude du comportement d'une fonction lorsque la variable se rapproche d'une valeur spécifique (finie ou infinie). Elle permet d'identifier les asymptotes.",
-                exemple: "lim_{x -> 0} (sin x / x) = 1"
-            },
-            {
-                mot: "CONTINUITÉ ET TVI",
-                matiere: "Mathématiques",
-                definition: "Une fonction est continue si sa courbe se trace sans lever le crayon. Le TVI garantit que si f est continue sur [a, b], elle prend toutes les valeurs intermédiaires entre f(a) et f(b).",
-                exemple: "Si f(0) = -2 et f(3) = 5, il existe c dans ]0, 3[ tel que f(c) = 0."
-            },
-            {
-                mot: "DÉRIVABILITÉ ET NOMBRE DÉRIVÉ",
-                matiere: "Mathématiques",
-                definition: "Taux de variation instantané d'une fonction en un point, correspondant à la pente de la tangente en ce point.",
-                exemple: "Pour f(x) = x^2, le nombre dérivé en x_0 = 3 est f'(3) = 6."
-            },
-            {
-                mot: "CALCUL DE PRIMITIVES",
-                matiere: "Mathématiques",
-                definition: "Opération inverse de la dérivation. Trouver F telle que F'(x) = f(x).",
-                exemple: "Une primitive de f(x) = 2x est F(x) = x^2."
-            },
-            {
-                mot: "NOMBRES COMPLEXES",
-                matiere: "Mathématiques",
-                definition: "Extension des nombres réels incluant l'unité imaginaire i telle que i^2 = -1.",
-                exemple: "z = 3 + 4i a pour module |z| = sqrt(3^2 + 4^2) = 5."
-            },
-            {
-                mot: "THÉORÈME DES ACCROISSEMENTS FINIS (TAF)",
-                matiere: "Mathématiques",
-                definition: "Théorème d'analyse reliant la variation totale d'une fonction à sa dérivée instantanée.",
-                exemple: "Pour 100 km parcourus en 1h, la vitesse moyenne est 100 km/h ; le TAF garantit qu'à un instant t, le compteur indiquait 100 km/h."
-            },
-            {
-                mot: "CINÉMATIQUE DU POINT",
-                matiere: "Physique-Chimie",
-                definition: "Étude géométrique du mouvement des corps au cours du temps (position, vitesse, accélération).",
-                exemple: "Le vecteur vitesse v(t) est la dérivée du vecteur position OM(t)."
-            },
-            {
-                mot: "AMINES ET COMPOSÉS AZOTÉS",
-                matiere: "Physique-Chimie",
-                definition: "Dérivés organiques de l'ammoniac NH3 où un ou plusieurs atomes H sont remplacés par des alkyles. Caractère basique marqué.",
-                exemple: "La méthylamine CH3-NH2 réagit avec les acides pour former des ions alkylammonium."
-            },
-            {
-                mot: "RADIOACTIVITÉ ET DÉCROISSANCE",
-                matiere: "Physique-Chimie",
-                definition: "Transformation spontanée d'un noyau atomique instable avec émission de rayonnements (alpha, beta, gamma).",
-                exemple: "Loi de décroissance : N(t) = N_0 * e^{-\\lambda t}."
-            },
-            {
-                mot: "MOELLE ÉPINIÈRE ET SUBSTANCE GRISE/BLANCHE",
-                matiere: "SVT",
-                definition: "Centre nerveux majeur dans la colonne vertébrale. La substance grise contient les corps cellulaires, la substance blanche contient les fibres myélinisées.",
-                exemple: "Les racines dorsales acheminent les messages sensitifs."
-            },
-            {
-                mot: "L'ARC RÉFLEXE ET RÉFLEXE MYOTATIQUE",
-                matiere: "SVT",
-                definition: "Réponse musculaire involontaire et rapide. Le réflexe myotatique est la contraction d'un muscle suite à son propre étirement.",
-                exemple: "Trajet : récepteur -> neurone sensitif -> synapse -> motoneurone -> effecteur."
-            },
-            {
-                mot: "LOI DE BELL-MAGENDIE",
-                matiere: "SVT",
-                definition: "Établit que la racine dorsale est sensitive et la racine ventrale est motrice.",
-                exemple: "La section de la racine ventrale entraîne une paralysie sans perte de sensibilité."
-            },
-            {
-                mot: "POTENTIEL D'ACTION",
-                matiere: "SVT",
-                definition: "Variation transitoire et rapide du potentiel de membrane d'un neurone lors du passage du message nerveux.",
-                exemple: "Dépolarisation passant de -70 mV à +30 mV."
-            },
-            {
-                mot: "ALGORITHME ET COMPLEXITÉ",
-                matiere: "Informatique",
-                definition: "Suite finie d'instructions. La complexité O mesure l'efficacité en temps et mémoire.",
-                exemple: "Recherche dichotomique en O(log n)."
-            },
-            {
-                mot: "PROGRAMMATION ORIENTÉE OBJET (POO)",
-                matiere: "Informatique",
-                definition: "Paradigme basé sur la création de classes et d'objets regroupant attributs et méthodes.",
-                exemple: "Créer une classe Exo avec les attributs titre et difficulte."
-            },
-            {
-                mot: "ALGÈBRE DE BOOLE",
-                matiere: "Informatique",
-                definition: "Structure algébrique formalisant la logique avec variables binaires (1/0) et opérateurs (ET, OU, NON).",
-                exemple: "A ET (B OU NON C)."
-            },
-            {
-                mot: "LA DÉCOLONISATION ET LE PANAFRICANISME",
-                matiere: "Histoire",
-                definition: "Accession à l'indépendance des pays colonisés au XXe siècle et mouvement d'union des peuples africains.",
-                exemple: "Indépendances africaines en 1960."
-            },
-            {
-                mot: "CONFÉRENCE DE BANDOENG (1955)",
-                matiere: "Histoire",
-                definition: "Rassemblement des pays d'Afrique et d'Asie marquant la naissance du mouvement des Non-alignés.",
-                exemple: "Nehru et Sukarno prônant la neutralité durant la Guerre Froide."
-            }
+            { mot: "LES ALCOOLS", matiere: "Physique-Chimie", definition: "Famille organique caractérisée par le groupe hydroxyle (-OH) lié à un carbone saturé.", exemple: "Propan-1-ol." },
+            { mot: "ESTÉRIFICATION ET RENDEMENT", matiere: "Physique-Chimie", definition: "Réaction lente, limitée et athermique entre un acide carboxylique et un alcool.", exemple: "Ester + Eau." },
+            { mot: "LIMITE D'UNE FONCTION", matiere: "Mathématiques", definition: "Étude du comportement d'une fonction lorsque la variable se rapproche d'une valeur.", exemple: "lim sin(x)/x = 1." },
+            { mot: "CONTINUITÉ ET TVI", matiere: "Mathématiques", definition: "Une fonction est continue si sa courbe se trace sans lever le crayon.", exemple: "Valeurs intermédiaires." },
+            { mot: "DÉRIVABILITÉ ET NOMBRE DÉRIVÉ", matiere: "Mathématiques", definition: "Taux de variation instantané d'une fonction en un point.", exemple: "f'(3) = 6." },
+            { mot: "CALCUL DE PRIMITIVES", matiere: "Mathématiques", definition: "Opération inverse de la dérivation.", exemple: "Primitive de 2x est x^2." },
+            { mot: "NOMBRES COMPLEXES", matiere: "Mathématiques", definition: "Extension des réels avec i^2 = -1.", exemple: "Module |z| = 5." },
+            { mot: "CINÉMATIQUE DU POINT", matiere: "Physique-Chimie", definition: "Étude géométrique du mouvement des corps au cours du temps.", exemple: "Vecteur position OM(t)." },
+            { mot: "AMINES ET COMPOSÉS AZOTÉS", matiere: "Physique-Chimie", definition: "Dérivés organiques de l'ammoniac NH3.", exemple: "Méthylamine." },
+            { mot: "MOELLE ÉPINIÈRE", matiere: "SVT", definition: "Centre nerveux majeur dans la colonne vertébrale.", exemple: "Arc réflexe." },
+            { mot: "LOI DE BELL-MAGENDIE", matiere: "SVT", definition: "Racine dorsale sensitive et racine ventrale motrice.", exemple: "Paralysie sans perte de sensibilité." },
+            { mot: "ALGÈBRE DE BOOLE", matiere: "Informatique", definition: "Structure algébrique formalisant la logique avec variables binaires.", exemple: "A ET (B OU NON C)." }
         ];
 
-        // --- FONCTION DE RECHERCHE DANS LE SITE WEB ---
-        function executerRecherche() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const container = document.getElementById('searchResultsContainer');
+        // --- EN-TÊTES DYNAMIQUES ---
+        const enTetes = {
+            'accueil': { title: "Accueil – TS2+", subtitle: "Moteur de Révision Terminale S2" },
+            'lecons': { title: "Espace d'étude", subtitle: "Résumés & Fiches de cours" },
+            'exercices': { title: "Espace d'entraînement", subtitle: "Séries d'exercices & TD" },
+            'navigateur': { title: "Univers de recherche", subtitle: "Widgets Wikipédia & Mode Lecture" },
+            'compte': { title: "Mon espace privé", subtitle: "Paramètres & Profil élève" },
+            'recherche-dédiée': { title: "Recherche Intelligente", subtitle: "Historique & Résultats" }
+        };
 
-            if (query === "") {
-                container.innerHTML = `
-                    <div class="exercise-card">
-                        <div class="exercise-title">💡 Dictionnaire & Moteur de Recherche</div>
-                        <div class="exercise-content">
-                            Tape un mot-clé (ex: <i>alcools, tvi, cinématique, potentiel, boole, decolonisation...</i>) ou utilise le micro 🎤 pour effectuer une recherche complète.
-                        </div>
-                    </div>`;
-                return;
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            if(enTetes[tabId]) {
+                document.getElementById('headerTitle').textContent = enTetes[tabId].title;
+                document.getElementById('headerSubtitle').textContent = enTetes[tabId].subtitle;
             }
 
-            // Filtrage des concepts dans la base
-            const resultats = dictionnaireComplet.filter(item => 
-                item.mot.toLowerCase().includes(query) || 
-                item.definition.toLowerCase().includes(query) ||
-                item.matiere.toLowerCase().includes(query)
+            const navMap = { 'accueil': 0, 'lecons': 1, 'exercices': 2, 'navigateur': 3, 'compte': 4 };
+            if(navMap[tabId] !== undefined) {
+                document.querySelectorAll('.nav-item')[navMap[tabId]].classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- RECHERCHE DÉDIÉE & HISTORIQUE ---
+        function lancerRechercheDédiée() {
+            const query = document.getElementById('searchInput').value.trim();
+            if(!query) return;
+
+            let historique = JSON.parse(localStorage.getItem('ts2_historique') || '[]');
+            if(!historique.includes(query)) {
+                historique.unshift(query);
+                if(historique.length > 5) historique.pop();
+                localStorage.setItem('ts2_historique', JSON.stringify(historique));
+            }
+
+            afficherResultatsRecherche(query);
+            switchTab('recherche-dédiée');
+        }
+
+        function afficherResultatsRecherche(query) {
+            const container = document.getElementById('searchResultsContainer');
+            const historyContainer = document.getElementById('historyContainer');
+            
+            let historique = JSON.parse(localStorage.getItem('ts2_historique') || '[]');
+            let historyHtml = '';
+            historique.forEach(h => {
+                historyHtml += `<div class="history-chip" onclick="document.getElementById('searchInput').value='${h}'; lancerRechercheDédiée();"><i class="fa-solid fa-clock-rotate-left"></i> ${h}</div>`;
+            });
+            historyContainer.innerHTML = historyHtml;
+
+            const res = dictionnaireComplet.filter(item => 
+                item.mot.toLowerCase().includes(query.toLowerCase()) || 
+                item.definition.toLowerCase().includes(query.toLowerCase())
             );
 
-            if (resultats.length > 0) {
-                let html = `<p style="margin-bottom:12px; color:var(--accent-cyan); font-weight:700;">✨ ${resultats.length} résultat(s) trouvé(s) :</p>`;
-                resultats.forEach(res => {
+            if(res.length > 0) {
+                let html = `<p style="color:var(--accent-cyan); font-weight:700; margin-bottom:10px;">Résultats pour "${query}" :</p>`;
+                res.forEach(r => {
                     html += `
                         <div class="search-res-item">
-                            <div class="search-res-title">📌 Concept : ${res.mot}</div>
-                            <div class="search-res-badge">📂 Matière : [${res.matiere}]</div>
-                            <div class="search-res-def">📖 Définition : ${res.definition}</div>
-                            <div class="search-res-ex">💡 Exemple : ${res.exemple}</div>
+                            <div class="exercise-title">📌 ${r.mot}</div>
+                            <div style="font-size:0.75rem; color:var(--accent-cyan); margin-bottom:4px;">[${r.matiere}]</div>
+                            <div class="exercise-content">${r.definition}</div>
                         </div>`;
                 });
                 container.innerHTML = html;
             } else {
-                container.innerHTML = `
-                    <div class="exercise-card">
-                        <div class="exercise-title">❌ Aucun résultat</div>
-                        <div class="exercise-content">Aucun concept ne correspond à "<b>${query}</b>" dans ton dictionnaire. Essaie un autre terme !</div>
-                    </div>`;
+                container.innerHTML = `<div class="exercise-card"><div class="exercise-title">❌ Aucun résultat</div><div class="exercise-content">Aucun concept trouvé pour "<b>${query}</b>".</div></div>`;
             }
         }
 
-        // --- NAVIGATION INTERNE ---
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-
-            document.getElementById('tab-' + tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
+        function effacerHistoriqueRecherche() {
+            localStorage.removeItem('ts2_historique');
+            document.getElementById('historyContainer').innerHTML = '';
+            alert("Historique effacé avec succès !");
         }
 
-        function switchSubject(subject) {
-            document.querySelectorAll('.subject-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.subject-main-view').forEach(view => view.style.display = 'none');
-            document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('active'));
-
-            event.currentTarget.classList.add('active');
-            document.getElementById('subject-' + subject).style.display = 'block';
+        // --- MODE LECTURE DÉDIÉ WIKIPÉDIA ---
+        function openWikiReader(title, url) {
+            document.getElementById('wiki-grid-view').style.display = 'none';
+            document.getElementById('wiki-reader-view').classList.add('active');
+            document.getElementById('wikiReaderTitle').textContent = title;
+            document.getElementById('wikiIframe').src = url;
+            document.getElementById('wikiQueryInput').value = '';
         }
 
-        function openSubPage(pageType) {
-            document.querySelectorAll('.subject-main-view').forEach(view => {
-                view.style.display = 'none';
-            });
-            document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('active'));
-            document.getElementById('subpage-' + pageType).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function closeWikiReader() {
+            document.getElementById('wiki-reader-view').classList.remove('active');
+            document.getElementById('wiki-grid-view').style.display = 'block';
+            document.getElementById('wikiIframe').src = 'about:blank';
         }
 
-        function closeSubPage() {
-            document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('active'));
-            const activeBtn = document.querySelector('.subject-btn.active');
-            if (activeBtn.textContent.includes('Mathématiques')) {
-                document.getElementById('subject-maths').style.display = 'block';
-            } else if (activeBtn.textContent.includes('Physique')) {
-                document.getElementById('subject-chimie').style.display = 'block';
-            } else if (activeBtn.textContent.includes('SVT')) {
-                document.getElementById('subject-svt').style.display = 'block';
+        function searchDirectWikipedia() {
+            const query = document.getElementById('wikiQueryInput').value.trim();
+            if(!query) return;
+            const searchUrl = `https://fr.m.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(query)}`;
+            document.getElementById('wikiReaderTitle').textContent = `Recherche Wikipédia : "${query}"`;
+            document.getElementById('wikiIframe').src = searchUrl;
+        }
+
+        // --- GESTION DES 4 THÈMES ---
+        function ouvrirSelecteurTheme() {
+            const choix = prompt("Choisis ton thème par défaut :\n1. Sombre OLED (Défaut)\n2. Mode Clair (Light)\n3. Cyberpunk Néon\n4. Sépia Rétro", "1");
+            
+            document.body.classList.remove('theme-light', 'theme-cyberpunk', 'theme-sepia');
+            let label = "Sombre OLED";
+
+            if(choix === "2") {
+                document.body.classList.add('theme-light');
+                label = "Mode Clair";
+            } else if(choix === "3") {
+                document.body.classList.add('theme-cyberpunk');
+                label = "Cyberpunk Néon";
+            } else if(choix === "4") {
+                document.body.classList.add('theme-sepia');
+                label = "Sépia Rétro";
             }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            document.getElementById('currentThemeLabel').textContent = label;
+            localStorage.setItem('ts2_theme', choix);
         }
 
-        // --- NAVIGATION DANS L'ONGLET LEÇONS ---
-        function openLessonPage(subject) {
+        // Navigation leçons & exercices
+        function openLessonPage(sub) {
             document.getElementById('lessons-main-view').style.display = 'none';
             document.querySelectorAll('#tab-lecons .sub-page').forEach(p => p.classList.remove('active'));
-            document.getElementById('lesson-page-' + subject).classList.add('active');
+            document.getElementById('lesson-page-' + sub).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            if (window.MathJax) {
-                MathJax.typesetPromise();
-            }
         }
-
         function closeLessonPage() {
             document.querySelectorAll('#tab-lecons .sub-page').forEach(p => p.classList.remove('active'));
             document.getElementById('lessons-main-view').style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        // --- VOCAL ---
-        function startVoiceSearch() {
-            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                const recognition = new SpeechRecognition();
-                recognition.lang = 'fr-FR';
-                const micBtn = document.getElementById('micBtn');
-                micBtn.style.color = '#fff';
-
-                recognition.onresult = function(event) {
-                    const transcript = event.results[0][0].transcript;
-                    document.getElementById('searchInput').value = transcript;
-                    micBtn.style.color = 'var(--accent-cyan)';
-                    executerRecherche();
-                };
-                recognition.onerror = function() { micBtn.style.color = 'var(--accent-cyan)'; };
-                recognition.start();
-            } else {
-                alert("La recherche vocale n'est pas supportée par ce navigateur.");
+        function switchSubject(s) {
+            document.querySelectorAll('.subject-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.subject-main-view').forEach(v => v.style.display = 'none');
+            document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            document.getElementById('subject-' + s).style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function openSubPage(p) {
+            document.querySelectorAll('.subject-main-view').forEach(v => v.style.display = 'none');
+            document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('active'));
+            document.getElementById('subpage-' + p).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function closeSubPage() {
+            document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
+            const activeBtn = document.querySelector('.subject-btn.active');
+            if (activeBtn && activeBtn.textContent.includes('Maths')) {
+                document.getElementById('subject-maths').style.display = 'block';
+            } else if (activeBtn && activeBtn.textContent.includes('Phys')) {
+                document.getElementById('subject-chimie').style.display = 'block';
+            } else if (activeBtn && activeBtn.textContent.includes('SVT')) {
+                document.getElementById('subject-svt').style.display = 'block';
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function startVoiceSearch() {
+            if ('webkitSpeechRecognition' in window) {
+                const rec = new webkitSpeechRecognition();
+                rec.lang = 'fr-FR';
+                rec.onresult = (e) => {
+                    document.getElementById('searchInput').value = e.results[0][0].transcript;
+                    lancerRechercheDédiée();
+                };
+                rec.start();
+            } else { alert("Recherche vocale non supportée."); }
         }
     </script>
 </body>
