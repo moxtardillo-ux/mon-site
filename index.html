@@ -14,10 +14,10 @@
         :root {
             --bg-dark: #111827;
             --card-bg: rgba(30, 41, 59, 0.85);
-            --card-border: rgba(0, 242, 254, 0.3);
             --accent-cyan: #00f2fe;
             --accent-blue: #38bdf8;
             --accent-purple: #a855f7;
+            --accent-green: #10b981;
             --text-main: #ffffff;
             --text-sub: #cbd5e1;
             --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -43,7 +43,6 @@
                 radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 30%);
         }
 
-        /* En-tête futuriste lumineux */
         header {
             padding: 20px 16px 12px;
             text-align: center;
@@ -99,7 +98,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Barre de recherche lumineuse */
         .search-box {
             background: var(--card-bg);
             border: 1px solid var(--accent-cyan);
@@ -127,7 +125,6 @@
             font-size: 1.1rem;
         }
 
-        /* Sélecteur de matières */
         .subject-selector {
             display: flex;
             gap: 10px;
@@ -156,58 +153,93 @@
             box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
         }
 
-        /* Blocs de boutons interactifs (Les 2 colonnes transformées en superbes boutons) */
-        .category-action-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
+        /* BLOCS DE LEÇONS (3 CARRÉS COLORÉS DISTINCTS) */
+        .lesson-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-left: 6px solid var(--accent-cyan);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        @media (min-width: 768px) {
-            .category-action-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        .lesson-card.pc {
+            border-left-color: var(--accent-purple);
+        }
+
+        .lesson-card.svt {
+            border-left-color: var(--accent-green);
+        }
+
+        .lesson-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lesson-desc {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        /* BLOCS D'ANNONCES VERTICAUX (BIEN EMPILÉS LES UNS SOUS LES AUTRES) */
+        .category-action-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
         .action-card {
             background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
             border: 2px solid var(--accent-cyan);
             border-radius: 18px;
-            padding: 24px;
+            padding: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 6px 20px rgba(0, 242, 254, 0.15);
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: flex-start;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
         }
 
         .action-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             border-color: #fff;
             box-shadow: 0 10px 30px rgba(0, 242, 254, 0.4);
-            background: linear-gradient(135deg, rgba(30, 41, 59, 1), rgba(0, 242, 254, 0.15));
+            background: linear-gradient(135deg, rgba(30, 41, 59, 1), rgba(0, 242, 254, 0.2));
         }
 
-        .action-card i {
-            font-size: 2rem;
+        .action-icon {
+            font-size: 2.2rem;
             color: var(--accent-cyan);
+            background: rgba(0, 242, 254, 0.1);
+            padding: 15px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 70px;
         }
 
-        .action-card h3 {
-            font-size: 1.2rem;
+        .action-info h3 {
+            font-size: 1.15rem;
             color: #fff;
             font-weight: 700;
+            margin-bottom: 6px;
         }
 
-        .action-card p {
+        .action-info p {
             font-size: 0.85rem;
             color: var(--text-sub);
             line-height: 1.4;
         }
 
-        /* Vues secondaires (Pages d'exercices) */
+        /* Sous-pages */
         .sub-page {
             display: none;
             animation: fadeIn 0.3s ease-in-out forwards;
@@ -260,7 +292,30 @@
             line-height: 1.6;
         }
 
-        /* Navbar du bas */
+        .drive-link-box {
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(56, 189, 248, 0.15));
+            border: 1px dashed var(--accent-cyan);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .drive-link-box a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .drive-link-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation du bas */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -299,7 +354,6 @@
 </head>
 <body>
 
-    <!-- En-tête -->
     <header>
         <div class="header-banner">
             <h1 class="header-title">Accueil – TS2+</h1>
@@ -320,119 +374,91 @@
             <div class="exercise-card">
                 <div class="exercise-title">💡 Recherche Intelligente & Vocale</div>
                 <div class="exercise-content">
-                    Tape un mot ou clique sur le micro 🎤 pour parler directement (ex : <i>neurones, limites, alcools, cinématique...</i>).
+                    Tape un mot ou clique sur le micro 🎤 pour parler directement (ex : <i>limites, alcools, réflexe...</i>).
                 </div>
             </div>
         </div>
 
-        <!-- ONGLET 2: LEÇONS -->
+        <!-- ONGLET 2: LEÇONS (LES 3 CARRÉS DE BASE RESTAURÉS AVEC COULEURS) -->
         <div id="tab-lecons" class="tab-panel">
             <h2 style="margin-bottom:14px; font-size:1.2rem; color:var(--accent-cyan);">📚 Résumés & Fiches de cours</h2>
-            <div class="exercise-card">
-                <div class="exercise-title">📐 Mathématiques</div>
-                <div class="exercise-content">Limites, continuité, dérivabilité, bijections et études complètes de fonctions.</div>
+            
+            <div class="lesson-card">
+                <div class="lesson-title"><i class="fa-solid fa-square-root-variable" style="color:var(--accent-cyan);"></i> Mathématiques</div>
+                <div class="lesson-desc">Espace des leçons d'analyse, suites, complexes et probabilités.</div>
             </div>
-            <div class="exercise-card">
-                <div class="exercise-title">🧪 Physique-Chimie</div>
-                <div class="exercise-content">Étude des Alcools (Nomenclature, Oxydation ménagée, Estérification, Dosages).</div>
+
+            <div class="lesson-card pc">
+                <div class="lesson-title"><i class="fa-solid fa-flask" style="color:var(--accent-purple);"></i> Physique-Chimie</div>
+                <div class="lesson-desc">Espace des leçons d'acides/bases, alcools, esterification et cinématique.</div>
             </div>
-            <div class="exercise-card">
-                <div class="exercise-title">🧬 SVT</div>
-                <div class="exercise-content">Neurophysiologie, réflexe myotatique et potentiel d'action.</div>
+
+            <div class="lesson-card svt">
+                <div class="lesson-title"><i class="fa-solid fa-dna" style="color:var(--accent-green);"></i> SVT</div>
+                <div class="lesson-desc">Espace des leçons de neurophysiologie, génétique et géologie.</div>
             </div>
         </div>
 
-        <!-- ONGLET 3: EXERCICES (NAVIGATION AVEC PAGES DÉDIÉES) -->
+        <!-- ONGLET 3: EXERCICES (BLOCS VERTICAUX EMPILÉS) -->
         <div id="tab-exercices" class="tab-panel">
             
-            <!-- Sélecteur de matière -->
             <div class="subject-selector">
                 <button class="subject-btn active" onclick="switchSubject('maths')">📐 Mathématiques</button>
-                <button class="subject-btn" onclick="switchSubject('chimie')">🧪 Chimie (Alcools)</button>
+                <button class="subject-btn" onclick="switchSubject('chimie')">🧪 Chimie</button>
                 <button class="subject-btn" onclick="switchSubject('svt')">🧬 SVT</button>
             </div>
 
             <!-- SECTION MATHÉMATIQUES -->
             <div id="subject-maths" class="subject-main-view">
-                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le type de contenu que tu souhaites consulter :</p>
-                <div class="category-action-grid">
+                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le type de contenu en mathématiques :</p>
+                <div class="category-action-stack">
                     <div class="action-card" onclick="openSubPage('maths-simple')">
-                        <i class="fa-solid fa-bolt"></i>
-                        <h3>Exercices Simples & Cours</h3>
-                        <p>Accède aux questions rapides, calculs de limites de base, prolongeabilités et TIAF[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span).</p>
+                        <div class="action-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="action-info">
+                            <h3>Questions de cours & Exercices simples</h3>
+                            <p>Questions rapides, calculs de limites fondamentales, continuité et prolongeabilité[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span).</p>
+                        </div>
                     </div>
                     <div class="action-card" onclick="openSubPage('maths-td')">
-                        <i class="fa-solid fa-file-lines"></i>
-                        <h3>Exercices de TD & Problèmes</h3>
-                        <p>Plonge dans les grands problèmes synthétisés, bijections et études de fonctions complexes[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span).</p>
+                        <div class="action-icon"><i class="fa-solid fa-file-lines"></i></div>
+                        <div class="action-info">
+                            <h3>Exercices de TD & Problèmes complexes</h3>
+                            <p>Grands problèmes d'analyse de niveau examen, études de fonctions avec paramètres, bijections et branches infinies[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span)[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span).</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- PAGE DÉDIÉE : MATHS - EXERCICES SIMPLES -->
+            <!-- SOUS-PAGE MATHS : SIMPLES -->
             <div id="subpage-maths-simple" class="sub-page">
-                <button class="back-btn" onclick="closeSubPage('maths-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Exercices Simples & Cours</h2>
-                
-                <div class="exercise-card">
-                    <div class="exercise-title">Série 1 - Ex 1 : Calculs de limites</div>
-                    <div class="exercise-content">
-                        Calculer les limites suivantes :<br>
-                        a) \(\lim_{x\rightarrow1}\frac{x-1}{x^{2}-1}\)[span_10](start_span)[span_10](end_span)<br>
-                        b) \(\lim_{x\rightarrow3}\frac{\sqrt{5x+1}-\sqrt{4x+4}}{x-3}\)[span_11](start_span)[span_11](end_span)<br>
-                        c) \(\lim_{x\rightarrow1}\frac{\sqrt{3+x}-\sqrt{5-x}}{\sqrt{2x+7}-\sqrt{10-x}}\)[span_12](start_span)[span_12](end_span)<br>
-                        d) \(\lim_{x\rightarrow0}\frac{1-\cos x}{\sin^{2}x}\)[span_13](start_span)[span_13](end_span)
-                    </div>
+                <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Questions de cours & Exercices simples</h2>
+                <div class="drive-link-box">
+                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir la série complète sur Google Drive (PDF)</a>
                 </div>
-
                 <div class="exercise-card">
-                    <div class="exercise-title">Série 1 - Ex 2 : Prolongeabilité par continuité</div>
+                    <div class="exercise-title">Calculs de limites classiques[span_6](start_span)[span_6](end_span)</div>
                     <div class="exercise-content">
-                        1. \(g(x)=\frac{\sqrt{x^2+1}-1}{x}\). Est-elle prolongeable par continuité en 0 ?[span_14](start_span)[span_14](end_span)<br>
-                        2. Étude du prolongement de la fonction \(h(x)\) en 3[span_15](start_span)[span_15](end_span).
-                    </div>
-                </div>
-
-                <div class="exercise-card">
-                    <div class="exercise-title">Série 1 - Ex 5 : Utilisation du TIAF</div>
-                    <div class="exercise-content">
-                        Soit \(f(x)=\sqrt{1-x}\). En utilisant le TIAF sur l'intervalle \([0, x]\), démontrer que :<br>
-                        \(1-\frac{x}{\sqrt{2}} \le \sqrt{1-x} \le 1-\frac{x}{2}\)[span_16](start_span)[span_16](end_span)
-                    </div>
-                </div>
-
-                <div class="exercise-card">
-                    <div class="exercise-title">SHEMAF - Ex 1 : Limites Trigonométriques</div>
-                    <div class="exercise-content">
-                        Calculer les limites trigonométriques : \(\lim_{x\to0}\frac{\sin 3x}{6x}\), \(\lim_{x\to0}\frac{1-\cos x}{x \sin x}\), \(\lim_{x\to\frac{\pi}{6}}\frac{2\cos(2x)-1}{\cos(3x)}\)[span_17](start_span)[span_17](end_span).
+                        Calculer :<br>
+                        a) \(\lim_{x\rightarrow1}\frac{x-1}{x^{2}-1}\)[span_7](start_span)[span_7](end_span)<br>
+                        b) \(\lim_{x\rightarrow3}\frac{\sqrt{5x+1}-\sqrt{4x+4}}{x-3}\)[span_8](start_span)[span_8](end_span)<br>
+                        c) \(\lim_{x\rightarrow0}\frac{1-\cos x}{\sin^{2}x}\)[span_9](start_span)[span_9](end_span)
                     </div>
                 </div>
             </div>
 
-            <!-- PAGE DÉDIÉE : MATHS - EXERCICES DE TD -->
+            <!-- SOUS-PAGE MATHS : TD -->
             <div id="subpage-maths-td" class="sub-page">
-                <button class="back-btn" onclick="closeSubPage('maths-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Exercices de TD & Problèmes</h2>
-                
-                <div class="exercise-card">
-                    <div class="exercise-title">Série 1 - Problème 1 : Étude de fonction et Paramètre</div>
-                    <div class="exercise-content">
-                        <b>Partie A :</b> Étude de \(g(x)=4x^3-3x-8\) et recherche de l'unique solution \(\alpha\)[span_18](start_span)[span_18](end_span).<br>
-                        <b>Partie B :</b> Étude complète de \(f(x)\), asymptotes obliques, branches infinies et bijections réciproques[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span).
-                    </div>
+                <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Exercices de TD & Problèmes Complexes</h2>
+                <div class="drive-link-box">
+                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Télécharger les problèmes de TD complets (PDF)</a>
                 </div>
-
                 <div class="exercise-card">
-                    <div class="exercise-title">Série 1 - Problème 2 : Fonction par morceaux & Continuité</div>
+                    <div class="exercise-title">Problème d'Analyse Grand Format : Étude avec paramètre & Asymptotes obliques[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span)</div>
                     <div class="exercise-content">
-                        Étude de \(f(x)\) en 1, calcul des branches paraboliques, asymptotes et construction graphique de \(\mathcal{C}_f\) et \(\mathcal{C}_{g^{-1}}\)[span_21](start_span)[span_21](end_span).
-                    </div>
-                </div>
-
-                <div class="exercise-card">
-                    <div class="exercise-title">SHEMAF - Problème 3 : Analyse & Symétries</div>
-                    <div class="exercise-content">
-                        Étude complète avec valeurs absolues, axes de symétrie, branches infinies et dérivabilité de la fonction réciproque \(h^{-1}\)[span_22](start_span)[span_22](end_span).
+                        <b>Partie A :</b> Soit la fonction auxiliaire \(g(x) = 4x^3 - 3x - 8\)[span_12](start_span)[span_12](end_span). Étudier ses variations, dresser son tableau complet et montrer que l'équation \(g(x) = 0\) admet une unique solution \(\alpha\) sur \([0, +\infty[\)[span_13](start_span)[span_13](end_span).<br><br>
+                        <b>Partie B :</b> Étude complète de la fonction \(f(x) = \frac{x^3 + 1}{4x^2 - 1}\) pour \(x > 0\)[span_14](start_span)[span_14](end_span), recherche d'asymptotes obliques et encadrement de \(f(\alpha)\)[span_15](start_span)[span_15](end_span).
                     </div>
                 </div>
             </div>
@@ -440,82 +466,94 @@
             <!-- SECTION CHIMIE -->
             <div id="subject-chimie" class="subject-main-view" style="display:none;">
                 <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le type de contenu en chimie :</p>
-                <div class="category-action-grid">
+                <div class="category-action-stack">
                     <div class="action-card" onclick="openSubPage('chimie-simple')">
-                        <i class="fa-solid fa-flask"></i>
-                        <h3>Exercices de Cours & FSD</h3>
-                        <p>Équations-bilans des alcools, réactifs et détermination de formules brutes[span_23](start_span)[span_23](end_span).</p>
+                        <div class="action-icon"><i class="fa-solid fa-flask"></i></div>
+                        <div class="action-info">
+                            <h3>Exercices de Cours & FSD</h3>
+                            <p>Équations-bilans des alcools, classes, et formules semi-développées[span_16](start_span)[span_16](end_span).</p>
+                        </div>
                     </div>
                     <div class="action-card" onclick="openSubPage('chimie-td')">
-                        <i class="fa-solid fa-vial"></i>
-                        <h3>Problèmes & Dosages</h3>
-                        <p>Hydratation, estérification, rendements et dosage redox du degré d'alcool d'un vin[span_24](start_span)[span_24](end_span).</p>
+                        <div class="action-icon"><i class="fa-solid fa-vial"></i></div>
+                        <div class="action-info">
+                            <h3>Problèmes de TD & Dosages complexes</h3>
+                            <p>Hydratation de propène, estérification, rendements et dosage redox du degré d'alcool d'un vin[span_17](start_span)[span_17](end_span)[span_18](start_span)[span_18](end_span).</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- PAGE DÉDIÉE : CHIMIE - COURS -->
+            <!-- SOUS-PAGE CHIMIE : SIMPLES -->
             <div id="subpage-chimie-simple" class="sub-page">
-                <button class="back-btn" onclick="closeSubPage('chimie-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Exercices de Cours & FSD</h2>
-                <div class="exercise-card">
-                    <div class="exercise-title">TD C1 - Ex 1 : Équations-bilans des alcools[span_25](start_span)[span_25](end_span)</div>
-                    <div class="exercise-content">Propan-1-ol + Na ; 3-méthylpent-2-ène + eau ; 2,2,4-triméthylpentan-3-ol + \(\text{Al}_2\text{O}_3\)[span_26](start_span)[span_26](end_span).</div>
+                <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Cours & FSD</h2>
+                <div class="drive-link-box">
+                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir le TD Alcools complet (Google Drive)</a>
                 </div>
                 <div class="exercise-card">
-                    <div class="exercise-title">TD C1 - Ex 4 : Analyse et isomères[span_27](start_span)[span_27](end_span)</div>
-                    <div class="exercise-content">Pourcentages massiques (\%C=64,85 ; \%H=13,5), formule brute et tests à la 2,4-DNPH[span_28](start_span)[span_28](end_span).</div>
+                    <div class="exercise-title">Équations-bilans des réactions des alcools[span_19](start_span)[span_19](end_span)</div>
+                    <div class="exercise-content">Écrire l'équation bilan avec les FSD : Propan-1-ol + Na, 2-méthylpropan-2-ol + Cu, et déshydratation sur alumine \(\text{Al}_2\text{O}_3\)[span_20](start_span)[span_20](end_span).</div>
                 </div>
             </div>
 
-            <!-- PAGE DÉDIÉE : CHIMIE - TD -->
+            <!-- SOUS-PAGE CHIMIE : TD -->
             <div id="subpage-chimie-td" class="sub-page">
-                <button class="back-btn" onclick="closeSubPage('chimie-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Problèmes & Dosages</h2>
-                <div class="exercise-card">
-                    <div class="exercise-title">TD C1 - Ex 2 : Markovnikov & Dosage[span_29](start_span)[span_29](end_span)</div>
-                    <div class="exercise-content">Hydratation du propène, calculs de moles et dosage par la soude[span_30](start_span)[span_30](end_span).</div>
+                <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Problèmes & Dosages Complexes</h2>
+                <div class="drive-link-box">
+                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Télécharger les problèmes de chimie (PDF)</a>
                 </div>
                 <div class="exercise-card">
-                    <div class="exercise-title">TD C1 - Ex 9 : Dosage du degré d'alcool d'un vin</div>
-                    <div class="exercise-content">Distillation, oxydation par dichromate en excès et dosage en retour par le fer (II).</div>
+                    <div class="exercise-title">Problème Complet : Dosage par reflux & Degré d'alcool d'un vin</div>
+                    <div class="exercise-content">Vérification de l'étiquette (9,5°) par distillation, oxydation par dichromate en excès, et dosage en retour par le sel de Mohr (\(\text{Fe}^{2+}\)).</div>
                 </div>
             </div>
 
             <!-- SECTION SVT -->
             <div id="subject-svt" class="subject-main-view" style="display:none;">
                 <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le type de contenu en SVT :</p>
-                <div class="category-action-grid">
+                <div class="category-action-stack">
                     <div class="action-card" onclick="openSubPage('svt-simple')">
-                        <i class="fa-solid fa-brain"></i>
-                        <h3>Restitution de Connaissances</h3>
-                        <p>Définitions, schémas annotés et cours sur le réflexe myotatique.</p>
+                        <div class="action-icon"><i class="fa-solid fa-brain"></i></div>
+                        <div class="action-info">
+                            <h3>Restitution de Connaissances</h3>
+                            <p>Définitions et schémas du réflexe myotatique.</p>
+                        </div>
                     </div>
                     <div class="action-card" onclick="openSubPage('svt-td')">
-                        <i class="fa-solid fa-microscope"></i>
-                        <h3>Exploitation de Documents</h3>
-                        <p>Analyse d'expériences historiques (Magendie) et tracés d'oscilloscopes.</p>
+                        <div class="action-icon"><i class="fa-solid fa-microscope"></i></div>
+                        <div class="action-info">
+                            <h3>Exploitation de Documents</h3>
+                            <p>Analyse d'expériences historiques (Magendie) et tracés d'oscilloscopes.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- PAGE DÉDIÉE : SVT - COURS -->
+            <!-- SOUS-PAGE SVT : SIMPLES -->
             <div id="subpage-svt-simple" class="sub-page">
-                <button class="back-btn" onclick="closeSubPage('svt-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
                 <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Restitution de Connaissances</h2>
+                <div class="drive-link-box">
+                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Accéder aux cours SVT (Google Drive)</a>
+                </div>
                 <div class="exercise-card">
-                    <div class="exercise-title">SVT - Q1 : Réflexe Myotatique</div>
-                    <div class="exercise-content">Définition et rôle du fuseau neuromusculaire et du motoneurone.</div>
+                    <div class="exercise-title">Le Réflexe Myotatique</div>
+                    <div class="exercise-content">Définir le réflexe myotatique et légender le circuit nerveux impliqué.</div>
                 </div>
             </div>
 
-            <!-- PAGE DÉDIÉE : SVT - TD -->
+            <!-- SOUS-PAGE SVT : TD -->
             <div id="subpage-svt-td" class="sub-page">
-                <button class="back-btn" onclick="closeSubPage('svt-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Exploitation de Documents</h2>
+                <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Exploitation de Documents & Problèmes</h2>
+                <div class="drive-link-box">
+                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Télécharger les TD SVT (Google Drive)</a>
+                </div>
                 <div class="exercise-card">
-                    <div class="exercise-title">SVT - Ex 1 : Expériences de Magendie</div>
-                    <div class="exercise-content">Interprétation des sections des racines rachidiennes.</div>
+                    <div class="exercise-title">Analyse des expériences de Magendie</div>
+                    <div class="exercise-content">Interpréter les résultats de section des racines antérieures et postérieures chez le chien.</div>
                 </div>
             </div>
 
@@ -526,13 +564,12 @@
             <h2 style="margin-bottom:12px; font-size:1.1rem; color:var(--accent-cyan);">👤 Mon Profil TS2+</h2>
             <div class="exercise-card">
                 <div class="exercise-title">Synchronisation GitHub / Netlify</div>
-                <div class="exercise-content">Application connectée et prête pour tes révisions en direct.</div>
+                <div class="exercise-content">Application prête pour tes révisions en direct.</div>
             </div>
         </div>
 
     </main>
 
-    <!-- Navigation du bas -->
     <nav class="bottom-nav">
         <div class="nav-item active" onclick="switchTab('accueil')">
             <i class="fa-solid fa-house"></i>
@@ -571,20 +608,16 @@
         }
 
         function openSubPage(pageType) {
-            // Cache la vue principale de la matière active
             document.querySelectorAll('.subject-main-view').forEach(view => {
-                if(view.style.display === 'block') view.dataset.activeSubject = view.id;
                 view.style.display = 'none';
             });
-            // Ouvre la sous-page correspondante
             document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('active'));
             document.getElementById('subpage-' + pageType).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function closeSubPage(mainId) {
+        function closeSubPage() {
             document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('active'));
-            // Détermine quelle matière est active pour réafficher sa vue principale
             const activeBtn = document.querySelector('.subject-btn.active');
             if (activeBtn.textContent.includes('Mathématiques')) {
                 document.getElementById('subject-maths').style.display = 'block';
