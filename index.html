@@ -768,7 +768,7 @@
             </div>
         </div>
 
-        <!-- ONGLET 3: EXERCICES & PDF INTÉGRÉS (TÉLÉCHARGEMENT DIRECT GOOGLE DRIVE) -->
+        <!-- ONGLET 3: EXERCICES & PDF (LIENS GOOGLE DRIVE DIRECTS) -->
         <div id="tab-exercices" class="tab-panel">
             <div class="subject-selector">
                 <button class="subject-btn active" onclick="switchSubject('maths')">
@@ -785,28 +785,28 @@
             <!-- SECTION MATHS -->
             <div id="subject-maths" class="subject-main-view">
                 <div class="category-action-stack">
-                    <div class="action-card" onclick="telechargerDirectDrive('TON_ID_DRIVE_MATHS')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_MATHS/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-file-pdf"></i></div>
                         <div class="action-info">
                             <h3>Complément d'Analyse (PDF Officiel)</h3>
                             <p>Série harmonisée d'exercices de mathématiques (SHEMAF 2026-2027).</p>
                         </div>
                     </div>
-                    <div class="action-card" onclick="telechargerDirectDrive('TON_ID_DRIVE_DAKAR')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_DAKAR/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-file-pdf"></i></div>
                         <div class="action-info">
                             <h3>Série n°1 : Fonctions Numériques (Acad. Dakar)</h3>
                             <p>Limites, prolongement par continuité, bijections et dérivabilité.</p>
                         </div>
                     </div>
-                    <div class="action-card" onclick="telechargerDirectDrive('TON_ID_DRIVE_DEV1')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_DEV1/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-bolt"></i></div>
                         <div class="action-info">
                             <h3>Devoir 1 : Limites & Continuité (Accessible)</h3>
                             <p>Évaluation d'entraînement ciblée sur les bases et le TVI.</p>
                         </div>
                     </div>
-                    <div class="action-card" onclick="telechargerDirectDrive('TON_ID_DRIVE_DEV2')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_DEV2/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-clock"></i></div>
                         <div class="action-info">
                             <h3>Devoir 2 : Synthèse 3 Heures (Technique)</h3>
@@ -851,7 +851,7 @@
             <!-- SECTION PHYSIQUE-CHIMIE -->
             <div id="subject-chimie" class="subject-main-view" style="display:none;">
                 <div class="category-action-stack">
-                    <div class="action-card" onclick="telechargerDirectDrive('TON_ID_DRIVE_CHIMIE')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_CHIMIE/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-file-pdf"></i></div>
                         <div class="action-info">
                             <h3>TD C1 : Les Alcools (Collège St JP2)</h3>
@@ -864,7 +864,7 @@
             <!-- SECTION SVT -->
             <div id="subject-svt" class="subject-main-view" style="display:none;">
                 <div class="category-action-stack">
-                    <div class="action-card" onclick="telechargerDirectDrive('TON_ID_DRIVE_SVT')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_SVT/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-dna"></i></div>
                         <div class="action-info">
                             <h3>Évaluation SVT : Système Nerveux & Réflexes</h3>
@@ -1022,10 +1022,9 @@
     </nav>
 
     <script>
-        // --- TÉLÉCHARGEMENT OU OUVERTURE DIRECTE GOOGLE DRIVE ---
-        function telechargerDirectDrive(fileId) {
-            const urlDirecte = `https://drive.google.com/uc?export=download&id=${fileId}`;
-            window.open(urlDirecte, '_blank');
+        // --- OUVERTURE GOOGLE DRIVE CLASSIQUE ---
+        function ouvrirPdfGoogleDrive(urlDrive) {
+            window.open(urlDrive, '_blank');
         }
 
         // --- GESTION DU PROFIL & NOM PERSONNALISABLE ---
