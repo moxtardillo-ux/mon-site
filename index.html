@@ -3,88 +3,674 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moxtar Web - Espace d'Échanges & d'Études</title>
-    <script>
-        // Fonction sécurisée pour ouvrir WhatsApp sans exposer le numéro brut aux robots
-        function openWhatsApp() {
-            var part1 = "221";
-            var part2 = "78";
-            var part3 = "8472730";
-            window.open("https://wa.me/" + part1 + part2 + part3, "_blank");
-        }
+    <title>Moxtar Web - Espace d'Échanges & d'Études</titl<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Révision TS2+</title>
+    <style>
+        /* === IMPORTS DE POLICES & VARIABLES NÉON === */
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
 
-        // Fonction pour afficher le numéro et l'email uniquement au clic (anti-spam)
-        function revealContact() {
-            document.getElementById('phone-box').innerHTML = '<strong>+221 78 847 27 30</strong>';
-            document.getElementById('email-box').innerHTML = '<a href="mailto:moxtardillo@gmail.com" style="color: #3498db; text-decoration: none;">moxtardillo@gmail.com</a>';
-        }
-    </script>
-</head>
-<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; color: #333;">
-
-    <!-- En-tête -->
-    <header style="background-color: #1a252f; color: white; padding: 25px 20px; text-align: center;">
-        <h1 style="margin: 0; font-size: 2.2em;">Moxtar Web</h1>
-        <p style="margin-top: 5px; color: #3498db; font-size: 1.1em;">Plateforme d'Entraide & Échanges entre Élèves</p>
-        
-        <nav style="margin-top: 20px;">
-            <a href="index.html" style="color: white; font-weight: bold; margin: 0 15px; text-decoration: none; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Accueil</a>
-            <a href="cours.html" style="color: #ecf0f1; margin: 0 15px; text-decoration: none;">Cours & PDF</a>
-        </nav>
-    </header>
-
-    <!-- Contenu Principal -->
-    <main style="max-width: 900px; margin: 30px auto; padding: 0 20px;">
-
-        <!-- Section Présentation -->
-        <section style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); margin-bottom: 25px; text-align: center;">
-            <h2 style="color: #2c3e50;">Bienvenue sur Moxtar Web 📚</h2>
-            <p style="line-height: 1.6; font-size: 1.05em;">
-                Cet espace est conçu pour réunir les élèves, partager des ressources scolaires, poser des questions et travailler ensemble efficacement. Retrouve tes supports de cours, tes devoirs et communique directement avec la communauté !
-            </p>
-        </section>
-
-        <!-- Section Échanges & Groupe -->
-        <section style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); margin-bottom: 25px; text-align: center;">
-            <h3 style="color: #2c3e50;">💬 Espace de Discussion & Entraide</h3>
-            <p style="color: #555;">Une question sur un exercice ? Besoin de fiches de révision ? Contacte-moi directement en un clic :</p>
+        :root {
+            --bg-dark: #070913;
+            --card-bg: rgba(15, 23, 42, 0.82);
+            --border-glow: rgba(56, 189, 248, 0.3);
+            --text-main: #f1f5f9;
+            --text-sub: #94a3b8;
             
-            <div style="margin-top: 20px;">
-                <button onclick="openWhatsApp()" style="background-color: #25D366; color: white; padding: 14px 28px; border: none; border-radius: 30px; font-weight: bold; font-size: 1.1em; cursor: pointer; box-shadow: 0 4px 6px rgba(37,211,102,0.3);">
-                    🟢 Discuter sur WhatsApp
-                </button>
-            </div>
-        </section>
+            /* Gradients Multicolores Lumineux */
+            --grad-maths: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            --grad-svt: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+            --grad-physique: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+            --grad-accent: linear-gradient(135deg, #8a2387 0%, #e94057 50%, #f27121 100%);
+        }
 
-        <!-- Section Accès Rapide -->
-        <section style="text-align: center; margin-top: 30px;">
-            <a href="cours.html" style="display: inline-block; background-color: #3498db; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1em;">
-                📖 Accéder à la Bibliothèque de Cours & PDF
-            </a>
-        </section>
+        /* === FOND FUTURISTE COMBINÉ (IMAGE DE SCIENCE + MOTIF DE TRACES DISCRET) === */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                linear-gradient(135deg, rgba(7, 9, 19, 0.90), rgba(15, 23, 42, 0.85)),
+                url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80'),
+                url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2338bdf8' fill-opacity='0.04'%3E%3Ctext x='10' y='25' font-size='14'%3E%CF%80%3C/text%3E%3Ctext x='45' y='35' font-size='12'%3E%CE%94%3C/text%3E%3Ctext x='85' y='20' font-size='13'%3E%E2%96%B3%3C/text%3E%3Ctext x='25' y='75' font-size='13'%3E%E2%97%AF%3C/text%3E%3Ctext x='70' y='80' font-size='13'%3E%E2%95%B3%3C/text%3E%3Ctext x='95' y='105' font-size='13'%3E%E2%96%A2%3C/text%3E%3Ctext x='15' y='110' font-size='12'%3E%E2%88%AB%3C/text%3E%3Ctext x='55' y='105' font-size='12'%3E%E2%88%9E%3C/text%3E%3C/g%3E%3C/svg%3E");
+            background-size: cover, cover, auto;
+            background-position: center, center, center;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            padding-bottom: 90px;
+        }
 
-    </main>
+        .app-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 16px;
+        }
 
-    <!-- Pied de page & Contact Sécurisé -->
-    <footer style="background-color: #1a252f; color: white; text-align: center; padding: 25px; margin-top: 50px;">
-        <h4 style="margin-bottom: 10px; color: #3498db;">Contact & Fondateur</h4>
-        <p style="margin: 5px 0;">Fondateur : <strong>Moxtar Dillo</strong></p>
+        /* === EN-TÊTE TYPE CADRAN NÉON HAUT DE GAMME === */
+        .science-header {
+            position: relative;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.88));
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            border-radius: 24px;
+            padding: 26px 18px;
+            text-align: center;
+            margin-bottom: 22px;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.25), inset 0 0 15px rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+        }
+
+        .science-header::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: var(--grad-accent);
+            border-radius: 26px;
+            z-index: -1;
+            opacity: 0.35;
+        }
+
+        .science-header h1 {
+            background: var(--grad-maths);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 26px;
+            font-weight: 800;
+            margin: 0 0 6px 0;
+            letter-spacing: -0.5px;
+            filter: drop-shadow(0 2px 10px rgba(0, 242, 254, 0.3));
+        }
+
+        .science-header p {
+            color: var(--text-sub);
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === CADRANS / CARTES DE CONTENU STYLE VERRE DÉPOLI === */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(14px);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(56, 189, 248, 0.6);
+            box-shadow: 0 12px 35px rgba(56, 189, 248, 0.15);
+        }
+
+        .card h3 {
+            color: #38bdf8;
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* === FILTRES MULTICOLORES (BOUTONS DES MATIÈRES) === */
+        .subjects-grid {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .subject-card {
+            flex: 1;
+            padding: 16px 8px;
+            border-radius: 18px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+            font-weight: 800;
+            font-size: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card:active {
+            transform: scale(0.94);
+        }
+
+        .subject-card .icon {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+        }
+
+        .subject-card.maths {
+            background: var(--grad-maths);
+            box-shadow: 0 8px 22px rgba(79, 172, 254, 0.4);
+        }
+
+        .subject-card.svt {
+            background: var(--grad-svt);
+            box-shadow: 0 8px 22px rgba(0, 176, 155, 0.4);
+        }
+
+        .subject-card.physique {
+            background: var(--grad-physique);
+            box-shadow: 0 8px 22px rgba(255, 8, 68, 0.4);
+        }
+
+        /* === FICHE DE COURS LEÇONS === */
+        .pdf-viewer {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid #38bdf8;
+            border-radius: 20px;
+            padding: 22px;
+            margin-top: 15px;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+        }
+
+        .pdf-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-glow);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            gap: 10px;
+        }
+
+        .pdf-title {
+            color: #38bdf8;
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        .btn-action {
+            background: var(--grad-maths);
+            color: #070913;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 11px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.35);
+            transition: transform 0.2s;
+        }
+
+        .btn-action:active { transform: scale(0.95); }
+
+        /* === BARRE DE RECHERCHE NÉON AVEC BOUTON VOCAL (MICRO) === */
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 22px;
+            background: var(--card-bg);
+            padding: 6px 12px 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 10px 0;
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: #64748b;
+        }
+
+        .search-btn-mic {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px;
+            transition: transform 0.2s;
+        }
+
+        .search-btn-mic:active {
+            transform: scale(1.2);
+        }
+
+        .search-box span.search-icon {
+            font-size: 16px;
+        }
+
+        /* === NAVIGATION DU BAS FLottante STYLE NÉON === */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(11, 15, 25, 0.95);
+            border-top: 1px solid var(--border-glow);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-item {
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .nav-item.active {
+            color: #38bdf8;
+            transform: translateY(-2px);
+        }
+
+        .nav-item span.icon {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
         
-        <!-- Zone protégée anti-spam -->
-        <div style="margin: 15px 0;" id="security-contact-area">
-            <button onclick="revealContact()" style="background: #34495e; color: #fff; border: 1px solid #3498db; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
-                🔒 Afficher les coordonnées de contact
-            </button>
-            <p style="margin: 8px 0;">Téléphone / WhatsApp : <span id="phone-box">[Protégé]</span></p>
-            <p style="margin: 8px 0;">Email : <span id="email-box">[Protégé]</span></p>
+        <!-- ONGLET 1 : ACCUEIL -->
+        <div id="tab-home" class="tab-content active">
+            <header class="science-header">
+                <h1>Accueil - TS2+</h1>
+                <p>Moteur de Révision Terminale S2</p>
+            </header>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Recherche ou commande vocale 🎤...">
+                <button id="micBtn" class="search-btn-mic" title="Recherche Vocale">🎙️</button>
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <div id="resultsContainer">
+                <div class="card">
+                    <h3>💡 Recherche Intelligente & Vocale</h3>
+                    <p>Tape un mot ou clique sur le micro 🎙️ pour parler directement (ex: <em>neurone, ph, limites, cinématique...</em>).</p>
+                </div>
+            </div>
         </div>
 
-        <hr style="border: 0; border-top: 1px solid #34495e; width: 60%; margin: 20px auto;">
-        <p style="font-size: 0.85em; color: #bdc3c7;">&copy; 2026 Moxtar Web - Tous droits réservés.</p>
-    </footer>
+        <!-- ONGLET 2 : LEÇONS -->
+        <div id="tab-lessons" class="tab-content">
+            <header class="science-header">
+                <h1>Fiches de Cours (Leçon 1)</h1>
+                <p>Résumés Officiels Terminale S2</p>
+            </header>
 
+            <div class="subjects-grid">
+                <div class="subject-card maths" onclick="openLesson('maths')">
+                    <span class="icon">📐</span>
+                    Maths
+                </div>
+                <div class="subject-card svt" onclick="openLesson('svt')">
+                    <span class="icon">🧬</span>
+                    SVT
+                </div>
+                <div class="subject-card physique" onclick="openLesson('physique')">
+                    <span class="icon">⚛️</span>
+                    Sc. Physiques
+                </div>
+            </div>
+
+            <div id="lessonContainer" class="pdf-viewer">
+                <div class="pdf-header">
+                    <span id="lessonTitle" class="pdf-title">📑 Sélectionne une matière</span>
+                    <button class="btn-action" onclick="window.print()">🖨️ Imprimer / PDF</button>
+                </div>
+                <div id="lessonBody">
+                    <p style="color: #94a3b8; text-align: center;">Clique sur une matière ci-dessus pour afficher le résumé de cours.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 3 : EXERCICES -->
+        <div id="tab-exercises" class="tab-content">
+            <header class="science-header">
+                <h1>Banque d'Exercices</h1>
+                <p>10 Exercices par Matière (Niveau TS2)</p>
+            </header>
+
+            <div class="subjects-grid">
+                <div class="subject-card maths" onclick="filterExercises('maths')">
+                    <span class="icon">📐</span> Maths (10)
+                </div>
+                <div class="subject-card svt" onclick="filterExercises('svt')">
+                    <span class="icon">🧬</span> SVT (10)
+                </div>
+                <div class="subject-card physique" onclick="filterExercises('physique')">
+                    <span class="icon">⚛️</span> Phys-Chim (10)
+                </div>
+            </div>
+
+            <div id="exercisesContainer">
+                <div class="card" style="text-align: center; color: #94a3b8;">
+                    <p>👆 Clique sur l'une des matières ci-dessus pour afficher ses 10 exercices d'entraînement.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 4 : COMPTE -->
+        <div id="tab-account" class="tab-content">
+            <header class="science-header">
+                <h1>Mon Compte</h1>
+                <p>Espace Élève S2</p>
+            </header>
+
+            <div class="card" style="text-align: center;">
+                <h3>Profil Élève</h3>
+                <p>Sauvegarde tes cours et exercices favoris.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NAVIGATION EN BAS -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" onclick="switchTab('home', this)">
+            <span class="icon">🏠</span> Accueil
+        </button>
+        <button class="nav-item" onclick="switchTab('lessons', this)">
+            <span class="icon">📖</span> Leçons
+        </button>
+        <button class="nav-item" onclick="switchTab('exercises', this)">
+            <span class="icon">✏️</span> Exercices
+        </button>
+        <button class="nav-item" onclick="switchTab('account', this)">
+            <span class="icon">👤</span> Compte
+        </button>
+    </nav>
+
+    <!-- SCRIPT JAVASCRIPT AVEC RECHERCHE VOCALE STABLE ET RECHERCHE EN TEMPS RÉEL -->
+    <script>
+        const lessonDatabase = {
+            maths: {
+                title: "📘 Leçon 1 : Limites et Continuité (Maths)",
+                content: `
+                    <h4 style="color: #38bdf8; margin-top:0;">1. Limites d'une fonction</h4>
+                    <p>• <strong>Limite finie ou infinie en l'infini :</strong> Étude du comportement d'une fonction lorsque x tend vers +∞ ou -∞.</p>
+                    <p>• <strong>Formes indéterminées :</strong> (+∞ - ∞), (0 × ∞), (0 / 0), (±∞ / ±∞). Levées par factorisation ou quantité conjuguée.</p>
+                    <hr style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h4 style="color: #38bdf8;">2. Continuité en un point & TVI</h4>
+                    <p>• f est continue en x₀ si lim(x → x₀) f(x) = f(x₀).</p>
+                    <p>• <strong>Théorème des Valeurs Intermédiaires (TVI) :</strong> Pour tout k compris entre f(a) et f(b), l'équation f(x) = k admet au moins une solution dans [a, b].</p>
+                `
+            },
+            svt: {
+                title: "📗 Leçon 1 : Le Système Nerveux Cérébrospinal (SVT)",
+                content: `
+                    <h4 style="color: #00b09b; margin-top:0;">1. Organisation & Protection du SNC</h4>
+                    <p>Le système nerveux cérébrospinal regroupe l'encéphale et la moelle épinière. Triple protection : osseuse (crâne/canal rachidien), méninges et Liquide Céphalo-Rachidien (LCR).</p>
+                    <hr style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h4 style="color: #00b09b;">2. L'Encéphale & La Moelle Épinière</h4>
+                    <p>• <strong>Cerveau :</strong> Cortex gris périphérique et substance blanche interne (conscience, motricité).</p>
+                    <p>• <strong>Cervelet & Tronc cérébral :</strong> Équilibre, coordination et centres vitaux autonomes.</p>
+                    <p>• <strong>Moelle épinière :</strong> Substance grise en « H » au centre et substance blanche en périphérie. Racines dorsales (sensitives) et ventrales (motrices).</p>
+                `
+            },
+            physique: {
+                title: "📙 Leçon 1 : Sciences Physiques (Physique & Chimie)",
+                content: `
+                    <h4 style="color: #ff0844; margin-top:0;">PHYSIQUE : Cinématique du Point</h4>
+                    <p>• <strong>Vecteur position :</strong> Repère le mobile au cours du temps.</p>
+                    <p>• <strong>Vecteur vitesse :</strong> Dérivée du vecteur position par rapport au temps | <strong>Vecteur accélération :</strong> Dérivée du vecteur vitesse.</p>
+                    <hr style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h4 style="color: #ff0844;">CHIMIE 1 : Les Alcools</h4>
+                    <p>• Caractérisés par le groupe hydroxyle (-OH) lié à un carbone saturé (R-OH). Classés en primaire, secondaire et tertiaire.</p>
+                    <hr style="border-color: rgba(255, 255, 255, 0.1);">
+                    <h4 style="color: #ff0844;">CHIMIE 2 : Les Amines</h4>
+                    <p>• Dérivés organiques de l'ammoniac (NH₃) où les H sont remplacés par des groupements alkyles. Caractère basique marqué.</p>
+                `
+            }
+        };
+
+        const exercisesDatabase = {
+            maths: [
+                { title: "Exercice 1 : Limite simple en l'infini", text: "Calculer la limite en +∞ et en -∞ de la fonction f(x) = (3x² - x + 5) / (x² + 2)." },
+                { title: "Exercice 2 : Forme indéterminée (conjuguée)", text: "Déterminer lim(x → 4) (√x - 2) / (x - 4) en utilisant la quantité conjuguée." },
+                { title: "Exercice 3 : Théorème des Valeurs Intermédiaires", text: "Soit f(x) = x³ + 2x - 5 sur ℝ. Montrer que f(x) = 0 admet une unique solution α dans [1, 2]." },
+                { title: "Exercice 4 : Continuité d'une fonction", text: "Étudier la continuité de la fonction g(x) = sin(x)/x en x = 0 (prolongement par continuité)." },
+                { title: "Exercice 5 : Asymptotes obliques", text: "Soit f(x) = (2x² + 3x - 1) / (x + 1). Déterminer les réels a, b et c tels que f(x) = ax + b + c/(x + 1)." },
+                { title: "Exercice 6 : Calcul de limites trigonométriques", text: "Calculer la limite de (1 - cos x) / x² lorsque x tend vers 0." },
+                { title: "Exercice 7 : Opérations sur les limites", text: "Déterminer la limite de h(x) = √(x² + 1) - x en +∞." },
+                { title: "Exercice 8 : Utilisation du taux de variation", text: "Calculer le nombre dérivé de f(x) = x³ en x₀ = 2 en utilisant la limite du taux de variation." },
+                { title: "Exercice 9 : Encadrement et théorème des gendarmes", text: "Calculer la limite en +∞ de f(x) = (sin x) / x à l'aide d'un encadrement." },
+                { title: "Exercice 10 : Étude globale de continuité", text: "Démontrer qu'une fonction polynôme de degré 3 s'annule au moins une fois sur ℝ." }
+            ],
+            svt: [
+                { title: "Exercice 1 : Organisation du SNC", text: "Citer les deux grands ensembles anatomiques du système nerveux central et préciser le rôle des méninges." },
+                { title: "Exercice 2 : Anatomie de la moelle épinière", text: "Décrire la disposition de la substance grise et de la substance blanche lors d'une coupe transversale de la moelle épinière." },
+                { title: "Exercice 3 : Rôle du LCR", text: "Expliquer la double fonction du Liquide Céphalo-Rachidien (LCR) pour les centres nerveux." },
+                { title: "Exercice 4 : Les trois parties de l'encéphale", text: "Nommer le cerveau, le cervelet et le tronc cérébral en associant brièvement une fonction majeure à chacun." },
+                { title: "Exercice 5 : Les racines rachidiennes", text: "Distinguer le rôle de la racine dorsale (avec son ganglion spinal) et de la racine ventrale d'un nerf rachidien." },
+                { title: "Exercice 6 : Le cortex cérébral", text: "Expliquer la position de la substance grise dans le cerveau et son rôle dans la motricité volontaire." },
+                { title: "Exercice 7 : Le rôle du tronc cérébral", text: "Pourquoi dit-on que le tronc cérébral abrite les centres nerveux autonomes vitaux ?" },
+                { title: "Exercice 8 : Protection osseuse", text: "Préciser les structures osseuses qui assurent la protection externe de l'encéphale et de la moelle épinière." },
+                { title: "Exercice 9 : Les enveloppes méningées", text: "Nommer dans l'ordre (de l'extérieur vers l'intérieur) les trois membranes qui constituent les méninges." },
+                { title: "Exercice 10 : Structure du cervelet", text: "Décrire l'organisation interne du cervelet et son implication dans la coordination des mouvements." }
+            ],
+            physique: [
+                { title: "Exercice 1 : Vecteur position et vitesse", text: "Un mobile a pour vecteur position OM(t) = 3t² i + 4t j. Déterminer son vecteur vitesse à tout instant t." },
+                { title: "Exercice 2 : Calcul d'accélération", text: "À partir du vecteur vitesse v(t) = (2t - 1) i + 5 j, déterminer le vecteur accélération du point." },
+                { title: "Exercice 3 : Classification des alcools", text: "Donner la formule semi-développée et la classe des isomères de formule brute C₄H₁₀O." },
+                { title: "Exercice 4 : Oxydation ménagée", text: "Préciser le produit obtenu lors de l'oxydation ménagée d'un alcool secondaire par une solution de permanganate de potassium." },
+                { title: "Exercice 5 : Nomenclature des amines", text: "Donner la formule semi-développée de la butan-2-amine et préciser sa classe." },
+                { title: "Exercice 6 : Mouvement rectiligne uniformément varié", text: "Établir l'équation horaire d'un mobile lâché sans vitesse initiale avec une accélération constante a." },
+                { title: "Exercice 7 : Caractère basique des amines", text: "Écrire l'équation de la réaction acido-basique entre la méthylamine et l'eau." },
+                { title: "Exercice 8 : Célérité et retard temporel", text: "Calculer le retard temporel entre deux points distants de 20 cm sachant que la célérité de l'onde est de 2 m/s." },
+                { title: "Exercice 9 : Réaction d'estérification", text: "Écrire l'équation chimique de la réaction entre un acide carboxylique et un alcool." },
+                { title: "Exercice 10 : Étude cinétique", text: "Expliquer comment déterminer graphiquement la vitesse volumique de disparition d'un réactif." }
+            ]
+        };
+
+        const dictionaryDatabase = [
+            { word: "neurone", definition: "Cellule nerveuse spécialisée dans la transmission des messages électriques et chimiques dans le système nerveux." },
+            { word: "synapse", definition: "Zone de contact fonctionnelle entre deux neurones, assurant la transmission de l'influx nerveux par des neurotransmetteurs." },
+            { word: "catalyseur", definition: "Espèce chimique qui accélère une réaction chimique sans participer au bilan de la réaction ni modifier son état d'équilibre." },
+            { word: "ph", definition: "Mesure de l'acidité ou de la basicité d'une solution aqueuse, défini par pH = -log[H3O+]." },
+            { word: "isomère", definition: "Molécules possédant la même formule brute mais des formules semi-développées ou spatiales différentes." },
+            { word: "oxydation", definition: "Réaction chimique au cours de laquelle une espèce perd des électrons (gain d'oxygène ou perte d'hydrogène en organique)." },
+            { word: "cinématique", definition: "Étude du mouvement des corps au cours du temps, indépendamment des causes qui les produisent (forces)." },
+            { word: "mitose", definition: "Processus de division cellulaire conduisant à deux cellules filles génétiquement identiques à la cellule mère." }
+        ];
+
+        // --- NAVIGATION ---
+        const switchTab = (tabId, element) => {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            element.classList.add('active');
+        };
+
+        // --- LEÇONS ---
+        const openLesson = (subject) => {
+            const data = lessonDatabase[subject];
+            if (data) {
+                document.getElementById('lessonTitle').innerText = data.title;
+                document.getElementById('lessonBody').innerHTML = data.content;
+            }
+        };
+
+        // --- EXERCICES ---
+        const filterExercises = (subject) => {
+            const container = document.getElementById('exercisesContainer');
+            const list = exercisesDatabase[subject];
+            const badgeBg = subject === 'maths' ? 'var(--grad-maths)' : (subject === 'svt' ? 'var(--grad-svt)' : 'var(--grad-physique)');
+            const subjectName = subject === 'maths' ? 'Mathématiques' : (subject === 'svt' ? 'SVT' : 'Sciences Physiques');
+
+            let html = `<h3 style="color: #38bdf8; margin-bottom: 15px; text-transform: uppercase; font-size: 14px;">📂 Exercices de ${subjectName}</h3>`;
+            
+            list.forEach((ex, index) => {
+                html += `
+                    <div class="card" style="border-left: 4px solid #38bdf8;">
+                        <span class="badge" style="background: ${badgeBg};">Exercice ${index + 1}</span>
+                        <h3 style="font-size: 15px; margin-bottom: 5px;">${ex.title}</h3>
+                        <p style="margin: 0; font-size: 13px;"><strong>Énoncé :</strong> ${ex.text}</p>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        };
+
+        // --- MOTEUR DE RECHERCHE & GESTION DES RÉSULTATS ---
+        const searchInput = document.getElementById('searchInput');
+        const resultsContainer = document.getElementById('resultsContainer');
+
+        const executeSearch = (query) => {
+            query = query.toLowerCase().trim();
+            
+            if (query === "") {
+                resultsContainer.innerHTML = `
+                    <div class="card">
+                        <h3>💡 Recherche Intelligente & Vocale</h3>
+                        <p>Tape un mot ou clique sur le micro 🎙️ pour parler directement (ex: <em>neurone, ph, limites, cinématique...</em>).</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const foundResults = [];
+
+            dictionaryDatabase.forEach(item => {
+                if (item.word.toLowerCase().includes(query) || item.definition.toLowerCase().includes(query)) {
+                    foundResults.push({ title: `📚 Dictionnaire : ${item.word.toUpperCase()}`, snippet: item.definition });
+                }
+            });
+
+            Object.keys(lessonDatabase).forEach(sub => {
+                const lesson = lessonDatabase[sub];
+                if (lesson.title.toLowerCase().includes(query) || lesson.content.toLowerCase().includes(query)) {
+                    foundResults.push({ title: `📖 Leçon : ${lesson.title}`, snippet: `Trouvé dans le cours de ${sub.toUpperCase()}.` });
+                }
+            });
+
+            Object.keys(exercisesDatabase).forEach(sub => {
+                exercisesDatabase[sub].forEach(ex => {
+                    if (ex.title.toLowerCase().includes(query) || ex.text.toLowerCase().includes(query)) {
+                        foundResults.push({ title: `✏️ Exercice (${sub.toUpperCase()}) : ${ex.title}`, snippet: ex.text });
+                    }
+                });
+            });
+
+            if (foundResults.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="card" style="border-color: #ff0844;">
+                        <h3>Aucun résultat</h3>
+                        <p>Aucune correspondance trouvée pour "${query}".</p>
+                    </div>
+                `;
+            } else {
+                let html = `<h3 style="color: #38bdf8; font-size: 15px; margin-bottom: 10px;">Résultats (${foundResults.length}) :</h3>`;
+                foundResults.forEach(res => {
+                    html += `
+                        <div class="card" style="border-color: #38bdf8;">
+                            <h3 style="font-size: 14px; margin-bottom: 5px;">${res.title}</h3>
+                            <p style="margin: 0; font-size: 13px; color: #cbd5e1;">${res.snippet}</p>
+                        </div>
+                    `;
+                });
+                resultsContainer.innerHTML = html;
+            }
+        };
+
+        // Écoute de la saisie clavier en temps réel
+        searchInput.addEventListener('input', (e) => {
+            executeSearch(e.target.value);
+        });
+
+        // --- GESTION DE LA COMMANDE VOCALE (MICRO 🎙️) ---
+        const micBtn = document.getElementById('micBtn');
+        
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'fr-FR';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            micBtn.addEventListener('click', () => {
+                try {
+                    recognition.start();
+                    searchInput.placeholder = "Parle maintenant, j'écoute... 🎙️";
+                    micBtn.style.transform = "scale(1.3)";
+                } catch (err) {
+                    console.log("Recherche vocale déjà active");
+                }
+            });
+
+            recognition.onresult = (event) => {
+                const spokenText = event.results[0][0].transcript;
+                searchInput.value = spokenText;
+                executeSearch(spokenText); // Lance la recherche automatiquement avec ce que l'élève a dit
+                micBtn.style.transform = "scale(1)";
+                searchInput.placeholder = "Recherche ou commande vocale 🎤...";
+            };
+
+            recognition.onerror = () => {
+                searchInput.placeholder = "Oups, réessaie de parler...";
+                micBtn.style.transform = "scale(1)";
+                setTimeout(() => {
+                    searchInput.placeholder = "Recherche ou commande vocale 🎤...";
+                }, 2000);
+            };
+
+            recognition.onend = () => {
+                micBtn.style.transform = "scale(1)";
+                searchInput.placeholder = "Recherche ou commande vocale 🎤...";
+            };
+        } else {
+            // Si le navigateur/appareil ne gère pas la reconnaissance vocale
+            micBtn.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
+
 
 
 
