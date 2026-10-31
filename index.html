@@ -11,7 +11,7 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
-        /* --- SYSTEME DE THEMES (4 THEMES PAR DEFAUT) --- */
+        /* --- SYSTÈME DE THÈMES (4 THÈMES PAR DÉFAUT) --- */
         :root {
             --bg-dark: #111827;
             --card-bg: rgba(30, 41, 59, 0.85);
@@ -410,25 +410,6 @@
             line-height: 1.6;
         }
 
-        .drive-link-box {
-            background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(56, 189, 248, 0.15));
-            border: 1px dashed var(--accent-cyan);
-            border-radius: 12px;
-            padding: 12px;
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .drive-link-box a {
-            color: var(--accent-cyan);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .lesson-section-title {
             color: var(--accent-cyan);
             font-size: 1.05rem;
@@ -787,7 +768,7 @@
             </div>
         </div>
 
-        <!-- ONGLET 3: EXERCICES & PDF INTÉGRÉS (AVEC LES 15 EXERCICES ET LES PDF) -->
+        <!-- ONGLET 3: EXERCICES & PDF INTÉGRÉS -->
         <div id="tab-exercices" class="tab-panel">
             <div class="subject-selector">
                 <button class="subject-btn active" onclick="switchSubject('maths')">
@@ -804,28 +785,28 @@
             <!-- SECTION MATHS -->
             <div id="subject-maths" class="subject-main-view">
                 <div class="category-action-stack">
-                    <div class="action-card" onclick="ouvrirPdfOuDrive('https://drive.google.com', 'TS2 COMPLEMENT FONCTION 2027.pdf')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_MATHS/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-file-pdf"></i></div>
                         <div class="action-info">
                             <h3>Complément d'Analyse (PDF Officiel)</h3>
                             <p>Série harmonisée d'exercices de mathématiques (SHEMAF 2026-2027).</p>
                         </div>
                     </div>
-                    <div class="action-card" onclick="ouvrirPdfOuDrive('https://drive.google.com', 'Série1_Fcts-numeriques_TS2.pdf')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_DAKAR/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-file-pdf"></i></div>
                         <div class="action-info">
                             <h3>Série n°1 : Fonctions Numériques (Acad. Dakar)</h3>
                             <p>Limites, prolongement par continuité, bijections et dérivabilité.</p>
                         </div>
                     </div>
-                    <div class="action-card" onclick="ouvrirPdfOuDrive('https://drive.google.com', 'Devoir_Limites_Continuite_Accessible.pdf')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_DEV1/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-bolt"></i></div>
                         <div class="action-info">
                             <h3>Devoir 1 : Limites & Continuité (Accessible)</h3>
                             <p>Évaluation d'entraînement ciblée sur les bases et le TVI.</p>
                         </div>
                     </div>
-                    <div class="action-card" onclick="ouvrirPdfOuDrive('https://drive.google.com', 'Devoir_Synthese_3h_Limites.pdf')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_DEV2/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-clock"></i></div>
                         <div class="action-info">
                             <h3>Devoir 2 : Synthèse 3 Heures (Technique)</h3>
@@ -870,7 +851,7 @@
             <!-- SECTION PHYSIQUE-CHIMIE -->
             <div id="subject-chimie" class="subject-main-view" style="display:none;">
                 <div class="category-action-stack">
-                    <div class="action-card" onclick="ouvrirPdfOuDrive('https://drive.google.com', 'TD C1_ LES ALCOOLS.pdf')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_CHIMIE/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-file-pdf"></i></div>
                         <div class="action-info">
                             <h3>TD C1 : Les Alcools (Collège St JP2)</h3>
@@ -883,7 +864,7 @@
             <!-- SECTION SVT -->
             <div id="subject-svt" class="subject-main-view" style="display:none;">
                 <div class="category-action-stack">
-                    <div class="action-card" onclick="ouvrirPdfOuDrive('https://drive.google.com', 'SVT_Evaluation_SystemeNerveux.pdf')">
+                    <div class="action-card" onclick="ouvrirPdfGoogleDrive('https://drive.google.com/file/d/TON_ID_DRIVE_SVT/view?usp=sharing')">
                         <div class="action-icon"><i class="fa-solid fa-dna"></i></div>
                         <div class="action-info">
                             <h3>Évaluation SVT : Système Nerveux & Réflexes</h3>
@@ -1041,14 +1022,9 @@
     </nav>
 
     <script>
-        // --- GESTION DES PDF / DRIVE ---
-        function ouvrirPdfOuDrive(driveUrl, nomFichierPdf) {
-            const estLeCreateur = localStorage.getItem('ts2_is_owner') === 'true';
-            if (estLeCreateur) {
-                window.open(driveUrl, '_blank');
-            } else {
-                window.open(nomFichierPdf, '_blank');
-            }
+        // --- GESTION DES LIENS GOOGLE DRIVE ---
+        function ouvrirPdfGoogleDrive(urlDrive) {
+            window.open(urlDrive, '_blank');
         }
 
         // --- GESTION DU PROFIL & NOM PERSONNALISABLE ---
