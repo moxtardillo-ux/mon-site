@@ -3,676 +3,618 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moxtar Web - Espace d'Échanges & d'Études</titl<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Application Révision TS2+</title>
-    <style>
-        /* === IMPORTS DE POLICES & VARIABLES NÉON === */
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+    <!-- FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax pour les formules mathématiques -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+    <style>
         :root {
-            --bg-dark: #070913;
-            --card-bg: rgba(15, 23, 42, 0.82);
-            --border-glow: rgba(56, 189, 248, 0.3);
-            --text-main: #f1f5f9;
-            --text-sub: #94a3b8;
-            
-            /* Gradients Multicolores Lumineux */
-            --grad-maths: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-            --grad-svt: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
-            --grad-physique: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
-            --grad-accent: linear-gradient(135deg, #8a2387 0%, #e94057 50%, #f27121 100%);
+            --bg-dark: #111827;
+            --card-bg: rgba(30, 41, 59, 0.85);
+            --card-border: rgba(0, 242, 254, 0.3);
+            --accent-cyan: #00f2fe;
+            --accent-blue: #38bdf8;
+            --accent-purple: #a855f7;
+            --text-main: #ffffff;
+            --text-sub: #cbd5e1;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* === FOND FUTURISTE COMBINÉ (IMAGE DE SCIENCE + MOTIF DE TRACES DISCRET) === */
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
-            background-image: 
-                linear-gradient(135deg, rgba(7, 9, 19, 0.90), rgba(15, 23, 42, 0.85)),
-                url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80'),
-                url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2338bdf8' fill-opacity='0.04'%3E%3Ctext x='10' y='25' font-size='14'%3E%CF%80%3C/text%3E%3Ctext x='45' y='35' font-size='12'%3E%CE%94%3C/text%3E%3Ctext x='85' y='20' font-size='13'%3E%E2%96%B3%3C/text%3E%3Ctext x='25' y='75' font-size='13'%3E%E2%97%AF%3C/text%3E%3Ctext x='70' y='80' font-size='13'%3E%E2%95%B3%3C/text%3E%3Ctext x='95' y='105' font-size='13'%3E%E2%96%A2%3C/text%3E%3Ctext x='15' y='110' font-size='12'%3E%E2%88%AB%3C/text%3E%3Ctext x='55' y='105' font-size='12'%3E%E2%88%9E%3C/text%3E%3C/g%3E%3C/svg%3E");
-            background-size: cover, cover, auto;
-            background-position: center, center, center;
-            background-attachment: fixed;
-            color: var(--text-main);
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.12) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 30%);
+        }
+
+        /* En-tête futuriste lumineux */
+        header {
+            padding: 20px 16px 12px;
+            text-align: center;
+            background: rgba(17, 24, 39, 0.9);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(0, 242, 254, 0.3));
+            border: 1px solid var(--accent-cyan);
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 8px 32px rgba(0, 242, 254, 0.2);
+        }
+
+        .header-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent-cyan), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .header-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .tab-contents {
+            flex: 1;
+            padding: 16px;
             padding-bottom: 90px;
         }
 
-        .app-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 16px;
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
         }
 
-        /* === EN-TÊTE TYPE CADRAN NÉON HAUT DE GAMME === */
-        .science-header {
-            position: relative;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.88));
-            border: 1px solid rgba(56, 189, 248, 0.5);
-            border-radius: 24px;
-            padding: 26px 18px;
-            text-align: center;
-            margin-bottom: 22px;
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.25), inset 0 0 15px rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            overflow: hidden;
+        .tab-panel.active {
+            display: block;
         }
-
-        .science-header::before {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: var(--grad-accent);
-            border-radius: 26px;
-            z-index: -1;
-            opacity: 0.35;
-        }
-
-        .science-header h1 {
-            background: var(--grad-maths);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 26px;
-            font-weight: 800;
-            margin: 0 0 6px 0;
-            letter-spacing: -0.5px;
-            filter: drop-shadow(0 2px 10px rgba(0, 242, 254, 0.3));
-        }
-
-        .science-header p {
-            color: var(--text-sub);
-            font-size: 13px;
-            font-weight: 600;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* === CADRANS / CARTES DE CONTENU STYLE VERRE DÉPOLI === */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(14px);
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-            border-color: rgba(56, 189, 248, 0.6);
-            box-shadow: 0 12px 35px rgba(56, 189, 248, 0.15);
-        }
-
-        .card h3 {
-            color: #38bdf8;
-            font-size: 16px;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            color: white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        /* === FILTRES MULTICOLORES (BOUTONS DES MATIÈRES) === */
-        .subjects-grid {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 22px;
-        }
-
-        .subject-card {
-            flex: 1;
-            padding: 16px 8px;
-            border-radius: 18px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            color: white;
-            font-weight: 800;
-            font-size: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .subject-card:active {
-            transform: scale(0.94);
-        }
-
-        .subject-card .icon {
-            font-size: 24px;
-            display: block;
-            margin-bottom: 6px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
-        }
-
-        .subject-card.maths {
-            background: var(--grad-maths);
-            box-shadow: 0 8px 22px rgba(79, 172, 254, 0.4);
-        }
-
-        .subject-card.svt {
-            background: var(--grad-svt);
-            box-shadow: 0 8px 22px rgba(0, 176, 155, 0.4);
-        }
-
-        .subject-card.physique {
-            background: var(--grad-physique);
-            box-shadow: 0 8px 22px rgba(255, 8, 68, 0.4);
-        }
-
-        /* === FICHE DE COURS LEÇONS === */
-        .pdf-viewer {
-            background: rgba(15, 23, 42, 0.92);
-            border: 2px solid #38bdf8;
-            border-radius: 20px;
-            padding: 22px;
-            margin-top: 15px;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
-        }
-
-        .pdf-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-glow);
-            padding-bottom: 12px;
-            margin-bottom: 16px;
-            gap: 10px;
-        }
-
-        .pdf-title {
-            color: #38bdf8;
-            font-weight: 800;
-            font-size: 13px;
-        }
-
-        .btn-action {
-            background: var(--grad-maths);
-            color: #070913;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 11px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.35);
-            transition: transform 0.2s;
-        }
-
-        .btn-action:active { transform: scale(0.95); }
-
-        /* === BARRE DE RECHERCHE NÉON AVEC BOUTON VOCAL (MICRO) === */
+        /* Barre de recherche lumineuse */
         .search-box {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 14px;
+            padding: 12px 16px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 22px;
-            background: var(--card-bg);
-            padding: 6px 12px 6px 16px;
-            border-radius: 20px;
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+            gap: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15);
         }
 
         .search-box input {
-            flex: 1;
-            padding: 10px 0;
-            border: none;
             background: transparent;
-            color: white;
-            font-size: 14px;
-            font-family: inherit;
-            outline: none;
-        }
-
-        .search-box input::placeholder {
-            color: #64748b;
-        }
-
-        .search-btn-mic {
-            background: none;
             border: none;
-            font-size: 18px;
+            outline: none;
+            color: var(--text-main);
+            width: 100%;
+            font-size: 0.95rem;
+        }
+
+        .search-box i {
+            color: var(--accent-cyan);
             cursor: pointer;
-            padding: 5px;
-            transition: transform 0.2s;
+            font-size: 1.1rem;
         }
 
-        .search-btn-mic:active {
-            transform: scale(1.2);
+        /* Sélecteur de matières */
+        .subject-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 4px;
         }
 
-        .search-box span.search-icon {
-            font-size: 16px;
+        .subject-btn {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-sub);
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        /* === NAVIGATION DU BAS FLottante STYLE NÉON === */
+        .subject-btn.active {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: #fff;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+        }
+
+        /* Blocs de boutons interactifs (Les 2 colonnes transformées en superbes boutons) */
+        .category-action-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .category-action-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .action-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+            border: 2px solid var(--accent-cyan);
+            border-radius: 18px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            border-color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.4);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 1), rgba(0, 242, 254, 0.15));
+        }
+
+        .action-card i {
+            font-size: 2rem;
+            color: var(--accent-cyan);
+        }
+
+        .action-card h3 {
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .action-card p {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            line-height: 1.4;
+        }
+
+        /* Vues secondaires (Pages d'exercices) */
+        .sub-page {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .sub-page.active {
+            display: block;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            transition: background 0.2s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .exercise-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 14px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .exercise-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 8px;
+        }
+
+        .exercise-content {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+
+        /* Navbar du bas */
         .bottom-nav {
             position: fixed;
-            bottom: 0; left: 0; right: 0;
-            background: rgba(11, 15, 25, 0.95);
-            border-top: 1px solid var(--border-glow);
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
             display: flex;
             justify-content: space-around;
-            padding: 12px 0;
+            align-items: center;
             z-index: 1000;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .nav-item {
-            background: none;
-            border: none;
-            color: #64748b;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
-            transition: color 0.2s, transform 0.2s;
+            gap: 4px;
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-item i {
+            font-size: 1.2rem;
         }
 
         .nav-item.active {
-            color: #38bdf8;
-            transform: translateY(-2px);
-        }
-
-        .nav-item span.icon {
-            font-size: 20px;
+            color: var(--accent-cyan);
         }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        
-        <!-- ONGLET 1 : ACCUEIL -->
-        <div id="tab-home" class="tab-content active">
-            <header class="science-header">
-                <h1>Accueil - TS2+</h1>
-                <p>Moteur de Révision Terminale S2</p>
-            </header>
 
+    <!-- En-tête -->
+    <header>
+        <div class="header-banner">
+            <h1 class="header-title">Accueil – TS2+</h1>
+            <p class="header-subtitle">Moteur de Révision Terminale S2</p>
+        </div>
+    </header>
+
+    <main class="tab-contents">
+
+        <!-- ONGLET 1: ACCUEIL -->
+        <div id="tab-accueil" class="tab-panel active">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Recherche ou commande vocale 🎤...">
-                <button id="micBtn" class="search-btn-mic" title="Recherche Vocale">🎙️</button>
-                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Recherche ou commande vocale...">
+                <i class="fa-solid fa-microphone" id="micBtn" onclick="startVoiceSearch()"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
             </div>
 
-            <div id="resultsContainer">
-                <div class="card">
-                    <h3>💡 Recherche Intelligente & Vocale</h3>
-                    <p>Tape un mot ou clique sur le micro 🎙️ pour parler directement (ex: <em>neurone, ph, limites, cinématique...</em>).</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- ONGLET 2 : LEÇONS -->
-        <div id="tab-lessons" class="tab-content">
-            <header class="science-header">
-                <h1>Fiches de Cours (Leçon 1)</h1>
-                <p>Résumés Officiels Terminale S2</p>
-            </header>
-
-            <div class="subjects-grid">
-                <div class="subject-card maths" onclick="openLesson('maths')">
-                    <span class="icon">📐</span>
-                    Maths
-                </div>
-                <div class="subject-card svt" onclick="openLesson('svt')">
-                    <span class="icon">🧬</span>
-                    SVT
-                </div>
-                <div class="subject-card physique" onclick="openLesson('physique')">
-                    <span class="icon">⚛️</span>
-                    Sc. Physiques
-                </div>
-            </div>
-
-            <div id="lessonContainer" class="pdf-viewer">
-                <div class="pdf-header">
-                    <span id="lessonTitle" class="pdf-title">📑 Sélectionne une matière</span>
-                    <button class="btn-action" onclick="window.print()">🖨️ Imprimer / PDF</button>
-                </div>
-                <div id="lessonBody">
-                    <p style="color: #94a3b8; text-align: center;">Clique sur une matière ci-dessus pour afficher le résumé de cours.</p>
+            <div class="exercise-card">
+                <div class="exercise-title">💡 Recherche Intelligente & Vocale</div>
+                <div class="exercise-content">
+                    Tape un mot ou clique sur le micro 🎤 pour parler directement (ex : <i>neurones, limites, alcools, cinématique...</i>).
                 </div>
             </div>
         </div>
 
-        <!-- ONGLET 3 : EXERCICES -->
-        <div id="tab-exercises" class="tab-content">
-            <header class="science-header">
-                <h1>Banque d'Exercices</h1>
-                <p>10 Exercices par Matière (Niveau TS2)</p>
-            </header>
-
-            <div class="subjects-grid">
-                <div class="subject-card maths" onclick="filterExercises('maths')">
-                    <span class="icon">📐</span> Maths (10)
-                </div>
-                <div class="subject-card svt" onclick="filterExercises('svt')">
-                    <span class="icon">🧬</span> SVT (10)
-                </div>
-                <div class="subject-card physique" onclick="filterExercises('physique')">
-                    <span class="icon">⚛️</span> Phys-Chim (10)
-                </div>
+        <!-- ONGLET 2: LEÇONS -->
+        <div id="tab-lecons" class="tab-panel">
+            <h2 style="margin-bottom:14px; font-size:1.2rem; color:var(--accent-cyan);">📚 Résumés & Fiches de cours</h2>
+            <div class="exercise-card">
+                <div class="exercise-title">📐 Mathématiques</div>
+                <div class="exercise-content">Limites, continuité, dérivabilité, bijections et études complètes de fonctions.</div>
             </div>
-
-            <div id="exercisesContainer">
-                <div class="card" style="text-align: center; color: #94a3b8;">
-                    <p>👆 Clique sur l'une des matières ci-dessus pour afficher ses 10 exercices d'entraînement.</p>
-                </div>
+            <div class="exercise-card">
+                <div class="exercise-title">🧪 Physique-Chimie</div>
+                <div class="exercise-content">Étude des Alcools (Nomenclature, Oxydation ménagée, Estérification, Dosages).</div>
+            </div>
+            <div class="exercise-card">
+                <div class="exercise-title">🧬 SVT</div>
+                <div class="exercise-content">Neurophysiologie, réflexe myotatique et potentiel d'action.</div>
             </div>
         </div>
 
-        <!-- ONGLET 4 : COMPTE -->
-        <div id="tab-account" class="tab-content">
-            <header class="science-header">
-                <h1>Mon Compte</h1>
-                <p>Espace Élève S2</p>
-            </header>
+        <!-- ONGLET 3: EXERCICES (NAVIGATION AVEC PAGES DÉDIÉES) -->
+        <div id="tab-exercices" class="tab-panel">
+            
+            <!-- Sélecteur de matière -->
+            <div class="subject-selector">
+                <button class="subject-btn active" onclick="switchSubject('maths')">📐 Mathématiques</button>
+                <button class="subject-btn" onclick="switchSubject('chimie')">🧪 Chimie (Alcools)</button>
+                <button class="subject-btn" onclick="switchSubject('svt')">🧬 SVT</button>
+            </div>
 
-            <div class="card" style="text-align: center;">
-                <h3>Profil Élève</h3>
-                <p>Sauvegarde tes cours et exercices favoris.</p>
+            <!-- SECTION MATHÉMATIQUES -->
+            <div id="subject-maths" class="subject-main-view">
+                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le type de contenu que tu souhaites consulter :</p>
+                <div class="category-action-grid">
+                    <div class="action-card" onclick="openSubPage('maths-simple')">
+                        <i class="fa-solid fa-bolt"></i>
+                        <h3>Exercices Simples & Cours</h3>
+                        <p>Accède aux questions rapides, calculs de limites de base, prolongeabilités et TIAF[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span).</p>
+                    </div>
+                    <div class="action-card" onclick="openSubPage('maths-td')">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <h3>Exercices de TD & Problèmes</h3>
+                        <p>Plonge dans les grands problèmes synthétisés, bijections et études de fonctions complexes[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE DÉDIÉE : MATHS - EXERCICES SIMPLES -->
+            <div id="subpage-maths-simple" class="sub-page">
+                <button class="back-btn" onclick="closeSubPage('maths-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Exercices Simples & Cours</h2>
+                
+                <div class="exercise-card">
+                    <div class="exercise-title">Série 1 - Ex 1 : Calculs de limites</div>
+                    <div class="exercise-content">
+                        Calculer les limites suivantes :<br>
+                        a) \(\lim_{x\rightarrow1}\frac{x-1}{x^{2}-1}\)[span_10](start_span)[span_10](end_span)<br>
+                        b) \(\lim_{x\rightarrow3}\frac{\sqrt{5x+1}-\sqrt{4x+4}}{x-3}\)[span_11](start_span)[span_11](end_span)<br>
+                        c) \(\lim_{x\rightarrow1}\frac{\sqrt{3+x}-\sqrt{5-x}}{\sqrt{2x+7}-\sqrt{10-x}}\)[span_12](start_span)[span_12](end_span)<br>
+                        d) \(\lim_{x\rightarrow0}\frac{1-\cos x}{\sin^{2}x}\)[span_13](start_span)[span_13](end_span)
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-title">Série 1 - Ex 2 : Prolongeabilité par continuité</div>
+                    <div class="exercise-content">
+                        1. \(g(x)=\frac{\sqrt{x^2+1}-1}{x}\). Est-elle prolongeable par continuité en 0 ?[span_14](start_span)[span_14](end_span)<br>
+                        2. Étude du prolongement de la fonction \(h(x)\) en 3[span_15](start_span)[span_15](end_span).
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-title">Série 1 - Ex 5 : Utilisation du TIAF</div>
+                    <div class="exercise-content">
+                        Soit \(f(x)=\sqrt{1-x}\). En utilisant le TIAF sur l'intervalle \([0, x]\), démontrer que :<br>
+                        \(1-\frac{x}{\sqrt{2}} \le \sqrt{1-x} \le 1-\frac{x}{2}\)[span_16](start_span)[span_16](end_span)
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-title">SHEMAF - Ex 1 : Limites Trigonométriques</div>
+                    <div class="exercise-content">
+                        Calculer les limites trigonométriques : \(\lim_{x\to0}\frac{\sin 3x}{6x}\), \(\lim_{x\to0}\frac{1-\cos x}{x \sin x}\), \(\lim_{x\to\frac{\pi}{6}}\frac{2\cos(2x)-1}{\cos(3x)}\)[span_17](start_span)[span_17](end_span).
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE DÉDIÉE : MATHS - EXERCICES DE TD -->
+            <div id="subpage-maths-td" class="sub-page">
+                <button class="back-btn" onclick="closeSubPage('maths-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Exercices de TD & Problèmes</h2>
+                
+                <div class="exercise-card">
+                    <div class="exercise-title">Série 1 - Problème 1 : Étude de fonction et Paramètre</div>
+                    <div class="exercise-content">
+                        <b>Partie A :</b> Étude de \(g(x)=4x^3-3x-8\) et recherche de l'unique solution \(\alpha\)[span_18](start_span)[span_18](end_span).<br>
+                        <b>Partie B :</b> Étude complète de \(f(x)\), asymptotes obliques, branches infinies et bijections réciproques[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span).
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-title">Série 1 - Problème 2 : Fonction par morceaux & Continuité</div>
+                    <div class="exercise-content">
+                        Étude de \(f(x)\) en 1, calcul des branches paraboliques, asymptotes et construction graphique de \(\mathcal{C}_f\) et \(\mathcal{C}_{g^{-1}}\)[span_21](start_span)[span_21](end_span).
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-title">SHEMAF - Problème 3 : Analyse & Symétries</div>
+                    <div class="exercise-content">
+                        Étude complète avec valeurs absolues, axes de symétrie, branches infinies et dérivabilité de la fonction réciproque \(h^{-1}\)[span_22](start_span)[span_22](end_span).
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION CHIMIE -->
+            <div id="subject-chimie" class="subject-main-view" style="display:none;">
+                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le type de contenu en chimie :</p>
+                <div class="category-action-grid">
+                    <div class="action-card" onclick="openSubPage('chimie-simple')">
+                        <i class="fa-solid fa-flask"></i>
+                        <h3>Exercices de Cours & FSD</h3>
+                        <p>Équations-bilans des alcools, réactifs et détermination de formules brutes[span_23](start_span)[span_23](end_span).</p>
+                    </div>
+                    <div class="action-card" onclick="openSubPage('chimie-td')">
+                        <i class="fa-solid fa-vial"></i>
+                        <h3>Problèmes & Dosages</h3>
+                        <p>Hydratation, estérification, rendements et dosage redox du degré d'alcool d'un vin[span_24](start_span)[span_24](end_span).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE DÉDIÉE : CHIMIE - COURS -->
+            <div id="subpage-chimie-simple" class="sub-page">
+                <button class="back-btn" onclick="closeSubPage('chimie-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Exercices de Cours & FSD</h2>
+                <div class="exercise-card">
+                    <div class="exercise-title">TD C1 - Ex 1 : Équations-bilans des alcools[span_25](start_span)[span_25](end_span)</div>
+                    <div class="exercise-content">Propan-1-ol + Na ; 3-méthylpent-2-ène + eau ; 2,2,4-triméthylpentan-3-ol + \(\text{Al}_2\text{O}_3\)[span_26](start_span)[span_26](end_span).</div>
+                </div>
+                <div class="exercise-card">
+                    <div class="exercise-title">TD C1 - Ex 4 : Analyse et isomères[span_27](start_span)[span_27](end_span)</div>
+                    <div class="exercise-content">Pourcentages massiques (\%C=64,85 ; \%H=13,5), formule brute et tests à la 2,4-DNPH[span_28](start_span)[span_28](end_span).</div>
+                </div>
+            </div>
+
+            <!-- PAGE DÉDIÉE : CHIMIE - TD -->
+            <div id="subpage-chimie-td" class="sub-page">
+                <button class="back-btn" onclick="closeSubPage('chimie-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Problèmes & Dosages</h2>
+                <div class="exercise-card">
+                    <div class="exercise-title">TD C1 - Ex 2 : Markovnikov & Dosage[span_29](start_span)[span_29](end_span)</div>
+                    <div class="exercise-content">Hydratation du propène, calculs de moles et dosage par la soude[span_30](start_span)[span_30](end_span).</div>
+                </div>
+                <div class="exercise-card">
+                    <div class="exercise-title">TD C1 - Ex 9 : Dosage du degré d'alcool d'un vin</div>
+                    <div class="exercise-content">Distillation, oxydation par dichromate en excès et dosage en retour par le fer (II).</div>
+                </div>
+            </div>
+
+            <!-- SECTION SVT -->
+            <div id="subject-svt" class="subject-main-view" style="display:none;">
+                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le type de contenu en SVT :</p>
+                <div class="category-action-grid">
+                    <div class="action-card" onclick="openSubPage('svt-simple')">
+                        <i class="fa-solid fa-brain"></i>
+                        <h3>Restitution de Connaissances</h3>
+                        <p>Définitions, schémas annotés et cours sur le réflexe myotatique.</p>
+                    </div>
+                    <div class="action-card" onclick="openSubPage('svt-td')">
+                        <i class="fa-solid fa-microscope"></i>
+                        <h3>Exploitation de Documents</h3>
+                        <p>Analyse d'expériences historiques (Magendie) et tracés d'oscilloscopes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE DÉDIÉE : SVT - COURS -->
+            <div id="subpage-svt-simple" class="sub-page">
+                <button class="back-btn" onclick="closeSubPage('svt-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Restitution de Connaissances</h2>
+                <div class="exercise-card">
+                    <div class="exercise-title">SVT - Q1 : Réflexe Myotatique</div>
+                    <div class="exercise-content">Définition et rôle du fuseau neuromusculaire et du motoneurone.</div>
+                </div>
+            </div>
+
+            <!-- PAGE DÉDIÉE : SVT - TD -->
+            <div id="subpage-svt-td" class="sub-page">
+                <button class="back-btn" onclick="closeSubPage('svt-main')"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Exploitation de Documents</h2>
+                <div class="exercise-card">
+                    <div class="exercise-title">SVT - Ex 1 : Expériences de Magendie</div>
+                    <div class="exercise-content">Interprétation des sections des racines rachidiennes.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ONGLET 4: COMPTE -->
+        <div id="tab-compte" class="tab-panel">
+            <h2 style="margin-bottom:12px; font-size:1.1rem; color:var(--accent-cyan);">👤 Mon Profil TS2+</h2>
+            <div class="exercise-card">
+                <div class="exercise-title">Synchronisation GitHub / Netlify</div>
+                <div class="exercise-content">Application connectée et prête pour tes révisions en direct.</div>
             </div>
         </div>
 
-    </div>
+    </main>
 
-    <!-- NAVIGATION EN BAS -->
+    <!-- Navigation du bas -->
     <nav class="bottom-nav">
-        <button class="nav-item active" onclick="switchTab('home', this)">
-            <span class="icon">🏠</span> Accueil
-        </button>
-        <button class="nav-item" onclick="switchTab('lessons', this)">
-            <span class="icon">📖</span> Leçons
-        </button>
-        <button class="nav-item" onclick="switchTab('exercises', this)">
-            <span class="icon">✏️</span> Exercices
-        </button>
-        <button class="nav-item" onclick="switchTab('account', this)">
-            <span class="icon">👤</span> Compte
-        </button>
+        <div class="nav-item active" onclick="switchTab('accueil')">
+            <i class="fa-solid fa-house"></i>
+            <span>Accueil</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('lecons')">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Leçons</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('exercices')">
+            <i class="fa-solid fa-pen-pencil"></i>
+            <span>Exercices</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('compte')">
+            <i class="fa-solid fa-user"></i>
+            <span>Compte</span>
+        </div>
     </nav>
 
-    <!-- SCRIPT JAVASCRIPT AVEC RECHERCHE VOCALE STABLE ET RECHERCHE EN TEMPS RÉEL -->
     <script>
-        const lessonDatabase = {
-            maths: {
-                title: "📘 Leçon 1 : Limites et Continuité (Maths)",
-                content: `
-                    <h4 style="color: #38bdf8; margin-top:0;">1. Limites d'une fonction</h4>
-                    <p>• <strong>Limite finie ou infinie en l'infini :</strong> Étude du comportement d'une fonction lorsque x tend vers +∞ ou -∞.</p>
-                    <p>• <strong>Formes indéterminées :</strong> (+∞ - ∞), (0 × ∞), (0 / 0), (±∞ / ±∞). Levées par factorisation ou quantité conjuguée.</p>
-                    <hr style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h4 style="color: #38bdf8;">2. Continuité en un point & TVI</h4>
-                    <p>• f est continue en x₀ si lim(x → x₀) f(x) = f(x₀).</p>
-                    <p>• <strong>Théorème des Valeurs Intermédiaires (TVI) :</strong> Pour tout k compris entre f(a) et f(b), l'équation f(x) = k admet au moins une solution dans [a, b].</p>
-                `
-            },
-            svt: {
-                title: "📗 Leçon 1 : Le Système Nerveux Cérébrospinal (SVT)",
-                content: `
-                    <h4 style="color: #00b09b; margin-top:0;">1. Organisation & Protection du SNC</h4>
-                    <p>Le système nerveux cérébrospinal regroupe l'encéphale et la moelle épinière. Triple protection : osseuse (crâne/canal rachidien), méninges et Liquide Céphalo-Rachidien (LCR).</p>
-                    <hr style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h4 style="color: #00b09b;">2. L'Encéphale & La Moelle Épinière</h4>
-                    <p>• <strong>Cerveau :</strong> Cortex gris périphérique et substance blanche interne (conscience, motricité).</p>
-                    <p>• <strong>Cervelet & Tronc cérébral :</strong> Équilibre, coordination et centres vitaux autonomes.</p>
-                    <p>• <strong>Moelle épinière :</strong> Substance grise en « H » au centre et substance blanche en périphérie. Racines dorsales (sensitives) et ventrales (motrices).</p>
-                `
-            },
-            physique: {
-                title: "📙 Leçon 1 : Sciences Physiques (Physique & Chimie)",
-                content: `
-                    <h4 style="color: #ff0844; margin-top:0;">PHYSIQUE : Cinématique du Point</h4>
-                    <p>• <strong>Vecteur position :</strong> Repère le mobile au cours du temps.</p>
-                    <p>• <strong>Vecteur vitesse :</strong> Dérivée du vecteur position par rapport au temps | <strong>Vecteur accélération :</strong> Dérivée du vecteur vitesse.</p>
-                    <hr style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h4 style="color: #ff0844;">CHIMIE 1 : Les Alcools</h4>
-                    <p>• Caractérisés par le groupe hydroxyle (-OH) lié à un carbone saturé (R-OH). Classés en primaire, secondaire et tertiaire.</p>
-                    <hr style="border-color: rgba(255, 255, 255, 0.1);">
-                    <h4 style="color: #ff0844;">CHIMIE 2 : Les Amines</h4>
-                    <p>• Dérivés organiques de l'ammoniac (NH₃) où les H sont remplacés par des groupements alkyles. Caractère basique marqué.</p>
-                `
-            }
-        };
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
 
-        const exercisesDatabase = {
-            maths: [
-                { title: "Exercice 1 : Limite simple en l'infini", text: "Calculer la limite en +∞ et en -∞ de la fonction f(x) = (3x² - x + 5) / (x² + 2)." },
-                { title: "Exercice 2 : Forme indéterminée (conjuguée)", text: "Déterminer lim(x → 4) (√x - 2) / (x - 4) en utilisant la quantité conjuguée." },
-                { title: "Exercice 3 : Théorème des Valeurs Intermédiaires", text: "Soit f(x) = x³ + 2x - 5 sur ℝ. Montrer que f(x) = 0 admet une unique solution α dans [1, 2]." },
-                { title: "Exercice 4 : Continuité d'une fonction", text: "Étudier la continuité de la fonction g(x) = sin(x)/x en x = 0 (prolongement par continuité)." },
-                { title: "Exercice 5 : Asymptotes obliques", text: "Soit f(x) = (2x² + 3x - 1) / (x + 1). Déterminer les réels a, b et c tels que f(x) = ax + b + c/(x + 1)." },
-                { title: "Exercice 6 : Calcul de limites trigonométriques", text: "Calculer la limite de (1 - cos x) / x² lorsque x tend vers 0." },
-                { title: "Exercice 7 : Opérations sur les limites", text: "Déterminer la limite de h(x) = √(x² + 1) - x en +∞." },
-                { title: "Exercice 8 : Utilisation du taux de variation", text: "Calculer le nombre dérivé de f(x) = x³ en x₀ = 2 en utilisant la limite du taux de variation." },
-                { title: "Exercice 9 : Encadrement et théorème des gendarmes", text: "Calculer la limite en +∞ de f(x) = (sin x) / x à l'aide d'un encadrement." },
-                { title: "Exercice 10 : Étude globale de continuité", text: "Démontrer qu'une fonction polynôme de degré 3 s'annule au moins une fois sur ℝ." }
-            ],
-            svt: [
-                { title: "Exercice 1 : Organisation du SNC", text: "Citer les deux grands ensembles anatomiques du système nerveux central et préciser le rôle des méninges." },
-                { title: "Exercice 2 : Anatomie de la moelle épinière", text: "Décrire la disposition de la substance grise et de la substance blanche lors d'une coupe transversale de la moelle épinière." },
-                { title: "Exercice 3 : Rôle du LCR", text: "Expliquer la double fonction du Liquide Céphalo-Rachidien (LCR) pour les centres nerveux." },
-                { title: "Exercice 4 : Les trois parties de l'encéphale", text: "Nommer le cerveau, le cervelet et le tronc cérébral en associant brièvement une fonction majeure à chacun." },
-                { title: "Exercice 5 : Les racines rachidiennes", text: "Distinguer le rôle de la racine dorsale (avec son ganglion spinal) et de la racine ventrale d'un nerf rachidien." },
-                { title: "Exercice 6 : Le cortex cérébral", text: "Expliquer la position de la substance grise dans le cerveau et son rôle dans la motricité volontaire." },
-                { title: "Exercice 7 : Le rôle du tronc cérébral", text: "Pourquoi dit-on que le tronc cérébral abrite les centres nerveux autonomes vitaux ?" },
-                { title: "Exercice 8 : Protection osseuse", text: "Préciser les structures osseuses qui assurent la protection externe de l'encéphale et de la moelle épinière." },
-                { title: "Exercice 9 : Les enveloppes méningées", text: "Nommer dans l'ordre (de l'extérieur vers l'intérieur) les trois membranes qui constituent les méninges." },
-                { title: "Exercice 10 : Structure du cervelet", text: "Décrire l'organisation interne du cervelet et son implication dans la coordination des mouvements." }
-            ],
-            physique: [
-                { title: "Exercice 1 : Vecteur position et vitesse", text: "Un mobile a pour vecteur position OM(t) = 3t² i + 4t j. Déterminer son vecteur vitesse à tout instant t." },
-                { title: "Exercice 2 : Calcul d'accélération", text: "À partir du vecteur vitesse v(t) = (2t - 1) i + 5 j, déterminer le vecteur accélération du point." },
-                { title: "Exercice 3 : Classification des alcools", text: "Donner la formule semi-développée et la classe des isomères de formule brute C₄H₁₀O." },
-                { title: "Exercice 4 : Oxydation ménagée", text: "Préciser le produit obtenu lors de l'oxydation ménagée d'un alcool secondaire par une solution de permanganate de potassium." },
-                { title: "Exercice 5 : Nomenclature des amines", text: "Donner la formule semi-développée de la butan-2-amine et préciser sa classe." },
-                { title: "Exercice 6 : Mouvement rectiligne uniformément varié", text: "Établir l'équation horaire d'un mobile lâché sans vitesse initiale avec une accélération constante a." },
-                { title: "Exercice 7 : Caractère basique des amines", text: "Écrire l'équation de la réaction acido-basique entre la méthylamine et l'eau." },
-                { title: "Exercice 8 : Célérité et retard temporel", text: "Calculer le retard temporel entre deux points distants de 20 cm sachant que la célérité de l'onde est de 2 m/s." },
-                { title: "Exercice 9 : Réaction d'estérification", text: "Écrire l'équation chimique de la réaction entre un acide carboxylique et un alcool." },
-                { title: "Exercice 10 : Étude cinétique", text: "Expliquer comment déterminer graphiquement la vitesse volumique de disparition d'un réactif." }
-            ]
-        };
-
-        const dictionaryDatabase = [
-            { word: "neurone", definition: "Cellule nerveuse spécialisée dans la transmission des messages électriques et chimiques dans le système nerveux." },
-            { word: "synapse", definition: "Zone de contact fonctionnelle entre deux neurones, assurant la transmission de l'influx nerveux par des neurotransmetteurs." },
-            { word: "catalyseur", definition: "Espèce chimique qui accélère une réaction chimique sans participer au bilan de la réaction ni modifier son état d'équilibre." },
-            { word: "ph", definition: "Mesure de l'acidité ou de la basicité d'une solution aqueuse, défini par pH = -log[H3O+]." },
-            { word: "isomère", definition: "Molécules possédant la même formule brute mais des formules semi-développées ou spatiales différentes." },
-            { word: "oxydation", definition: "Réaction chimique au cours de laquelle une espèce perd des électrons (gain d'oxygène ou perte d'hydrogène en organique)." },
-            { word: "cinématique", definition: "Étude du mouvement des corps au cours du temps, indépendamment des causes qui les produisent (forces)." },
-            { word: "mitose", definition: "Processus de division cellulaire conduisant à deux cellules filles génétiquement identiques à la cellule mère." }
-        ];
-
-        // --- NAVIGATION ---
-        const switchTab = (tabId, element) => {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
             document.getElementById('tab-' + tabId).classList.add('active');
-            element.classList.add('active');
-        };
+            event.currentTarget.classList.add('active');
+        }
 
-        // --- LEÇONS ---
-        const openLesson = (subject) => {
-            const data = lessonDatabase[subject];
-            if (data) {
-                document.getElementById('lessonTitle').innerText = data.title;
-                document.getElementById('lessonBody').innerHTML = data.content;
+        function switchSubject(subject) {
+            document.querySelectorAll('.subject-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.subject-main-view').forEach(view => view.style.display = 'none');
+            document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('active'));
+
+            event.currentTarget.classList.add('active');
+            document.getElementById('subject-' + subject).style.display = 'block';
+        }
+
+        function openSubPage(pageType) {
+            // Cache la vue principale de la matière active
+            document.querySelectorAll('.subject-main-view').forEach(view => {
+                if(view.style.display === 'block') view.dataset.activeSubject = view.id;
+                view.style.display = 'none';
+            });
+            // Ouvre la sous-page correspondante
+            document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('active'));
+            document.getElementById('subpage-' + pageType).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeSubPage(mainId) {
+            document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('active'));
+            // Détermine quelle matière est active pour réafficher sa vue principale
+            const activeBtn = document.querySelector('.subject-btn.active');
+            if (activeBtn.textContent.includes('Mathématiques')) {
+                document.getElementById('subject-maths').style.display = 'block';
+            } else if (activeBtn.textContent.includes('Chimie')) {
+                document.getElementById('subject-chimie').style.display = 'block';
+            } else if (activeBtn.textContent.includes('SVT')) {
+                document.getElementById('subject-svt').style.display = 'block';
             }
-        };
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-        // --- EXERCICES ---
-        const filterExercises = (subject) => {
-            const container = document.getElementById('exercisesContainer');
-            const list = exercisesDatabase[subject];
-            const badgeBg = subject === 'maths' ? 'var(--grad-maths)' : (subject === 'svt' ? 'var(--grad-svt)' : 'var(--grad-physique)');
-            const subjectName = subject === 'maths' ? 'Mathématiques' : (subject === 'svt' ? 'SVT' : 'Sciences Physiques');
+        function startVoiceSearch() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const recognition = new SpeechRecognition();
+                recognition.lang = 'fr-FR';
+                const micBtn = document.getElementById('micBtn');
+                micBtn.style.color = '#fff';
 
-            let html = `<h3 style="color: #38bdf8; margin-bottom: 15px; text-transform: uppercase; font-size: 14px;">📂 Exercices de ${subjectName}</h3>`;
-            
-            list.forEach((ex, index) => {
-                html += `
-                    <div class="card" style="border-left: 4px solid #38bdf8;">
-                        <span class="badge" style="background: ${badgeBg};">Exercice ${index + 1}</span>
-                        <h3 style="font-size: 15px; margin-bottom: 5px;">${ex.title}</h3>
-                        <p style="margin: 0; font-size: 13px;"><strong>Énoncé :</strong> ${ex.text}</p>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
-        };
-
-        // --- MOTEUR DE RECHERCHE & GESTION DES RÉSULTATS ---
-        const searchInput = document.getElementById('searchInput');
-        const resultsContainer = document.getElementById('resultsContainer');
-
-        const executeSearch = (query) => {
-            query = query.toLowerCase().trim();
-            
-            if (query === "") {
-                resultsContainer.innerHTML = `
-                    <div class="card">
-                        <h3>💡 Recherche Intelligente & Vocale</h3>
-                        <p>Tape un mot ou clique sur le micro 🎙️ pour parler directement (ex: <em>neurone, ph, limites, cinématique...</em>).</p>
-                    </div>
-                `;
-                return;
-            }
-
-            const foundResults = [];
-
-            dictionaryDatabase.forEach(item => {
-                if (item.word.toLowerCase().includes(query) || item.definition.toLowerCase().includes(query)) {
-                    foundResults.push({ title: `📚 Dictionnaire : ${item.word.toUpperCase()}`, snippet: item.definition });
-                }
-            });
-
-            Object.keys(lessonDatabase).forEach(sub => {
-                const lesson = lessonDatabase[sub];
-                if (lesson.title.toLowerCase().includes(query) || lesson.content.toLowerCase().includes(query)) {
-                    foundResults.push({ title: `📖 Leçon : ${lesson.title}`, snippet: `Trouvé dans le cours de ${sub.toUpperCase()}.` });
-                }
-            });
-
-            Object.keys(exercisesDatabase).forEach(sub => {
-                exercisesDatabase[sub].forEach(ex => {
-                    if (ex.title.toLowerCase().includes(query) || ex.text.toLowerCase().includes(query)) {
-                        foundResults.push({ title: `✏️ Exercice (${sub.toUpperCase()}) : ${ex.title}`, snippet: ex.text });
-                    }
-                });
-            });
-
-            if (foundResults.length === 0) {
-                resultsContainer.innerHTML = `
-                    <div class="card" style="border-color: #ff0844;">
-                        <h3>Aucun résultat</h3>
-                        <p>Aucune correspondance trouvée pour "${query}".</p>
-                    </div>
-                `;
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('searchInput').value = transcript;
+                    micBtn.style.color = 'var(--accent-cyan)';
+                };
+                recognition.onerror = function() { micBtn.style.color = 'var(--accent-cyan)'; };
+                recognition.start();
             } else {
-                let html = `<h3 style="color: #38bdf8; font-size: 15px; margin-bottom: 10px;">Résultats (${foundResults.length}) :</h3>`;
-                foundResults.forEach(res => {
-                    html += `
-                        <div class="card" style="border-color: #38bdf8;">
-                            <h3 style="font-size: 14px; margin-bottom: 5px;">${res.title}</h3>
-                            <p style="margin: 0; font-size: 13px; color: #cbd5e1;">${res.snippet}</p>
-                        </div>
-                    `;
-                });
-                resultsContainer.innerHTML = html;
+                alert("La recherche vocale n'est pas supportée par ce navigateur.");
             }
-        };
-
-        // Écoute de la saisie clavier en temps réel
-        searchInput.addEventListener('input', (e) => {
-            executeSearch(e.target.value);
-        });
-
-        // --- GESTION DE LA COMMANDE VOCALE (MICRO 🎙️) ---
-        const micBtn = document.getElementById('micBtn');
-        
-        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            const recognition = new SpeechRecognition();
-            recognition.lang = 'fr-FR';
-            recognition.interimResults = false;
-            recognition.maxAlternatives = 1;
-
-            micBtn.addEventListener('click', () => {
-                try {
-                    recognition.start();
-                    searchInput.placeholder = "Parle maintenant, j'écoute... 🎙️";
-                    micBtn.style.transform = "scale(1.3)";
-                } catch (err) {
-                    console.log("Recherche vocale déjà active");
-                }
-            });
-
-            recognition.onresult = (event) => {
-                const spokenText = event.results[0][0].transcript;
-                searchInput.value = spokenText;
-                executeSearch(spokenText); // Lance la recherche automatiquement avec ce que l'élève a dit
-                micBtn.style.transform = "scale(1)";
-                searchInput.placeholder = "Recherche ou commande vocale 🎤...";
-            };
-
-            recognition.onerror = () => {
-                searchInput.placeholder = "Oups, réessaie de parler...";
-                micBtn.style.transform = "scale(1)";
-                setTimeout(() => {
-                    searchInput.placeholder = "Recherche ou commande vocale 🎤...";
-                }, 2000);
-            };
-
-            recognition.onend = () => {
-                micBtn.style.transform = "scale(1)";
-                searchInput.placeholder = "Recherche ou commande vocale 🎤...";
-            };
-        } else {
-            // Si le navigateur/appareil ne gère pas la reconnaissance vocale
-            micBtn.style.display = 'none';
         }
     </script>
 </body>
 </html>
-
-
-
-
-
-
