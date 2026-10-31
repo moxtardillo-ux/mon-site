@@ -163,6 +163,13 @@
             margin-bottom: 16px;
             border-left: 6px solid var(--accent-cyan);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.25);
         }
 
         .lesson-card.pc {
@@ -386,6 +393,35 @@
             color: var(--accent-blue);
             font-style: italic;
         }
+
+        /* STYLES DES PAYSAGES DE LEÇONS */
+        .lesson-section-title {
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 14px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.3);
+            padding-bottom: 4px;
+        }
+
+        .lesson-text {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .lesson-list {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        .lesson-list li {
+            margin-bottom: 6px;
+        }
     </style>
 </head>
 <body>
@@ -417,24 +453,141 @@
             </div>
         </div>
 
-        <!-- ONGLET 2: LEÇONS (LES 3 CARRÉS COLORÉS RESTAURÉS) -->
+        <!-- ONGLET 2: LEÇONS (LES 3 CARRÉS COLORÉS RESTAURÉS ET CLIQUABLES) -->
         <div id="tab-lecons" class="tab-panel">
             <h2 style="margin-bottom:14px; font-size:1.2rem; color:var(--accent-cyan);">📚 Résumés & Fiches de cours</h2>
             
-            <div class="lesson-card">
-                <div class="lesson-title"><i class="fa-solid fa-square-root-variable" style="color:var(--accent-cyan);"></i> Mathématiques</div>
-                <div class="lesson-desc">Limites, continuité, dérivabilité et primitives.</div>
+            <!-- VUE DES 3 CARTES DE LEÇONS -->
+            <div id="lessons-main-view">
+                <div class="lesson-card" onclick="openLessonPage('maths')">
+                    <div class="lesson-title"><i class="fa-solid fa-square-root-variable" style="color:var(--accent-cyan);"></i> Mathématiques</div>
+                    <div class="lesson-desc">Limites, continuité, théorèmes et interprétation graphique.</div>
+                </div>
+
+                <div class="lesson-card pc" onclick="openLessonPage('pc')">
+                    <div class="lesson-title"><i class="fa-solid fa-flask" style="color:var(--accent-purple);"></i> Physique-Chimie</div>
+                    <div class="lesson-desc">Alcools, Amines et Cinématique du point.</div>
+                </div>
+
+                <div class="lesson-card svt" onclick="openLessonPage('svt')">
+                    <div class="lesson-title"><i class="fa-solid fa-dna" style="color:var(--accent-green);"></i> SVT</div>
+                    <div class="lesson-desc">Système nerveux cérébro-spinal & tissu nerveux.</div>
+                </div>
             </div>
 
-            <div class="lesson-card pc">
-                <div class="lesson-title"><i class="fa-solid fa-flask" style="color:var(--accent-purple);"></i> Physique-Chimie</div>
-                <div class="lesson-desc">Cinématique, Alcools, Amines et composés azotés.</div>
+            <!-- SOUS-PAGE LEÇONS : MATHÉMATIQUES -->
+            <div id="lesson-page-maths" class="sub-page">
+                <button class="back-btn" onclick="closeLessonPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux leçons</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Leçons de Mathématiques</h2>
+                
+                <div class="exercise-card">
+                    <div class="lesson-section-title">I. Limites usuelles</div>
+                    <div class="lesson-text">
+                        Les limites des fonctions de référence (polynômes, rationnelles, trigonométriques) constituent la base des calculs.
+                    </div>
+                    <div class="lesson-text">
+                        <b>Exercice d'application :</b> Déterminer \(\lim_{x \to 1} \frac{2x^2 - 3x + 1}{x - 1}\).<br>
+                        <b>Correction :</b> Forme indéterminée \(\frac{0}{0}\). On factorise le numérateur : \(2x^2 - 3x + 1 = (x - 1)(2x - 1)\). D'où \(\lim_{x \to 1} (2x - 1) = 1\).
+                    </div>
+
+                    <div class="lesson-section-title">II. Théorèmes sur les limites</div>
+                    <ul class="lesson-list">
+                        <li><b>Théorème des gendarmes :</b> Si \(g(x) \leq f(x) \leq h(x)\) et \(\lim_{x \to x_0} g(x) = \lim_{x \to x_0} h(x) = l\), alors \(\lim_{x \to x_0} f(x) = l\).</li>
+                        <li><b>Théorème de comparaison :</b> Si \(f(x) \geq g(x)\) et \(\lim_{x \to x_0} g(x) = +\infty\), alors \(\lim_{x \to x_0} f(x) = +\infty\).</li>
+                        <li><b>Théorème de composition :</b> Si \(\lim_{x \to x_0} f(x) = b\) et \(\lim_{u \to b} g(u) = c\), alors \(\lim_{x \to x_0} g(f(x)) = c\).</li>
+                    </ul>
+
+                    <div class="lesson-section-title">III. Interprétation graphique & Asymptotes</div>
+                    <ul class="lesson-list">
+                        <li><b>Asymptote horizontale :</b> Droite \(y = b\) si \(\lim_{x \to \pm\infty} f(x) = b\).</li>
+                        <li><b>Asymptote verticale :</b> Droite \(x = x_0\) si \(\lim_{x \to x_0} f(x) = \pm\infty\).</li>
+                        <li><b>Asymptote oblique :</b> Droite \(y = ax + b\) si \(\lim_{x \to \pm\infty} [f(x) - (ax + b)] = 0\).</li>
+                    </ul>
+
+                    <div class="lesson-section-title">IV. Continuité d'une fonction</div>
+                    <ul class="lesson-list">
+                        <li><b>Continuité en \(x_0\) :</b> \(\lim_{x \to x_0} f(x) = f(x_0)\).</li>
+                        <li><b>Propriétés P1-P4 :</b> Polynômes continus sur \(\mathbb{R}\) ; rationnelles continues sur leur domaine ; \(\sin, \cos\) continus sur \(\mathbb{R}\) ; \(\tan\) continue sur \(\mathbb{R} \setminus \{\frac{\pi}{2} + k\pi\}\).</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="lesson-card svt">
-                <div class="lesson-title"><i class="fa-solid fa-dna" style="color:var(--accent-green);"></i> SVT</div>
-                <div class="lesson-desc">Organisation du système nerveux cérébro-spinal.</div>
+            <!-- SOUS-PAGE LEÇONS : PHYSIQUE-CHIMIE -->
+            <div id="lesson-page-pc" class="sub-page">
+                <button class="back-btn" onclick="closeLessonPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux leçons</button>
+                <h2 style="color: var(--accent-purple); margin-bottom: 14px;">🧪 Leçons de Physique-Chimie</h2>
+                
+                <div class="exercise-card">
+                    <div class="lesson-section-title">🧪 Chimie : Les Alcools</div>
+                    <div class="lesson-text">
+                        <b>1. Groupe caractéristique :</b> Groupe hydroxyle \(-\text{OH}\) lié à un carbone saturé. Formule brute générale d'un mono-alcool saturé acyclique : \(\text{C}_n\text{H}_{2n+2}\text{O}\).<br>
+                        <b>2. Classes d'alcools :</b>
+                        <ul class="lesson-list">
+                            <li>Primaire (\(1^\circ\)) : \(\text{R}-\text{CH}_2-\text{OH}\)</li>
+                            <li>Secondaire (\(2^\circ\)) : \(\text{R}-\text{CH}(\text{OH})-\text{R'}\)</li>
+                            <li>Tertiaire (\(3^\circ\)) : \(\text{R}-\text{C}(\text{OH})(\text{R'})-\text{R''}\)</li>
+                        </ul>
+                        <b>3. Propriétés chimiques :</b>
+                        <ul class="lesson-list">
+                            <li>Oxydation ménagée : Alcool \(1^\circ \rightarrow\) Aldéhyde \(\rightarrow\) Acide carboxylique. Alcool \(2^\circ \rightarrow\) Cétone. Alcool \(3^\circ\) inerte.</li>
+                            <li>Action du sodium : \(2\text{R-OH} + 2\text{Na} \rightarrow 2(\text{R-O}^- + \text{Na}^+) + \text{H}_2\).</li>
+                            <li>Déshydratations : Intermoléculaire (éther-oxyde) et intramoléculaire (alcène).</li>
+                        </ul>
+                    </div>
+
+                    <div class="lesson-section-title">🧪 Chimie : Les Amines</div>
+                    <div class="lesson-text">
+                        <b>1. Généralités :</b> Dérivés de l'ammoniac \(\text{NH}_3\). Formule générale : \(\text{C}_n\text{H}_{2n+3}\text{N}\).<br>
+                        <b>2. Propriétés :</b>
+                        <ul class="lesson-list">
+                            <li>Ionisation basique dans l'eau : \(\text{R-NH}_2 + \text{H}_2\text{O} \rightleftharpoons \text{R-NH}_3^+ + \text{OH}^-\).</li>
+                            <li>Action sur les indicateurs : \(\text{pH} > 7\) (BBT bleu, phénolphtaléine rose).</li>
+                            <li>Complexes métalliques et réaction totale avec les acides forts pour former un sel d'alkylammonium.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lesson-section-title">⚡ Physique : Cinématique du point</div>
+                    <div class="lesson-text">
+                        <b>1. Notion de mouvement :</b> Étudie le mouvement sans les causes. Repère d'espace, référentiel et trajectoire.<br>
+                        <b>2. Vecteur position :</b> En cartésiennes : \(\vec{OM}(t) = x(t)\vec{i} + y(t)\vec{j} + z(t)\vec{k}\).<br>
+                        <b>3. Vecteur vitesse moyenne :</b> \(\vec{v}_m = \frac{\Delta\vec{OM}}{\Delta t}\) en \(\text{m/s}\).
+                    </div>
+                </div>
             </div>
+
+            <!-- SOUS-PAGE LEÇONS : SVT -->
+            <div id="lesson-page-svt" class="sub-page">
+                <button class="back-btn" onclick="closeLessonPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux leçons</button>
+                <h2 style="color: var(--accent-green); margin-bottom: 14px;">🧬 Leçons de SVT</h2>
+                
+                <div class="exercise-card">
+                    <div class="lesson-section-title">Thème 1 : Système nerveux cérébro-spinal</div>
+                    <div class="lesson-text">
+                        <b>Leçon 1 : Organisation de l'encéphale</b>
+                        <ul class="lesson-list">
+                            <li><b>Protection :</b> Boîte crânienne (osseuse), Méninges (dure-mère, arachnoïde, pie-mère) et Liquide Céphalo-Rachidien (LCR).</li>
+                            <li><b>Morphologie externe :</b> Face supérieure (hémisphères, circonvolutions, cervelet) et face inférieure (bulbes olfactifs, chiasma optique, bulbe rachidien).</li>
+                            <li><b>Morphologie interne :</b> Substance grise périphérique (cortex), substance blanche centrale et ventricules cérébraux.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lesson-section-title">Thème 2 : Tissu nerveux et ses propriétés</div>
+                    <div class="lesson-text">
+                        <b>Leçon 3 : Structure du tissu nerveux</b>
+                        <ul class="lesson-list">
+                            <li><b>Substance grise vs blanche :</b> Corps cellulaires, dendrites et névroglie dans la grise ; axones myélinisés dans la blanche.</li>
+                            <li><b>Neurone radiculaire :</b> Corps cellulaire (péricaryon, centre trophique), dendrites et axone.</li>
+                            <li><b>Dégénérescence wallérienne :</b> La section de la fibre montre que la partie séparée du corps cellulaire dégénère.</li>
+                        </ul>
+                        <b>Leçon 4 : Propriétés du tissu nerveux</b>
+                        <ul class="lesson-list">
+                            <li><b>Excitabilité :</b> Seuil d'excitabilité ou rhéobase (\(I_0\)). La <b>Chronaxie</b> est la durée minimale pour une intensité égale à \(2 \times I_0\).</li>
+                            <li><b>Conductibilité :</b> Exige l'intégrité anatomique et physiologique (fibre vivante) de l'axone.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- ONGLET 3: EXERCICES (BLOCS VERTICAUX EMPILÉS) -->
@@ -882,6 +1035,24 @@
             } else if (activeBtn.textContent.includes('SVT')) {
                 document.getElementById('subject-svt').style.display = 'block';
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- NAVIGATION DANS L'ONGLET LEÇONS ---
+        function openLessonPage(subject) {
+            document.getElementById('lessons-main-view').style.display = 'none';
+            document.querySelectorAll('#tab-lecons .sub-page').forEach(p => p.classList.remove('active'));
+            document.getElementById('lesson-page-' + subject).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function closeLessonPage() {
+            document.querySelectorAll('#tab-lecons .sub-page').forEach(p => p.classList.remove('active'));
+            document.getElementById('lessons-main-view').style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
