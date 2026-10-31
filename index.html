@@ -6,7 +6,7 @@
     <title>Application Révision TS2+</title>
     <!-- FontAwesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- MathJax pour les formules mathématiques -->
+    <!-- MathJax pour le rendu propre des formules mathématiques et chimiques -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -186,7 +186,7 @@
             color: var(--text-sub);
         }
 
-        /* BLOCS D'ANNONCES VERTICAUX (BIEN EMPILÉS LES UNS SOUS LES AUTRES) */
+        /* BLOCS D'ANNONCES VERTICAUX EMPILÉS */
         .category-action-stack {
             display: flex;
             flex-direction: column;
@@ -374,28 +374,28 @@
             <div class="exercise-card">
                 <div class="exercise-title">💡 Recherche Intelligente & Vocale</div>
                 <div class="exercise-content">
-                    Tape un mot ou clique sur le micro 🎤 pour parler directement (ex : <i>limites, alcools, réflexe...</i>).
+                    Tape un mot ou clique sur le micro 🎤 pour rechercher directement dans tes cours et exercices.
                 </div>
             </div>
         </div>
 
-        <!-- ONGLET 2: LEÇONS (LES 3 CARRÉS DE BASE RESTAURÉS AVEC COULEURS) -->
+        <!-- ONGLET 2: LEÇONS (3 CARRÉS DE BASE COLORÉS) -->
         <div id="tab-lecons" class="tab-panel">
             <h2 style="margin-bottom:14px; font-size:1.2rem; color:var(--accent-cyan);">📚 Résumés & Fiches de cours</h2>
             
             <div class="lesson-card">
                 <div class="lesson-title"><i class="fa-solid fa-square-root-variable" style="color:var(--accent-cyan);"></i> Mathématiques</div>
-                <div class="lesson-desc">Espace des leçons d'analyse, suites, complexes et probabilités.</div>
+                <div class="lesson-desc">Limites, continuité, dérivabilité et primitives.</div>
             </div>
 
             <div class="lesson-card pc">
                 <div class="lesson-title"><i class="fa-solid fa-flask" style="color:var(--accent-purple);"></i> Physique-Chimie</div>
-                <div class="lesson-desc">Espace des leçons d'acides/bases, alcools, esterification et cinématique.</div>
+                <div class="lesson-desc">Cinématique, Alcools, Amines et composés azotés.</div>
             </div>
 
             <div class="lesson-card svt">
                 <div class="lesson-title"><i class="fa-solid fa-dna" style="color:var(--accent-green);"></i> SVT</div>
-                <div class="lesson-desc">Espace des leçons de neurophysiologie, génétique et géologie.</div>
+                <div class="lesson-desc">Organisation du système nerveux cérébro-spinal.</div>
             </div>
         </div>
 
@@ -404,157 +404,206 @@
             
             <div class="subject-selector">
                 <button class="subject-btn active" onclick="switchSubject('maths')">📐 Mathématiques</button>
-                <button class="subject-btn" onclick="switchSubject('chimie')">🧪 Chimie</button>
+                <button class="subject-btn" onclick="switchSubject('chimie')">🧪 Physique-Chimie</button>
                 <button class="subject-btn" onclick="switchSubject('svt')">🧬 SVT</button>
             </div>
 
-            <!-- SECTION MATHÉMATIQUES -->
+            <!-- ================= SECTION MATHÉMATIQUES ================= -->
             <div id="subject-maths" class="subject-main-view">
                 <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le type de contenu en mathématiques :</p>
                 <div class="category-action-stack">
                     <div class="action-card" onclick="openSubPage('maths-simple')">
                         <div class="action-icon"><i class="fa-solid fa-bolt"></i></div>
                         <div class="action-info">
-                            <h3>Questions de cours & Exercices simples</h3>
-                            <p>Questions rapides, calculs de limites fondamentales, continuité et prolongeabilité[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span).</p>
+                            <h3>Limites & Continuité</h3>
+                            <p>Exercices 1 à 8 : calculs de limites, factorisations, continuité en un point et TVI.</p>
                         </div>
                     </div>
                     <div class="action-card" onclick="openSubPage('maths-td')">
                         <div class="action-icon"><i class="fa-solid fa-file-lines"></i></div>
                         <div class="action-info">
-                            <h3>Exercices de TD & Problèmes complexes</h3>
-                            <p>Grands problèmes d'analyse de niveau examen, études de fonctions avec paramètres, bijections et branches infinies[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span)[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span).</p>
+                            <h3>Dérivabilité & Primitives</h3>
+                            <p>Exercices 9 à 15 : fonctions dérivées, formules usuelles et calculs de primitives.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SOUS-PAGE MATHS : SIMPLES -->
+            <!-- SOUS-PAGE MATHS : LIMITES & CONTINUITÉ -->
             <div id="subpage-maths-simple" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Questions de cours & Exercices simples</h2>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Limites & Continuité (1 à 8)</h2>
                 <div class="drive-link-box">
                     <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir la série complète sur Google Drive (PDF)</a>
                 </div>
-                <div class="exercise-card">
-                    <div class="exercise-title">Calculs de limites classiques[span_6](start_span)[span_6](end_span)</div>
-                    <div class="exercise-content">
-                        Calculer :<br>
-                        a) \(\lim_{x\rightarrow1}\frac{x-1}{x^{2}-1}\)[span_7](start_span)[span_7](end_span)<br>
-                        b) \(\lim_{x\rightarrow3}\frac{\sqrt{5x+1}-\sqrt{4x+4}}{x-3}\)[span_8](start_span)[span_8](end_span)<br>
-                        c) \(\lim_{x\rightarrow0}\frac{1-\cos x}{\sin^{2}x}\)[span_9](start_span)[span_9](end_span)
-                    </div>
-                </div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 1</div><div class="exercise-content">Calculer la limite suivante : \(\lim_{x \to 2} (3x^2 - 5x + 1)\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 2</div><div class="exercise-content">Calculer la limite suivante : \(\lim_{x \to 0} \frac{x^2 + 3x}{x}\) (pour \(x \neq 0\)).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 3</div><div class="exercise-content">Déterminer la limite en \(+\infty\) de la fonction : \(f(x) = 2x^3 - 5x + 4\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 4</div><div class="exercise-content">Calculer la limite par factorisation en \(+\infty\) : \(\lim_{x \to +\infty} \frac{3x^2 + x - 1}{x^2 - 2}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 5</div><div class="exercise-content">Soit la fonction \(f(x) = 4x^2 - 3x + 2\) définie sur \(\mathbb{R}\). La fonction \(f\) est-elle continue en \(x_0 = 1\) ? Justifier.</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 6</div><div class="exercise-content">Étudier la continuité de la fonction \(g(x) = \frac{5}{x - 3}\) en \(x_0 = 3\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 7</div><div class="exercise-content">Soit \(h(x) = \sqrt{x + 4}\) définie sur \([-4, +\infty[\). La fonction \(h\) est-elle continue à droite en \(-4\) ?</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 8</div><div class="exercise-content">Énoncer brièvement ce que garantit le Théorème des Valeurs Intermédiaires (TVI) pour une fonction continue sur un intervalle \([a, b]\).</div></div>
             </div>
 
-            <!-- SOUS-PAGE MATHS : TD -->
+            <!-- SOUS-PAGE MATHS : DÉRIVABILITÉ & PRIMITIVES -->
             <div id="subpage-maths-td" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Exercices de TD & Problèmes Complexes</h2>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">📐 Maths : Dérivabilité & Primitives (9 à 15)</h2>
                 <div class="drive-link-box">
-                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Télécharger les problèmes de TD complets (PDF)</a>
+                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Télécharger les exercices de maths (PDF)</a>
                 </div>
-                <div class="exercise-card">
-                    <div class="exercise-title">Problème d'Analyse Grand Format : Étude avec paramètre & Asymptotes obliques[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span)</div>
-                    <div class="exercise-content">
-                        <b>Partie A :</b> Soit la fonction auxiliaire \(g(x) = 4x^3 - 3x - 8\)[span_12](start_span)[span_12](end_span). Étudier ses variations, dresser son tableau complet et montrer que l'équation \(g(x) = 0\) admet une unique solution \(\alpha\) sur \([0, +\infty[\)[span_13](start_span)[span_13](end_span).<br><br>
-                        <b>Partie B :</b> Étude complète de la fonction \(f(x) = \frac{x^3 + 1}{4x^2 - 1}\) pour \(x > 0\)[span_14](start_span)[span_14](end_span), recherche d'asymptotes obliques et encadrement de \(f(\alpha)\)[span_15](start_span)[span_15](end_span).
-                    </div>
-                </div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 9</div><div class="exercise-content">Déterminer la fonction dérivée \(f'(x)\) de la fonction \(f(x) = 5x^3 - 2x^2 + 7x - 9\) sur \(\mathbb{R}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 10</div><div class="exercise-content">Calculer la dérivée de la fonction \(g(x) = (2x + 3)^4\) sur \(\mathbb{R}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 11</div><div class="exercise-content">Déterminer la dérivée de la fonction trigonométrique \(h(x) = \sin(x) + 3\cos(x)\) sur \(\mathbb{R}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 12</div><div class="exercise-content">Calculer le nombre dérivé de la fonction \(f(x) = x^2\) au point \(x_0 = 4\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 13</div><div class="exercise-content">Déterminer une primitive \(F\) de la fonction \(f(x) = 6x^2 - 4x + 3\) sur \(\mathbb{R}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 14</div><div class="exercise-content">Trouver une primitive de la fonction \(g(x) = \cos(x)\) sur \(\mathbb{R}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">Exercice 15</div><div class="exercise-content">Déterminer une primitive de la fonction \(h(x) = \frac{1}{x^2}\) sur l'intervalle \(]0, +\infty[\).</div></div>
             </div>
 
-            <!-- SECTION CHIMIE -->
+            <!-- ================= SECTION PHYSIQUE-CHIMIE ================= -->
             <div id="subject-chimie" class="subject-main-view" style="display:none;">
-                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le type de contenu en chimie :</p>
+                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le domaine en Physique-Chimie :</p>
                 <div class="category-action-stack">
-                    <div class="action-card" onclick="openSubPage('chimie-simple')">
+                    <div class="action-card" onclick="openSubPage('pc-cinematique')">
+                        <div class="action-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                        <div class="action-info">
+                            <h3>Cinématique (15 Exercices)</h3>
+                            <p>Vecteurs position, vitesse, accélération, mouvements rectilignes et chute libre.</p>
+                        </div>
+                    </div>
+                    <div class="action-card" onclick="openSubPage('pc-alcools')">
                         <div class="action-icon"><i class="fa-solid fa-flask"></i></div>
                         <div class="action-info">
-                            <h3>Exercices de Cours & FSD</h3>
-                            <p>Équations-bilans des alcools, classes, et formules semi-développées[span_16](start_span)[span_16](end_span).</p>
+                            <h3>Chimie — Les Alcools (15 Exercices)</h3>
+                            <p>Nomenclature, classes d'alcools, oxydation ménagée, estérification et dosages.</p>
                         </div>
                     </div>
-                    <div class="action-card" onclick="openSubPage('chimie-td')">
+                    <div class="action-card" onclick="openSubPage('pc-amines')">
                         <div class="action-icon"><i class="fa-solid fa-vial"></i></div>
                         <div class="action-info">
-                            <h3>Problèmes de TD & Dosages complexes</h3>
-                            <p>Hydratation de propène, estérification, rendements et dosage redox du degré d'alcool d'un vin[span_17](start_span)[span_17](end_span)[span_18](start_span)[span_18](end_span).</p>
+                            <h3>Chimie — Amines & Composés Azotés (15 Exercices)</h3>
+                            <p>Définitions, basicité, acides aminés, zwitterions et liaisons peptidiques.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SOUS-PAGE CHIMIE : SIMPLES -->
-            <div id="subpage-chimie-simple" class="sub-page">
+            <!-- SOUS-PAGE PC : CINÉMATIQUE -->
+            <div id="subpage-pc-cinematique" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Cours & FSD</h2>
-                <div class="drive-link-box">
-                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir le TD Alcools complet (Google Drive)</a>
-                </div>
-                <div class="exercise-card">
-                    <div class="exercise-title">Équations-bilans des réactions des alcools[span_19](start_span)[span_19](end_span)</div>
-                    <div class="exercise-content">Écrire l'équation bilan avec les FSD : Propan-1-ol + Na, 2-méthylpropan-2-ol + Cu, et déshydratation sur alumine \(\text{Al}_2\text{O}_3\)[span_20](start_span)[span_20](end_span).</div>
-                </div>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">⚡ Physique : Cinématique (15 Exercices)</h2>
+                <div class="drive-link-box"><a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir la série Cinématique sur Google Drive (PDF)</a></div>
+                <div class="exercise-card"><div class="exercise-title">1. Vecteur position</div><div class="exercise-content">Dans un repère \((O, \vec{i}, \vec{j}, \vec{k})\), \(\vec{OM}(t) = 3t^2 \vec{i} + (4t - 1) \vec{j} + 2\vec{k}\). Coordonnées à \(t = 2\text{ s}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">2. Vecteur vitesse</div><div class="exercise-content">Déterminer l'expression de \(\vec{v}(t)\) et calculer sa valeur à \(t = 1\text{ s}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">3. Vecteur accélération</div><div class="exercise-content">Déduire \(\vec{a}(t)\) et préciser la nature du mouvement selon \((Ox)\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">4. MRU</div><div class="exercise-content">Mobile à \(v = 5\text{ m/s}\), \(x_0 = 2\text{ m}\) à \(t_0 = 0\). Établir \(x(t)\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">5. MRUV</div><div class="exercise-content">Sans vitesse initiale, \(a = 2\text{ m/s}^2\). Distance au bout de \(t = 4\text{ s}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">6. Chute libre verticale</div><div class="exercise-content">Lâché d'une hauteur \(h = 20\text{ m}\) (\(g = 10\text{ m/s}^2\)). Durée de la chute.</div></div>
+                <div class="exercise-card"><div class="exercise-title">7. Vitesse d'impact</div><div class="exercise-content">Vitesse de l'objet au sol (reprendre l'exercice 6).</div></div>
+                <div class="exercise-card"><div class="exercise-title">8. Mouvement circulaire uniforme</div><div class="exercise-content">Rayon \(R = 0,5\text{ m}\), \(\omega = 10\text{ rad/s}\). Calculer \(v\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">9. Exploitation de graphe</div><div class="exercise-content">Graphe horizontal à \(v = 15\text{ m/s}\). Distance parcourue entre \(0\) et \(5\text{ s}\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">10. Lancer vertical</div><div class="exercise-content">Lancé vers le haut à \(v_0 = 20\text{ m/s}\). Hauteur maximale atteinte.</div></div>
+                <div class="exercise-card"><div class="exercise-title">11. Projectile</div><div class="exercise-content">Équations horaires d'un projectile lancé horizontalement à l'altitude \(H\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">12. Trajectoire</div><div class="exercise-content">Éliminer \(t\) pour trouver l'équation de la trajectoire \(y = f(x)\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">13. Conditions initiales</div><div class="exercise-content">\(\vec{a} = -2\vec{i}\), \(v_0 = 10\text{ m/s}\), \(x_0 = 0\). Trouver vitesse et position.</div></div>
+                <div class="exercise-card"><div class="exercise-title">14. Changement de référentiel</div><div class="exercise-content">Train à \(90\text{ km/h}\), passager à \(4\text{ km/h}\) dans le sens du train. Vitesse par rapport au sol.</div></div>
+                <div class="exercise-card"><div class="exercise-title">15. Étude graphique de l'accélération</div><div class="exercise-content">Expliquer comment retrouver la variation de la vitesse via l'aire sous \(a(t)\).</div></div>
             </div>
 
-            <!-- SOUS-PAGE CHIMIE : TD -->
-            <div id="subpage-chimie-td" class="sub-page">
+            <!-- SOUS-PAGE PC : ALCOOLS -->
+            <div id="subpage-pc-alcools" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Problèmes & Dosages Complexes</h2>
-                <div class="drive-link-box">
-                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Télécharger les problèmes de chimie (PDF)</a>
-                </div>
-                <div class="exercise-card">
-                    <div class="exercise-title">Problème Complet : Dosage par reflux & Degré d'alcool d'un vin</div>
-                    <div class="exercise-content">Vérification de l'étiquette (9,5°) par distillation, oxydation par dichromate en excès, et dosage en retour par le sel de Mohr (\(\text{Fe}^{2+}\)).</div>
-                </div>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Les Alcools (15 Exercices)</h2>
+                <div class="drive-link-box"><a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir la série Alcools sur Google Drive (PDF)</a></div>
+                <div class="exercise-card"><div class="exercise-title">1. Formule générale</div><div class="exercise-content">Formule brute générale d'un alcool saturé acyclique à \(n\) carbones.</div></div>
+                <div class="exercise-card"><div class="exercise-title">2. Isomérie et nomenclature</div><div class="exercise-content">FSD et noms des isomères de formule \(C_4H_{10}O\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">3. Classes d'alcools</div><div class="exercise-content">Classer les isomères précédents en primaires, secondaires ou tertiaires.</div></div>
+                <div class="exercise-card"><div class="exercise-title">4. Action du sodium</div><div class="exercise-content">Équation propan-1-ol + \(\text{Na}\) et nom du produit formé.</div></div>
+                <div class="exercise-card"><div class="exercise-title">5. Déshydratation</div><div class="exercise-content">Équation de déshydratation du 2-méthylpropan-2-ol avec \(\text{Al}_2\text{O}_3\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">6. Oxydation ménagée</div><div class="exercise-content">Produits d'oxydation d'un alcool primaire (oxydant en défaut vs excès).</div></div>
+                <div class="exercise-card"><div class="exercise-title">7. Tests d'identification</div><div class="exercise-content">Test chimique pour caractériser un aldéhyde issu d'un alcool.</div></div>
+                <div class="exercise-card"><div class="exercise-title">8. Alcools non oxydables</div><div class="exercise-content">Pourquoi les alcools tertiaires ne s'oxydent-ils pas de façon ménagée ?</div></div>
+                <div class="exercise-card"><div class="exercise-title">9. Hydratation d'un alcène</div><div class="exercise-content">Hydratation du propène (Markovnikov), noms et FSD des alcools.</div></div>
+                <div class="exercise-card"><div class="exercise-title">10. Analyse élémentaire</div><div class="exercise-content">Alcool A : \(\%C = 64,85\%\), \(\%H = 13,5\%\). Déterminer la formule brute.</div></div>
+                <div class="exercise-card"><div class="exercise-title">11. Stéréochimie</div><div class="exercise-content">Définition du carbone asymétrique (\(C^*\)) et application à l'alcool amylique.</div></div>
+                <div class="exercise-card"><div class="exercise-title">12. Estérification</div><div class="exercise-content">Équation générale et caractéristiques de l'estérification.</div></div>
+                <div class="exercise-card"><div class="exercise-title">13. Rôle des catalyseurs</div><div class="exercise-content">Rôle de l'acide sulfurique et du chauffage à reflux.</div></div>
+                <div class="exercise-card"><div class="exercise-title">14. Rendement</div><div class="exercise-content">1 mol d'acide + 1 mol d'alcool, obtention de 0,67 mol d'ester. Calculer le rendement.</div></div>
+                <div class="exercise-card"><div class="exercise-title">15. Problème de dosage</div><div class="exercise-content">Dosage par retour de dichromate par des ions \(\text{Fe}^{2+}\) (degré d'alcool d'un vin).</div></div>
             </div>
 
-            <!-- SECTION SVT -->
+            <!-- SOUS-PAGE PC : AMINES -->
+            <div id="subpage-pc-amines" class="sub-page">
+                <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧪 Chimie : Amines & Composés Azotés (15 Exercices)</h2>
+                <div class="drive-link-box"><a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir la série Amines sur Google Drive (PDF)</a></div>
+                <div class="exercise-card"><div class="exercise-title">1. Définition</div><div class="exercise-content">Qu'est-ce qu'une amine et quelle est sa fonction caractéristique ?</div></div>
+                <div class="exercise-card"><div class="exercise-title">2. Formule générale</div><div class="exercise-content">Formule brute générale d'une amine saturée acyclique mono-aminée à \(n\) carbones.</div></div>
+                <div class="exercise-card"><div class="exercise-title">3. Classification</div><div class="exercise-content">Définir et donner des exemples d'amines primaire, secondaire et tertiaire.</div></div>
+                <div class="exercise-card"><div class="exercise-title">4. Nomenclature UICPA</div><div class="exercise-content">Nommer : \(\text{CH}_3-\text{CH}_2-\text{NH}_2\) et \((\text{CH}_3)_2\text{CH}-\text{NH}-\text{CH}_3\).</div></div>
+                <div class="exercise-card"><div class="exercise-title">5. Isomérie</div><div class="exercise-content">FSD de tous les isomères de formule \(C_3H_9N\) et précision de leur classe.</div></div>
+                <div class="exercise-card"><div class="exercise-title">6. Caractère basique</div><div class="exercise-content">Pourquoi les amines sont-elles basiques ? Équation avec l'eau.</div></div>
+                <div class="exercise-card"><div class="exercise-title">7. Réaction avec un acide</div><div class="exercise-content">Méthylamine + \(\text{HCl}\). Nom du sel formé.</div></div>
+                <div class="exercise-card"><div class="exercise-title">8. Ion alkylammonium</div><div class="exercise-content">Définition et structure générale d'un ion alkylammonium.</div></div>
+                <div class="exercise-card"><div class="exercise-title">9. Synthèse des amines</div><div class="exercise-content">Principe de synthèse par action de l'ammoniac sur un dérivé halogéné.</div></div>
+                <div class="exercise-card"><div class="exercise-title">10. Nucléophilie</div><div class="exercise-content">Élément responsable de la nucléophilie des amines et origine électronique.</div></div>
+                <div class="exercise-card"><div class="exercise-title">11. Introduction aux \(\alpha\)-aminoacides</div><div class="exercise-content">Particularité structurale d'un \(\alpha\)-aminoacide.</div></div>
+                <div class="exercise-card"><div class="exercise-title">12. Carbone asymétrique</div><div class="exercise-content">Quel est l'unique \alpha-aminoacide sans carbone asymétrique ? Justifier.</div></div>
+                <div class="exercise-card"><div class="exercise-title">13. Zwitterion</div><div class="exercise-content">Qu'est-ce qu'un zwitterion pour un aminoacide à son pH isoionique ?</div></div>
+                <div class="exercise-card"><div class="exercise-title">14. Liaison peptidique</div><div class="exercise-content">Équation de condensation de deux aminoacides (formation d'un dipeptide).</div></div>
+                <div class="exercise-card"><div class="exercise-title">15. Hydrolyse peptidique</div><div class="exercise-content">Qu'observe-t-on lors de l'hydrolyse d'un polypeptide en milieu acide ou basique ?</div></div>
+            </div>
+
+            <!-- ================= SECTION SVT ================= -->
             <div id="subject-svt" class="subject-main-view" style="display:none;">
-                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Choisis le type de contenu en SVT :</p>
+                <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">Système nerveux cérébro-spinal :</p>
                 <div class="category-action-stack">
-                    <div class="action-card" onclick="openSubPage('svt-simple')">
+                    <div class="action-card" onclick="openSubPage('svt-cours')">
                         <div class="action-icon"><i class="fa-solid fa-brain"></i></div>
                         <div class="action-info">
-                            <h3>Restitution de Connaissances</h3>
-                            <p>Définitions et schémas du réflexe myotatique.</p>
+                            <h3>Partie A : Restitution de Connaissances (8 Exercices)</h3>
+                            <p>Définitions, moelle épinière, substance grise/blanche, racines, arc réflexe et neurones.</p>
                         </div>
                     </div>
-                    <div class="action-card" onclick="openSubPage('svt-td')">
+                    <div class="action-card" onclick="openSubPage('svt-analyse')">
                         <div class="action-icon"><i class="fa-solid fa-microscope"></i></div>
                         <div class="action-info">
-                            <h3>Exploitation de Documents</h3>
-                            <p>Analyse d'expériences historiques (Magendie) et tracés d'oscilloscopes.</p>
+                            <h3>Partie B : Analyse & Expériences Historiques (7 Exercices)</h3>
+                            <p>Bell et Magendie, dégénérescence wallérienne, réflexe myotatique et transmissions.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SOUS-PAGE SVT : SIMPLES -->
-            <div id="subpage-svt-simple" class="sub-page">
+            <!-- SOUS-PAGE SVT : PARTIE A -->
+            <div id="subpage-svt-cours" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
                 <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Restitution de Connaissances</h2>
-                <div class="drive-link-box">
-                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Accéder aux cours SVT (Google Drive)</a>
-                </div>
-                <div class="exercise-card">
-                    <div class="exercise-title">Le Réflexe Myotatique</div>
-                    <div class="exercise-content">Définir le réflexe myotatique et légender le circuit nerveux impliqué.</div>
-                </div>
+                <div class="drive-link-box"><a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Ouvrir les documents SVT (Google Drive)</a></div>
+                <div class="exercise-card"><div class="exercise-title">1. Définition et composants</div><div class="exercise-content">Qu'appelle-t-on système nerveux cérébro-spinal ? Citez ses deux grandes parties anatomiques principales.</div></div>
+                <div class="exercise-card"><div class="exercise-title">2. Anatomie de la moelle épinière</div><div class="exercise-content">Schéma annoté d'une coupe transversale : substance grise, substance blanche, canal de l'épendyme, racines dorsale et ventrale.</div></div>
+                <div class="exercise-card"><div class="exercise-title">3. Substance grise vs Substance blanche</div><div class="exercise-content">Différence fondamentale de localisation et de composition cellulaire (encéphale vs moelle épinière).</div></div>
+                <div class="exercise-card"><div class="exercise-title">4. Les racines rachidiennes</div><div class="exercise-content">Rôle fonctionnel de la racine postérieure et ventrale. Rôle du ganglion spinal.</div></div>
+                <div class="exercise-card"><div class="exercise-title">5. L'arc réflexe</div><div class="exercise-content">Définition et ordre chronologique des 5 éléments anatomiques de l'arc réflexe.</div></div>
+                <div class="exercise-card"><div class="exercise-title">6. Types de nerfs</div><div class="exercise-content">Distinguer nerf sensitif, moteur et mixte (propriétés et sens des messages).</div></div>
+                <div class="exercise-card"><div class="exercise-title">7. Les enveloppes protectrices</div><div class="exercise-content">Citer les méninges de la surface externe (os) vers la surface interne (tissu nerveux).</div></div>
+                <div class="exercise-card"><div class="exercise-title">8. Le neurone</div><div class="exercise-content">Unité structurale du tissu nerveux. Décrire corps cellulaire, dendrites et axone.</div></div>
             </div>
 
-            <!-- SOUS-PAGE SVT : TD -->
-            <div id="subpage-svt-td" class="sub-page">
+            <!-- SOUS-PAGE SVT : PARTIE B -->
+            <div id="subpage-svt-analyse" class="sub-page">
                 <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i> Retour aux choix</button>
-                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Exploitation de Documents & Problèmes</h2>
-                <div class="drive-link-box">
-                    <a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Télécharger les TD SVT (Google Drive)</a>
-                </div>
-                <div class="exercise-card">
-                    <div class="exercise-title">Analyse des expériences de Magendie</div>
-                    <div class="exercise-content">Interpréter les résultats de section des racines antérieures et postérieures chez le chien.</div>
-                </div>
+                <h2 style="color: var(--accent-cyan); margin-bottom: 14px;">🧬 SVT : Analyse & Raisonnement</h2>
+                <div class="drive-link-box"><a href="https://drive.google.com" target="_blank"><i class="fa-brands fa-google-drive"></i> Télécharger les TD SVT (Google Drive)</a></div>
+                <div class="exercise-card"><div class="exercise-title">9. Expériences de Bell et Magendie</div><div class="exercise-content">Conséquences de la section de la racine ventrale vs dorsale. Déduire la loi de Bell-Magendie.</div></div>
+                <div class="exercise-card"><div class="exercise-title">10. Dégénérescence wallérienne</div><div class="exercise-content">Définition. Conséquences d'une section en aval vs en amont du ganglion spinal.</div></div>
+                <div class="exercise-card"><div class="exercise-title">11. Réflexe myotatique & fuseau neuromusculaire</div><div class="exercise-content">Rôle du fuseau neuromusculaire et pourquoi le réflexe est monosynaptique.</div></div>
+                <div class="exercise-card"><div class="exercise-title">12. Propagation de l'influx nerveux</div><div class="exercise-content">Fibres myélinisées vs a-myélinisées. Conduction saltatoire et impact sur la vitesse.</div></div>
+                <div class="exercise-card"><div class="exercise-title">13. Étude d'une lésion médullaire</div><div class="exercise-content">Effets d'une section totale thoracique sur la motricité et anomalies des réflexes.</div></div>
+                <div class="exercise-card"><div class="exercise-title">14. Transmission synaptique</div><div class="exercise-content">Étapes de la transmission au niveau d'une synapse chimique.</div></div>
+                <div class="exercise-card"><div class="exercise-title">15. Codage du message nerveux</div><div class="exercise-content">Codage en fréquence (fibre unique) vs recrutement (nerf entier).</div></div>
             </div>
 
         </div>
@@ -564,7 +613,7 @@
             <h2 style="margin-bottom:12px; font-size:1.1rem; color:var(--accent-cyan);">👤 Mon Profil TS2+</h2>
             <div class="exercise-card">
                 <div class="exercise-title">Synchronisation GitHub / Netlify</div>
-                <div class="exercise-content">Application prête pour tes révisions en direct.</div>
+                <div class="exercise-content">Application prête, connectée et actualisée avec l'ensemble de tes exercices.</div>
             </div>
         </div>
 
@@ -621,7 +670,7 @@
             const activeBtn = document.querySelector('.subject-btn.active');
             if (activeBtn.textContent.includes('Mathématiques')) {
                 document.getElementById('subject-maths').style.display = 'block';
-            } else if (activeBtn.textContent.includes('Chimie')) {
+            } else if (activeBtn.textContent.includes('Physique')) {
                 document.getElementById('subject-chimie').style.display = 'block';
             } else if (activeBtn.textContent.includes('SVT')) {
                 document.getElementById('subject-svt').style.display = 'block';
